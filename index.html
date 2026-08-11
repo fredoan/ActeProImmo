@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ActePro Immo — Connexion & Administration</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Segoe UI', system-ui, sans-serif;
+      background: #f0f2f5;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .hidden { display: none !important; }
+
+    /* --- LOGIN --- */
+    .login-box {
+      background: white;
+      padding: 2rem 2.5rem;
+      border-radius: 12px;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+      width: 380px;
+      text-align: center;
+    }
+    .login-box h2 { margin-bottom: 1.5rem; color: #1e2b3c; }
+    .login-box input {
+      width: 100%;
+      padding: 10px 12px;
+      margin-bottom: 12px;
+      border: 1.5px solid #d7d3c6;
+      border-radius: 6px;
+      font-size: 0.9rem;
+    }
+    .login-box button {
+      width: 100%;
+      padding: 11px;
+      background: #1e2b3c;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      font-weight: 600;
+      cursor: pointer;
+      margin-top: 6px;
+    }
+    .login-error { color: #c0392b; font-size: 0.85rem; margin-top: 8px; min-height: 22px; }
+
+    /* --- ADMIN PANEL --- */
+    .admin-container {
+      background: white;
+      border-radius: 12px;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+      width: 90%;
+      max-width: 800px;
+      padding: 2rem;
+      margin: 2rem;
+    }
+    .admin-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 1.5rem;
+    }
+    .admin-header h1 { color: #1e2b3c; font-size: 1.5rem; }
+    .btn-logout {
+      background: #c0392b;
+      color: white;
+      border: none;
+      padding: 8px 16px;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-bottom: 2rem;
+    }
+    th, td {
+      text-align: left;
+      padding: 10px 12px;
+      border-bottom: 1px solid #e0e0e0;
+    }
+    th { background: #f4f2ec; font-weight: 600; color: #1e2b3c; }
+    .btn-delete {
+      background: #e74c3c;
+      color: white;
+      border: none;
+      padding: 5px 10px;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+    .btn-add {
+      background: #27ae60;
+      color: white;
+      border: none;
+      padding: 10px 18px;
+      border-radius: 6px;
+      font-weight: 600;
+      cursor: pointer;
+      margin-bottom: 1rem;
+    }
+    .add-user-form {
+      background: #f9f8f5;
+      padding: 1.2rem;
+      border-radius: 8px;
+      margin-bottom: 1.5rem;
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      align-items: center;
+    }
+    .add-user-form input, .add-user-form select {
+      padding: 8px 10px;
+      border: 1.5px solid #d7d3c6;
+      border-radius: 6px;
+      font-size: 0.85rem;
+      flex: 1 1 120px;
+    }
+    .add-user-form button { background: #1e2b3c; color: white; border: none; padding: 8px 16px; border-radius: 6px; cursor: pointer; }
+    .info-text { font-size: 0.85rem; color: #6b7280; margin-bottom: 1rem; }
+
+    /* --- USER PAGE (placeholder) --- */
+    .user-placeholder {
+      background: white;
+      padding: 3rem;
+      border-radius: 12px;
+      text-align: center;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+    }
+  </style>
+</head>
+<body>
+
+<!-- ========== LOGIN SCREEN ========== -->
+<div id="loginScreen" class="login-box">
+  <h2>ActePro Immo</h2>
+  <input type="email" id="loginEmail" placeholder="Email" autocomplete="email">
+  <input type="password" id="loginPassword" placeholder="Mot de passe" autocomplete="current-password">
+  <div class="login-error" id="loginError"></div>
+  <button id="btnLogin">Se connecter</button>
+</div>
+
+<!-- ========== ADMIN SCREEN ========== -->
+<div id="adminScreen" class="admin-container hidden">
+  <div class="admin-header">
+    <h1>👑 Administration</h1>
+    <button class="btn-logout" id="btnLogoutAdmin">Déconnexion</button>
+  </div>
+  <p class="info-text">Gérez les comptes utilisateurs (notaires, clercs, autres admins).</p>
+
+  <div class="add-user-form" id="addUserForm">
+    <input type="text" id="newUserName" placeholder="Nom complet" required>
+    <input type="email" id="newUserEmail" placeholder="Email" required>
+    <input type="password" id="newUserPassword" placeholder="Mot de passe" required>
+    <select id="newUserRole">
+      <option value="notaire">Notaire</option>
+      <option value="clerc">Clerc</option>
+      <option value="admin">Admin</option>
+    </select>
+    <button id="btnAddUser">➕ Ajouter</button>
+  </div>
+
+  <h3>Liste des utilisateurs</h3>
+  <table id="usersTable">
+    <thead>
+      <tr><th>Nom</th><th>Email</th><th>Rôle</th><th>Créé le</th><th>Action</th></tr>
+    </thead>
+    <tbody></tbody>
+  </table>
+  <div id="adminError" style="color:#c0392b; font-size:0.85rem;"></div>
+</div>
+
+<!-- ========== USER SCREEN (placeholder) ========== -->
+<div id="userScreen" class="user-placeholder hidden">
+  <h2>✅ Vous êtes connecté(e)</h2>
+  <p>Votre espace de saisie d'actes (wizard) sera bientôt disponible.</p>
+  <button class="btn-logout" id="btnLogoutUser" style="margin-top:1.5rem;">Déconnexion</button>
+</div>
+
+<!-- ==================== SCRIPTS ==================== -->
+<script type="module">
+  // ---------- Firebase config ----------
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.1/firebase-app.js";
+  import { getAuth, signInWithEmailAndPassword, signOut, onAuthStateChanged, createUserWithEmailAndPassword, deleteUser } from "https://www.gstatic.com/firebasejs/10.12.1/firebase-auth.js";
+  import { getFirestore, collection, doc, getDoc, setDoc, deleteDoc, onSnapshot, query, orderBy, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.12.1/firebase-firestore.js";
+
+  const firebaseConfig = {
+    apiKey: "AIzaSyC4vOTOGwOdmhsyRF1kIEBYPNVzgax9G8A",
+    authDomain: "actepro-immo.firebaseapp.com",
+    projectId: "actepro-immo",
+    storageBucket: "actepro-immo.firebasestorage.app",
+    messagingSenderId: "451534021985",
+    appId: "1:451534021985:web:f06acf8882c693ab4e5120"
+  };
+
+  const app = initializeApp(firebaseConfig);
+  const auth = getAuth(app);
+  const db = getFirestore(app);
+
+  // ---------- Données localités (pour usage futur) ----------
+  const departementsCommunes = {
+    "Alibori": ["Banikoara","Gogounou","Kandi","Karimama","Malanville","Ségbana"],
+    "Atacora": ["Boukoumbé","Cobly","Kérou","Kouandé","Matéri","Natitingou","Péhunco","Tanguiéta","Toucountouna"],
+    "Atlantique": ["Abomey-Calavi","Allada","Kpomassè","Ouidah","Sô-Ava","Toffo","Tori-Bossito","Zè"],
+    "Borgou": ["Bembéréké","Kalalé","N'Dali","Nikki","Parakou","Pèrèrè","Sinendé","Tchaourou"],
+    "Collines": ["Bantè","Dassa-Zoumè","Glazoué","Ouèssè","Savalou","Savè"],
+    "Couffo": ["Aplahoué","Djakotomey","Dogbo","Klouékanmè","Lalo","Toviklin"],
+    "Donga": ["Bassila","Copargo","Djougou","Ouaké"],
+    "Littoral": ["Cotonou"],
+    "Mono": ["Athiémé","Bopa","Comè","Grand-Popo","Houéyogbé","Lokossa"],
+    "Ouémé": ["Adjarra","Adjohoun","Aguégués","Akpro-Missérété","Avrankou","Bonou","Dangbo","Porto-Novo","Sèmè-Kpodji"],
+    "Plateau": ["Adja-Ouèrè","Ifangni","Kétou","Pobè","Sakété"],
+    "Zou": ["Abomey","Agbangnizoun","Bohicon","Covè","Djidja","Ouinhi","Zagnanado","Za-Kpota","Zogbodomey"]
+  };
+
+  // ---------- Écrans ----------
+  const loginScreen = document.getElementById("loginScreen");
+  const adminScreen = document.getElementById("adminScreen");
+  const userScreen = document.getElementById("userScreen");
+
+  const loginEmail = document.getElementById("loginEmail");
+  const loginPassword = document.getElementById("loginPassword");
+  const loginError = document.getElementById("loginError");
+  const btnLogin = document.getElementById("btnLogin");
+  const btnLogoutAdmin = document.getElementById("btnLogoutAdmin");
+  const btnLogoutUser = document.getElementById("btnLogoutUser");
+
+  function showLogin() {
+    loginScreen.classList.remove("hidden");
+    adminScreen.classList.add("hidden");
+    userScreen.classList.add("hidden");
+  }
+
+  function showAdmin() {
+    loginScreen.classList.add("hidden");
+    adminScreen.classList.remove("hidden");
+    userScreen.classList.add("hidden");
+    loadUsers();
+  }
+
+  function showUser() {
+    loginScreen.classList.add("hidden");
+    adminScreen.classList.add("hidden");
+    userScreen.classList.remove("hidden");
+  }
+
+  // ---------- Authentification ----------
+  btnLogin.addEventListener("click", async () => {
+    const email = loginEmail.value.trim();
+    const pwd = loginPassword.value;
+    if (!email || !pwd) {
+      loginError.textContent = "Veuillez remplir tous les champs.";
+      return;
+    }
+    try {
+      const userCred = await signInWithEmailAndPassword(auth, email, pwd);
+      // Redirigé après onAuthStateChanged
+    } catch (err) {
+      loginError.textContent = "Email ou mot de passe incorrect.";
+    }
+  });
+
+  // Observer l'état de connexion
+  onAuthStateChanged(auth, async (user) => {
+    if (user) {
+      // Récupérer le rôle depuis Firestore
+      const userDocRef = doc(db, "users", user.uid);
+      const snap = await getDoc(userDocRef);
+      if (snap.exists() && snap.data().role === "admin") {
+        showAdmin();
+      } else if (snap.exists()) {
+        showUser(); // notaire ou clerc
+      } else {
+        // L'utilisateur existe dans Auth mais pas dans Firestore (cas rare) — déconnecter
+        await signOut(auth);
+        loginError.textContent = "Compte non configuré. Contactez l'administrateur.";
+        showLogin();
+      }
+    } else {
+      showLogin();
+    }
+  });
+
+  // Déconnexion
+  async function logout() {
+    await signOut(auth);
+  }
+  btnLogoutAdmin.addEventListener("click", logout);
+  btnLogoutUser.addEventListener("click", logout);
+
+  // ---------- Gestion des utilisateurs (admin) ----------
+  const usersTableBody = document.querySelector("#usersTable tbody");
+  const btnAddUser = document.getElementById("btnAddUser");
+  const newUserName = document.getElementById("newUserName");
+  const newUserEmail = document.getElementById("newUserEmail");
+  const newUserPassword = document.getElementById("newUserPassword");
+  const newUserRole = document.getElementById("newUserRole");
+
+  // Charger et écouter les changements dans la collection users
+  function loadUsers() {
+    const q = query(collection(db, "users"), orderBy("dateCreation", "desc"));
+    onSnapshot(q, (snapshot) => {
+      usersTableBody.innerHTML = "";
+      snapshot.forEach((doc) => {
+        const data = doc.data();
+        const tr = document.createElement("tr");
+        tr.innerHTML = `
+          <td>${data.nom || '-'}</td>
+          <td>${data.email || '-'}</td>
+          <td>${data.role || '-'}</td>
+          <td>${data.dateCreation ? new Date(data.dateCreation.toDate()).toLocaleDateString() : '-'}</td>
+          <td><button class="btn-delete" data-uid="${doc.id}">Supprimer</button></td>
+        `;
+        usersTableBody.appendChild(tr);
+      });
+
+      // Attacher les événements de suppression
+      document.querySelectorAll(".btn-delete").forEach(btn => {
+        btn.addEventListener("click", async (e) => {
+          const uid = e.target.getAttribute("data-uid");
+          if (uid === auth.currentUser?.uid) {
+            alert("Vous ne pouvez pas supprimer votre propre compte.");
+            return;
+          }
+          if (confirm("Supprimer définitivement cet utilisateur ?")) {
+            try {
+              // Supprimer d'Auth (nécessite une Cloud Function ou admin SDK, mais via le client on peut seulement supprimer l'utilisateur courant)
+              // On va simplement supprimer du Firestore et appeler une fonction de suppression (à mettre en place plus tard)
+              // Pour l'instant on supprime du Firestore, et on informe qu'il faut supprimer manuellement d'Auth.
+              await deleteDoc(doc(db, "users", uid));
+              alert("Utilisateur supprimé de la base. Vous devez encore le supprimer de la console Authentication Firebase manuellement (ou via une future fonction admin).");
+            } catch (err) {
+              console.error(err);
+              document.getElementById("adminError").textContent = "Erreur lors de la suppression.";
+            }
+          }
+        });
+      });
+    });
+  }
+
+  // Ajouter un utilisateur
+  btnAddUser.addEventListener("click", async () => {
+    const name = newUserName.value.trim();
+    const email = newUserEmail.value.trim();
+    const password = newUserPassword.value;
+    const role = newUserRole.value;
+
+    if (!name || !email || !password) {
+      document.getElementById("adminError").textContent = "Tous les champs sont requis.";
+      return;
+    }
+
+    try {
+      // Créer l'utilisateur dans Firebase Auth
+      const userCred = await createUserWithEmailAndPassword(auth, email, password);
+      const uid = userCred.user.uid;
+
+      // Ajouter le document dans Firestore
+      await setDoc(doc(db, "users", uid), {
+        email: email,
+        nom: name,
+        role: role,
+        actif: true,
+        dateCreation: serverTimestamp()
+      });
+
+      // Réinitialiser le formulaire
+      newUserName.value = "";
+      newUserEmail.value = "";
+      newUserPassword.value = "";
+      document.getElementById("adminError").textContent = "";
+    } catch (err) {
+      console.error(err);
+      document.getElementById("adminError").textContent = "Erreur : " + err.message;
+    }
+  });
+
+  // Exposer les localités pour usage ultérieur (on les attache à window)
+  window.beninLocalites = departementsCommunes;
+</script>
+
+</body>
+</html>
