@@ -1,0 +1,1361 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Générateur de statuts SARL · Style MonEntreprise.bj</title>
+    <!-- Google Fonts Roboto -->
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <!-- Font Awesome 5 (gratuit) pour les icônes -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <style>
+        /* ===== VARIABLES ===== */
+        :root {
+            --primary: #167078;
+            --primary-dark: #0f4f54;
+            --gray-bg: #EFEFEF;
+            --card-bg: #FFFFFF;
+            --text-dark: #1e2b3c;
+            --text-muted: #6b7280;
+            --border-radius: 4px;
+            --font-family: 'Roboto', sans-serif;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body {
+            font-family: var(--font-family);
+            background: var(--gray-bg);
+            color: var(--text-dark);
+            font-size: 16px;
+            line-height: 1.5;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* ===== EN-TÊTE ===== */
+        header {
+            background: white;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+            padding: 0 20px;
+            height: 80px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        .header-left {
+            display: flex;
+            align-items: center;
+        }
+        .header-left img {
+            height: 40px;
+            margin-right: 15px;
+        }
+        .header-left span {
+            font-size: 18px;
+            font-weight: 500;
+            color: var(--primary);
+        }
+        .header-nav {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            font-size: 14px;
+            font-weight: 500;
+            text-transform: uppercase;
+        }
+        .header-nav a {
+            color: var(--text-dark);
+            text-decoration: none;
+            padding: 6px 0;
+            border-bottom: 2px solid transparent;
+            transition: 0.2s;
+        }
+        .header-nav a:hover,
+        .header-nav a.active {
+            border-bottom-color: var(--primary);
+            color: var(--primary);
+        }
+        .header-nav .btn-primary {
+            background: var(--primary);
+            color: white !important;
+            padding: 6px 16px;
+            border-radius: 20px;
+            border-bottom: none;
+        }
+        .header-nav .btn-primary:hover {
+            background: var(--primary-dark);
+        }
+        .lang-switch {
+            display: flex;
+            gap: 8px;
+        }
+        .lang-switch a {
+            font-size: 12px;
+            color: var(--text-muted);
+        }
+        .lang-switch a.active {
+            color: var(--primary);
+            font-weight: 700;
+        }
+
+        /* ===== CONTENEUR PRINCIPAL ===== */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 30px 20px;
+            flex: 1;
+            width: 100%;
+        }
+
+        /* ===== BARRE DE PROGRESSION (SVG) ===== */
+        .progress-steps {
+            margin-bottom: 30px;
+            background: white;
+            padding: 20px 30px;
+            border-radius: var(--border-radius);
+            box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+        }
+        .progress-steps svg {
+            width: 100%;
+            height: 60px;
+        }
+        .step-text {
+            font-size: 12px;
+            fill: var(--text-muted);
+            text-anchor: middle;
+            font-weight: 500;
+        }
+        .step-text.active {
+            fill: var(--primary);
+            font-weight: 700;
+        }
+        .step-circle {
+            stroke: var(--text-muted);
+            stroke-width: 2;
+            fill: white;
+        }
+        .step-circle.active {
+            stroke: var(--primary);
+            fill: var(--primary);
+        }
+        .step-circle.done {
+            stroke: var(--primary);
+            fill: var(--primary);
+        }
+        .progress-line {
+            stroke: var(--text-muted);
+            stroke-width: 2;
+            stroke-dasharray: 4;
+        }
+        .progress-line-active {
+            stroke: var(--primary);
+            stroke-width: 2;
+        }
+
+        /* ===== CARTES ===== */
+        .card {
+            background: white;
+            border-radius: var(--border-radius);
+            box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+            margin-bottom: 24px;
+            overflow: hidden;
+        }
+        .card-head {
+            padding: 18px 24px;
+            border-bottom: 2px solid var(--primary);
+            background: #fafafa;
+        }
+        .card-head h2 {
+            font-size: 18px;
+            font-weight: 500;
+            color: var(--primary);
+            margin: 0;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .card-body {
+            padding: 24px;
+        }
+
+        /* ===== FORMULAIRES ===== */
+        .form-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 18px;
+        }
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+        .form-group label {
+            font-size: 14px;
+            font-weight: 500;
+            color: var(--text-dark);
+        }
+        .form-group label .required {
+            color: #c0392b;
+            margin-left: 4px;
+        }
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            padding: 10px 12px;
+            border: 1.5px solid #d7d3c6;
+            border-radius: 4px;
+            font-size: 15px;
+            font-family: var(--font-family);
+            transition: 0.2s;
+            background: white;
+        }
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(22, 112, 120, 0.15);
+        }
+        .form-group textarea {
+            resize: vertical;
+            min-height: 80px;
+        }
+        .form-group .hint {
+            font-size: 12px;
+            color: var(--text-muted);
+        }
+
+        /* ===== BOUTONS ===== */
+        .btn-group {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+            margin-top: 20px;
+            justify-content: space-between;
+        }
+        .btn {
+            padding: 10px 24px;
+            border: none;
+            border-radius: 4px;
+            font-weight: 500;
+            font-size: 15px;
+            cursor: pointer;
+            transition: 0.2s;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .btn-primary {
+            background: var(--primary);
+            color: white;
+        }
+        .btn-primary:hover {
+            background: var(--primary-dark);
+        }
+        .btn-secondary {
+            background: #e0e0e0;
+            color: var(--text-dark);
+        }
+        .btn-secondary:hover {
+            background: #d0d0d0;
+        }
+        .btn-success {
+            background: #28a745;
+            color: white;
+        }
+        .btn-success:hover {
+            background: #218838;
+        }
+        .btn-warning {
+            background: #f39c12;
+            color: white;
+        }
+        .btn-warning:hover {
+            background: #d68910;
+        }
+        .btn-danger {
+            background: #dc3545;
+            color: white;
+        }
+        .btn-danger:hover {
+            background: #c82333;
+        }
+        .btn-sm {
+            padding: 6px 14px;
+            font-size: 13px;
+        }
+        .btn:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+        }
+
+        /* ===== ALERTES (TOAST) ===== */
+        .toast-container {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            z-index: 9999;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            max-width: 400px;
+            width: 100%;
+        }
+        .toast {
+            padding: 14px 18px;
+            border-radius: 4px;
+            background: white;
+            box-shadow: 0 4px 16px rgba(0,0,0,0.12);
+            border-left: 4px solid var(--primary);
+            font-size: 14px;
+            color: var(--text-dark);
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.3s, transform 0.3s;
+            pointer-events: auto;
+        }
+        .toast.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .toast-success { border-left-color: #28a745; }
+        .toast-error { border-left-color: #dc3545; }
+        .toast-info { border-left-color: #17a2b8; }
+        .toast-warning { border-left-color: #f39c12; }
+
+        /* ===== APERÇU DES DOCUMENTS ===== */
+        .preview-area {
+            margin-top: 30px;
+            border-top: 2px solid #e5e0d5;
+            padding-top: 30px;
+        }
+        .preview-tabs {
+            display: flex;
+            gap: 8px;
+            margin-bottom: 20px;
+        }
+        .preview-tabs button {
+            padding: 10px 20px;
+            background: #f0f0f0;
+            border: none;
+            border-radius: 4px 4px 0 0;
+            font-weight: 500;
+            cursor: pointer;
+            transition: 0.2s;
+            font-family: var(--font-family);
+        }
+        .preview-tabs button.active {
+            background: white;
+            border-bottom: 3px solid var(--primary);
+            color: var(--primary);
+        }
+        .preview-content {
+            background: white;
+            padding: 30px;
+            border-radius: var(--border-radius);
+            box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+            max-height: 700px;
+            overflow-y: auto;
+        }
+        .preview-content .document {
+            font-family: 'Times New Roman', serif;
+            font-size: 12pt;
+            line-height: 1.6;
+            text-align: justify;
+            color: #111;
+        }
+        .preview-content .document .title {
+            font-weight: 700;
+            text-decoration: underline;
+            text-align: center;
+            font-size: 14pt;
+            margin: 20px 0 12px;
+        }
+        .preview-content .document .subtitle {
+            font-weight: 600;
+            text-decoration: underline;
+            margin: 16px 0 8px;
+        }
+        .preview-content .document p {
+            margin: 0 0 8pt 0;
+        }
+        .preview-content .document table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 16px 0;
+        }
+        .preview-content .document table th,
+        .preview-content .document table td {
+            border: 1px solid #000;
+            padding: 8px 6px;
+            font-size: 11pt;
+            vertical-align: top;
+        }
+        .preview-content .document table th {
+            background: #f4f1ea;
+            font-weight: 700;
+            text-align: center;
+        }
+        .preview-content .document .signature-table {
+            margin-top: 24px;
+        }
+        .preview-content .document .signature-table td {
+            border: 1px solid #000;
+            padding: 8px;
+        }
+
+        /* ===== PIED DE PAGE ===== */
+        footer {
+            background: #1e2b3c;
+            color: rgba(255,255,255,0.7);
+            padding: 20px;
+            text-align: center;
+            font-size: 14px;
+            margin-top: 40px;
+        }
+        footer a {
+            color: var(--primary);
+            text-decoration: none;
+        }
+
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 768px) {
+            header { flex-wrap: wrap; height: auto; padding: 12px 16px; gap: 10px; }
+            .header-nav { flex-wrap: wrap; gap: 10px; font-size: 12px; }
+            .container { padding: 20px 12px; }
+            .progress-steps { padding: 12px; }
+            .form-grid { grid-template-columns: 1fr; }
+            .btn-group { flex-direction: column; }
+            .preview-tabs { flex-wrap: wrap; }
+        }
+
+        /* ===== UTILITAIRES ===== */
+        .hidden { display: none !important; }
+        .text-center { text-align: center; }
+        .mt-2 { margin-top: 16px; }
+        .mb-2 { margin-bottom: 16px; }
+        .gap-2 { gap: 8px; }
+        .flex { display: flex; align-items: center; }
+        .flex-between { justify-content: space-between; }
+        .flex-wrap { flex-wrap: wrap; }
+    </style>
+</head>
+<body>
+
+<!-- ===== EN-TÊTE ===== -->
+<header>
+    <div class="header-left">
+        <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 40'%3E%3Crect width='100' height='40' fill='%23167078' rx='4'/%3E%3Ctext x='50' y='24' font-family='Roboto' font-size='18' fill='white' text-anchor='middle' font-weight='bold'%3EMon%3C/t%3E%3Ctext x='50' y='24' font-family='Roboto' font-size='18' fill='%23f5e6c8' text-anchor='middle' font-weight='bold'%3EEntreprise%3C/t%3E%3C/svg%3E" alt="Logo">
+        <span>MonEntreprise</span>
+    </div>
+    <nav class="header-nav">
+        <a href="#" class="active">Accueil</a>
+        <a href="#">Statistiques</a>
+        <a href="#">Annonces</a>
+        <a href="#">Vérifier un nom</a>
+        <a href="#" class="btn-primary">Se connecter</a>
+        <div class="lang-switch">
+            <a href="#" class="active">FR</a>
+            <a href="#">EN</a>
+        </div>
+    </nav>
+</header>
+
+<!-- ===== CONTENEUR PRINCIPAL ===== -->
+<div class="container">
+
+    <!-- ===== BARRE DE PROGRESSION ===== -->
+    <div class="progress-steps" id="progressBar">
+        <svg viewBox="0 0 100 60" preserveAspectRatio="xMidYMid meet">
+            <!-- Ligne de fond -->
+            <rect x="2" y="30" width="96" height="2" fill="#99A6B6" opacity="0.3" rx="1"/>
+            <!-- Ligne de progression -->
+            <rect x="2" y="30" width="0" height="2" fill="#167078" id="progressLine" rx="1"/>
+            <!-- Étapes (5) -->
+            <g id="step0">
+                <circle cx="10" cy="30" r="8" class="step-circle" />
+                <text x="10" y="45" class="step-text" text-anchor="middle">Guide</text>
+            </g>
+            <g id="step1">
+                <circle cx="30" cy="30" r="8" class="step-circle" />
+                <text x="30" y="45" class="step-text" text-anchor="middle">Entreprise</text>
+            </g>
+            <g id="step2">
+                <circle cx="50" cy="30" r="8" class="step-circle" />
+                <text x="50" y="45" class="step-text" text-anchor="middle">Gérant</text>
+            </g>
+            <g id="step3">
+                <circle cx="70" cy="30" r="8" class="step-circle" />
+                <text x="70" y="45" class="step-text" text-anchor="middle">Parts</text>
+            </g>
+            <g id="step4">
+                <circle cx="90" cy="30" r="8" class="step-circle" />
+                <text x="90" y="45" class="step-text" text-anchor="middle">Finaliser</text>
+            </g>
+        </svg>
+    </div>
+
+    <!-- ===== FORMULAIRE PAR ÉTAPES ===== -->
+    <div id="formContainer">
+        <!-- Étape 0 : Guide -->
+        <div class="step-content" data-step="0">
+            <div class="card">
+                <div class="card-head"><h2><i class="fas fa-compass"></i> Guide – Informations préliminaires</h2></div>
+                <div class="card-body">
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label>Forme juridique <span class="required">*</span></label>
+                            <select id="formeJuridique">
+                                <option value="SARL unipersonnelle">SARL unipersonnelle</option>
+                                <option value="SARL pluripersonnelle">SARL pluripersonnelle</option>
+                                <option value="SA">Société Anonyme (SA)</option>
+                                <option value="SAS">Société par Actions Simplifiée (SAS)</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>Type de statuts <span class="required">*</span></label>
+                            <select id="typeStatuts">
+                                <option value="notariés">Statuts notariés</option>
+                                <option value="apiex">Statuts APIEX</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>Commune de l'activité <span class="required">*</span></label>
+                            <select id="commune">
+                                <option value="Abomey-Calavi">Abomey-Calavi</option>
+                                <option value="Cotonou">Cotonou</option>
+                                <option value="Porto-Novo">Porto-Novo</option>
+                                <option value="Parakou">Parakou</option>
+                                <!-- Ajoutez d'autres communes si besoin -->
+                                <option value="Autre">Autre</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>Durée de la société (années) <span class="required">*</span></label>
+                            <input type="number" id="duree" value="99" min="1" max="99">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Étape 1 : Entreprise -->
+        <div class="step-content hidden" data-step="1">
+            <div class="card">
+                <div class="card-head"><h2><i class="fas fa-building"></i> Informations sur l'entreprise</h2></div>
+                <div class="card-body">
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label>Dénomination <span class="required">*</span></label>
+                            <input type="text" id="denomination" placeholder="Ex: GAFER SARL">
+                        </div>
+                        <div class="form-group">
+                            <label>Capital social (FCFA) <span class="required">*</span></label>
+                            <input type="number" id="capital" placeholder="1 000 000" step="1000" min="1000">
+                        </div>
+                        <div class="form-group">
+                            <label>Nombre total de parts <span class="required">*</span></label>
+                            <input type="number" id="nbParts" placeholder="100" min="1" step="1">
+                        </div>
+                        <div class="form-group">
+                            <label>Valeur unitaire de la part (FCFA) <span class="required">*</span></label>
+                            <input type="number" id="valeurPart" placeholder="10 000" step="1000" min="1000">
+                        </div>
+                    </div>
+                    <hr style="margin: 20px 0; border: 0; border-top: 1px solid #e5e0d5;">
+                    <h4 style="margin-bottom: 12px;">Adresse du siège social</h4>
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label>Quartier <span class="required">*</span></label>
+                            <input type="text" id="quartier" placeholder="Ahossougbéta">
+                        </div>
+                        <div class="form-group">
+                            <label>Parcelle</label>
+                            <input type="text" id="parcelle" placeholder="h">
+                        </div>
+                        <div class="form-group">
+                            <label>Numéro TF <span class="required">*</span></label>
+                            <input type="text" id="tf" placeholder="6999">
+                        </div>
+                        <div class="form-group">
+                            <label>Nom du propriétaire du local</label>
+                            <input type="text" id="nomProprietaire" placeholder="Germain KOKOYE">
+                        </div>
+                        <div class="form-group">
+                            <label>Téléphone <span class="required">*</span></label>
+                            <input type="tel" id="telephone" placeholder="+229 01 51 11 00 97">
+                        </div>
+                        <div class="form-group">
+                            <label>Email <span class="required">*</span></label>
+                            <input type="email" id="email" placeholder="contact@entreprise.com">
+                        </div>
+                    </div>
+                    <div class="form-group" style="margin-top: 12px;">
+                        <label>Objet social (une activité par ligne) <span class="required">*</span></label>
+                        <textarea id="objetSocial" rows="5" placeholder="Importation des vivres frais&#10;Exploitation des produits GSM&#10;Bâtiments et Travaux Publics"></textarea>
+                        <span class="hint">Séparez chaque activité par un retour à la ligne.</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Étape 2 : Gérant -->
+        <div class="step-content hidden" data-step="2">
+            <div class="card">
+                <div class="card-head"><h2><i class="fas fa-user-tie"></i> Identité du gérant / associé</h2></div>
+                <div class="card-body">
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label>Civilité <span class="required">*</span></label>
+                            <select id="civilite">
+                                <option value="Monsieur">Monsieur</option>
+                                <option value="Madame">Madame</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>Prénom(s) <span class="required">*</span></label>
+                            <input type="text" id="gerantPrenom" placeholder="Edjrossè Franck Romuald">
+                        </div>
+                        <div class="form-group">
+                            <label>Nom <span class="required">*</span></label>
+                            <input type="text" id="gerantNom" placeholder="GNANGUENON ALLAOU">
+                        </div>
+                        <div class="form-group">
+                            <label>Profession <span class="required">*</span></label>
+                            <input type="text" id="gerantProfession" placeholder="Gérant de société">
+                        </div>
+                        <div class="form-group">
+                            <label>Lieu de naissance <span class="required">*</span></label>
+                            <input type="text" id="gerantLieuNaissance" placeholder="ABOMEY">
+                        </div>
+                        <div class="form-group">
+                            <label>Date de naissance <span class="required">*</span></label>
+                            <input type="date" id="gerantDateNaissance">
+                        </div>
+                        <div class="form-group">
+                            <label>Nationalité <span class="required">*</span></label>
+                            <input type="text" id="gerantNationalite" placeholder="béninoise">
+                        </div>
+                        <div class="form-group">
+                            <label>NPI (Numéro Personnel d'Identification) <span class="required">*</span></label>
+                            <input type="text" id="gerantNPI" placeholder="20540048145623">
+                        </div>
+                        <div class="form-group">
+                            <label>Type de pièce d'identité <span class="required">*</span></label>
+                            <select id="gerantPieceType">
+                                <option value="CIP">Certificat d'Identification Personnelle (CIP)</option>
+                                <option value="CNI">Carte Nationale d'Identité (CNI)</option>
+                                <option value="Passeport">Passeport</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>Numéro de pièce <span class="required">*</span></label>
+                            <input type="text" id="gerantPieceNumero" placeholder="20540048145623">
+                        </div>
+                        <div class="form-group">
+                            <label>Date d'expiration de la pièce <span class="required">*</span></label>
+                            <input type="date" id="gerantPieceExpiration">
+                        </div>
+                        <div class="form-group">
+                            <label>Domicile (adresse personnelle) <span class="required">*</span></label>
+                            <input type="text" id="gerantDomicile" placeholder="Abomey-Calavi, quartier Agori, carré sans borne, maison GNANGUENON ALLAOU">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Étape 3 : Parts sociales (détails) -->
+        <div class="step-content hidden" data-step="3">
+            <div class="card">
+                <div class="card-head"><h2><i class="fas fa-chart-pie"></i> Répartition des parts sociales</h2></div>
+                <div class="card-body">
+                    <p class="hint" style="margin-bottom: 16px;">Renseignez les souscripteurs (au moins un). Les totaux doivent correspondre au capital et au nombre de parts saisis précédemment.</p>
+                    <div id="souscripteursContainer">
+                        <div class="souscripteur-item" style="border:1px solid #e5e0d5; padding:16px; border-radius:4px; margin-bottom:12px;">
+                            <div class="form-grid">
+                                <div class="form-group">
+                                    <label>Nom et prénom <span class="required">*</span></label>
+                                    <input type="text" class="souscripteur-nom" placeholder="GNANGUENON ALLAOU Edjrossè Franck Romuald">
+                                </div>
+                                <div class="form-group">
+                                    <label>Domicile <span class="required">*</span></label>
+                                    <input type="text" class="souscripteur-domicile" placeholder="Abomey-Calavi, quartier Agori, ...">
+                                </div>
+                                <div class="form-group">
+                                    <label>Nombre de parts <span class="required">*</span></label>
+                                    <input type="number" class="souscripteur-parts" placeholder="100" min="1" step="1">
+                                </div>
+                                <div class="form-group">
+                                    <label>Montant versé (FCFA) <span class="required">*</span></label>
+                                    <input type="number" class="souscripteur-montant" placeholder="1 000 000" step="1000" min="0">
+                                </div>
+                            </div>
+                            <button type="button" class="btn btn-danger btn-sm remove-souscripteur" style="margin-top:8px;"><i class="fas fa-trash"></i> Supprimer</button>
+                        </div>
+                    </div>
+                    <button type="button" id="addSouscripteur" class="btn btn-secondary btn-sm"><i class="fas fa-plus"></i> Ajouter un souscripteur</button>
+                    <div style="margin-top:12px; background:#f8f9fa; padding:12px; border-radius:4px;">
+                        <p><strong>Récapitulatif :</strong> <span id="totalPartsSouscrites">0</span> parts / <span id="totalMontantSouscrit">0</span> FCFA</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Étape 4 : Finalisation et génération -->
+        <div class="step-content hidden" data-step="4">
+            <div class="card">
+                <div class="card-head"><h2><i class="fas fa-check-circle"></i> Vérification et génération</h2></div>
+                <div class="card-body">
+                    <div class="alert alert-info" style="background:#eef5f8; border-left:4px solid var(--primary); padding:16px; border-radius:4px; margin-bottom:20px;">
+                        <i class="fas fa-info-circle"></i> Vérifiez que toutes les informations sont correctes avant de générer les documents.
+                    </div>
+                    <div class="form-group">
+                        <label>Notaire (nom et adresse) <span class="required">*</span></label>
+                        <input type="text" id="notaire" placeholder="Maître Fadhil Firmin Gbadebo Eric ADAMON, Notaire à LOKOSSA">
+                    </div>
+                    <div class="form-group">
+                        <label>Date de l'acte (jour, mois, année) <span class="required">*</span></label>
+                        <input type="date" id="dateActe">
+                    </div>
+                    <div class="btn-group" style="justify-content: center; margin-top: 20px;">
+                        <button id="generateBtn" class="btn btn-success btn-lg"><i class="fas fa-file-alt"></i> Générer les documents</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Navigation entre étapes -->
+        <div class="btn-group" style="margin-top: 10px;">
+            <button id="prevStep" class="btn btn-secondary"><i class="fas fa-arrow-left"></i> Précédent</button>
+            <button id="nextStep" class="btn btn-primary">Suivant <i class="fas fa-arrow-right"></i></button>
+        </div>
+    </div>
+
+    <!-- ===== ZONE D'APERÇU ===== -->
+    <div id="previewArea" class="preview-area hidden">
+        <div class="preview-tabs">
+            <button class="active" data-tab="statuts">Statuts</button>
+            <button data-tab="annexe">Annexe (liste de souscription)</button>
+        </div>
+        <div class="preview-content" id="previewContent">
+            <!-- Le contenu sera injecté ici -->
+        </div>
+        <div class="btn-group" style="margin-top: 20px; justify-content: center;">
+            <button id="exportWord" class="btn btn-primary"><i class="fas fa-file-word"></i> Exporter Word</button>
+            <button id="exportPDF" class="btn btn-primary"><i class="fas fa-file-pdf"></i> Exporter PDF (impression)</button>
+            <button id="exportHTML" class="btn btn-primary"><i class="fas fa-code"></i> Exporter HTML</button>
+        </div>
+    </div>
+
+</div>
+
+<!-- ===== PIED DE PAGE ===== -->
+<footer>
+    <p>© 2025 – Générateur de statuts – Inspiré de MonEntreprise.bj</p>
+</footer>
+
+<!-- ===== TOAST CONTAINER ===== -->
+<div class="toast-container" id="toastContainer"></div>
+
+<!-- ===== SCRIPTS ===== -->
+<script>
+    (function() {
+        'use strict';
+
+        // ===== ÉTATS =====
+        let currentStep = 0;
+        const totalSteps = 5;
+
+        // ===== RÉFÉRENCES DOM =====
+        const stepContents = document.querySelectorAll('.step-content');
+        const prevBtn = document.getElementById('prevStep');
+        const nextBtn = document.getElementById('nextStep');
+        const progressLine = document.getElementById('progressLine');
+        const stepCircles = document.querySelectorAll('.step-circle');
+        const stepTexts = document.querySelectorAll('.step-text');
+
+        // ===== NAVIGATION =====
+        function updateStep(index) {
+            // Masquer tout
+            stepContents.forEach(el => el.classList.add('hidden'));
+            // Afficher l'étape courante
+            stepContents[index].classList.remove('hidden');
+            // Mise à jour des cercles
+            stepCircles.forEach((circle, i) => {
+                circle.classList.remove('active', 'done');
+                if (i < index) circle.classList.add('done');
+                else if (i === index) circle.classList.add('active');
+            });
+            // Mise à jour des textes
+            stepTexts.forEach((text, i) => {
+                text.classList.remove('active');
+                if (i === index) text.classList.add('active');
+            });
+            // Ligne de progression
+            const progress = (index / (totalSteps - 1)) * 96 + 2;
+            progressLine.setAttribute('width', progress);
+            // Boutons
+            prevBtn.classList.toggle('hidden', index === 0);
+            if (index === totalSteps - 1) {
+                nextBtn.textContent = 'Finaliser';
+                nextBtn.classList.remove('btn-primary');
+                nextBtn.classList.add('btn-success');
+            } else {
+                nextBtn.textContent = 'Suivant \u2192';
+                nextBtn.classList.remove('btn-success');
+                nextBtn.classList.add('btn-primary');
+            }
+            // Scroll en haut
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        prevBtn.addEventListener('click', () => {
+            if (currentStep > 0) {
+                if (validateStep(currentStep)) {
+                    currentStep--;
+                    updateStep(currentStep);
+                }
+            }
+        });
+
+        nextBtn.addEventListener('click', () => {
+            if (currentStep < totalSteps - 1) {
+                if (validateStep(currentStep)) {
+                    currentStep++;
+                    updateStep(currentStep);
+                }
+            } else {
+                // Dernière étape : on génère
+                generateDocuments();
+            }
+        });
+
+        // ===== VALIDATION SIMPLE =====
+        function validateStep(step) {
+            const container = stepContents[step];
+            const inputs = container.querySelectorAll('input, select, textarea');
+            let valid = true;
+            let firstError = null;
+            inputs.forEach(input => {
+                if (input.hasAttribute('required') || input.closest('.form-group')?.querySelector('.required')) {
+                    if (!input.value.trim()) {
+                        valid = false;
+                        input.style.borderColor = '#dc3545';
+                        if (!firstError) firstError = input;
+                    } else {
+                        input.style.borderColor = '';
+                    }
+                }
+            });
+            // Cas spécial : souscripteurs
+            if (step === 3) {
+                const items = document.querySelectorAll('.souscripteur-item');
+                if (items.length === 0) {
+                    toast('Ajoutez au moins un souscripteur.', 'error');
+                    return false;
+                }
+                items.forEach(item => {
+                    const nom = item.querySelector('.souscripteur-nom');
+                    const domicile = item.querySelector('.souscripteur-domicile');
+                    const parts = item.querySelector('.souscripteur-parts');
+                    const montant = item.querySelector('.souscripteur-montant');
+                    [nom, domicile, parts, montant].forEach(inp => {
+                        if (!inp.value.trim()) {
+                            valid = false;
+                            inp.style.borderColor = '#dc3545';
+                            if (!firstError) firstError = inp;
+                        } else {
+                            inp.style.borderColor = '';
+                        }
+                    });
+                });
+            }
+            if (!valid) {
+                if (firstError) {
+                    firstError.focus();
+                    firstError.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                }
+                toast('Veuillez remplir tous les champs obligatoires.', 'error');
+                return false;
+            }
+            return true;
+        }
+
+        // ===== SOUSCRIPTEURS DYNAMIQUES =====
+        const container = document.getElementById('souscripteursContainer');
+        document.getElementById('addSouscripteur').addEventListener('click', () => {
+            const template = document.querySelector('.souscripteur-item').cloneNode(true);
+            template.querySelectorAll('input').forEach(inp => inp.value = '');
+            const removeBtn = template.querySelector('.remove-souscripteur');
+            removeBtn.addEventListener('click', function() {
+                if (document.querySelectorAll('.souscripteur-item').length > 1) {
+                    this.closest('.souscripteur-item').remove();
+                    updateTotals();
+                } else {
+                    toast('Il doit rester au moins un souscripteur.', 'warning');
+                }
+            });
+            container.appendChild(template);
+            // Mettre à jour les écouteurs
+            template.querySelectorAll('input').forEach(inp => inp.addEventListener('input', updateTotals));
+            updateTotals();
+        });
+
+        // Suppression initiale
+        document.querySelectorAll('.remove-souscripteur').forEach(btn => {
+            btn.addEventListener('click', function() {
+                if (document.querySelectorAll('.souscripteur-item').length > 1) {
+                    this.closest('.souscripteur-item').remove();
+                    updateTotals();
+                } else {
+                    toast('Il doit rester au moins un souscripteur.', 'warning');
+                }
+            });
+        });
+
+        // Mise à jour des totaux
+        function updateTotals() {
+            let totalParts = 0, totalMontant = 0;
+            document.querySelectorAll('.souscripteur-item').forEach(item => {
+                const parts = parseInt(item.querySelector('.souscripteur-parts').value) || 0;
+                const montant = parseInt(item.querySelector('.souscripteur-montant').value) || 0;
+                totalParts += parts;
+                totalMontant += montant;
+            });
+            document.getElementById('totalPartsSouscrites').textContent = totalParts;
+            document.getElementById('totalMontantSouscrit').textContent = totalMontant.toLocaleString('fr-FR');
+        }
+        document.querySelectorAll('.souscripteur-item input').forEach(inp => inp.addEventListener('input', updateTotals));
+        updateTotals();
+
+        // ===== TOASTS =====
+        function toast(message, type = 'info') {
+            const container = document.getElementById('toastContainer');
+            const toast = document.createElement('div');
+            toast.className = `toast toast-${type}`;
+            toast.textContent = message;
+            container.appendChild(toast);
+            // Animation
+            requestAnimationFrame(() => {
+                toast.classList.add('show');
+            });
+            // Auto-suppression
+            setTimeout(() => {
+                toast.classList.remove('show');
+                setTimeout(() => toast.remove(), 300);
+            }, 3500);
+        }
+
+        // ===== GÉNÉRATION DES DOCUMENTS =====
+        function generateDocuments() {
+            // Récupération des données
+            const data = collectData();
+            if (!data) return;
+
+            // Génération des deux documents
+            const statutsHTML = generateStatuts(data);
+            const annexeHTML = generateAnnexe(data);
+
+            // Affichage dans l'aperçu
+            const previewArea = document.getElementById('previewArea');
+            previewArea.classList.remove('hidden');
+            const content = document.getElementById('previewContent');
+
+            // Par défaut afficher les statuts
+            showTab('statuts', statutsHTML, annexeHTML);
+
+            // Gestion des onglets
+            document.querySelectorAll('.preview-tabs button').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    document.querySelectorAll('.preview-tabs button').forEach(b => b.classList.remove('active'));
+                    this.classList.add('active');
+                    const tab = this.dataset.tab;
+                    showTab(tab, statutsHTML, annexeHTML);
+                });
+            });
+
+            // Exports
+            document.getElementById('exportWord').onclick = () => exportWord(statutsHTML, annexeHTML);
+            document.getElementById('exportPDF').onclick = () => exportPDF(statutsHTML, annexeHTML);
+            document.getElementById('exportHTML').onclick = () => exportHTML(statutsHTML, annexeHTML);
+
+            toast('Documents générés avec succès !', 'success');
+        }
+
+        function showTab(tab, statutsHTML, annexeHTML) {
+            const content = document.getElementById('previewContent');
+            if (tab === 'statuts') {
+                content.innerHTML = statutsHTML;
+            } else {
+                content.innerHTML = annexeHTML;
+            }
+            // Appliquer le style document
+            content.querySelectorAll('.document').forEach(el => el.style.fontFamily = "'Times New Roman', serif");
+        }
+
+        // ===== COLLECTE DES DONNÉES =====
+        function collectData() {
+            const val = id => document.getElementById(id)?.value?.trim() || '';
+            const valNum = id => parseInt(val(id)) || 0;
+
+            // Souscripteurs
+            const souscripteurs = [];
+            document.querySelectorAll('.souscripteur-item').forEach(item => {
+                const nom = item.querySelector('.souscripteur-nom').value.trim();
+                const domicile = item.querySelector('.souscripteur-domicile').value.trim();
+                const parts = parseInt(item.querySelector('.souscripteur-parts').value) || 0;
+                const montant = parseInt(item.querySelector('.souscripteur-montant').value) || 0;
+                if (nom && parts > 0) {
+                    souscripteurs.push({ nom, domicile, parts, montant });
+                }
+            });
+
+            // Objet social (liste)
+            const objetRaw = val('objetSocial').split('\n').filter(l => l.trim());
+            const objetSocial = objetRaw.length ? objetRaw : ['Commerce général'];
+
+            // Date de l'acte
+            const dateActe = val('dateActe');
+            let jour, mois, annee;
+            if (dateActe) {
+                const parts = dateActe.split('-');
+                annee = parts[0];
+                mois = parts[1];
+                jour = parts[2];
+            } else {
+                const now = new Date();
+                annee = now.getFullYear();
+                mois = String(now.getMonth() + 1).padStart(2, '0');
+                jour = String(now.getDate()).padStart(2, '0');
+            }
+
+            // Capital, parts
+            const capital = valNum('capital');
+            const nbParts = valNum('nbParts');
+            const valeurPart = valNum('valeurPart');
+
+            return {
+                formeJuridique: val('formeJuridique') || 'SARL unipersonnelle',
+                typeStatuts: val('typeStatuts') || 'notariés',
+                commune: val('commune') || 'Abomey-Calavi',
+                duree: valNum('duree') || 99,
+                denomination: val('denomination') || 'Ma société SARL',
+                capital: capital,
+                nbParts: nbParts,
+                valeurPart: valeurPart,
+                quartier: val('quartier') || 'Ahossougbéta',
+                parcelle: val('parcelle') || 'h',
+                tf: val('tf') || '6999',
+                nomProprietaire: val('nomProprietaire') || 'Germain KOKOYE',
+                telephone: val('telephone') || '+229 01 51 11 00 97',
+                email: val('email') || 'contact@entreprise.com',
+                objetSocial: objetSocial,
+                civilite: val('civilite') || 'Monsieur',
+                gerantPrenom: val('gerantPrenom') || 'Edjrossè Franck Romuald',
+                gerantNom: val('gerantNom') || 'GNANGUENON ALLAOU',
+                gerantProfession: val('gerantProfession') || 'Gérant de société',
+                gerantLieuNaissance: val('gerantLieuNaissance') || 'ABOMEY',
+                gerantDateNaissance: val('gerantDateNaissance') || '1990-12-17',
+                gerantNationalite: val('gerantNationalite') || 'béninoise',
+                gerantNPI: val('gerantNPI') || '20540048145623',
+                gerantPieceType: val('gerantPieceType') || 'CIP',
+                gerantPieceNumero: val('gerantPieceNumero') || '20540048145623',
+                gerantPieceExpiration: val('gerantPieceExpiration') || '2025-08-17',
+                gerantDomicile: val('gerantDomicile') || 'Abomey-Calavi, quartier Agori, carré sans borne, maison GNANGUENON ALLAOU',
+                souscripteurs: souscripteurs,
+                notaire: val('notaire') || 'Maître Fadhil Firmin Gbadebo Eric ADAMON, Notaire à LOKOSSA',
+                dateActe: { jour, mois, annee }
+            };
+        }
+
+        // ===== GÉNÉRATEUR DE STATUTS =====
+        function generateStatuts(d) {
+            const gerantComplet = `${d.civilite} ${d.gerantPrenom} ${d.gerantNom}`;
+            const dateNaissanceFr = formatDateFr(d.gerantDateNaissance);
+            const dateExpFr = formatDateFr(d.gerantPieceExpiration);
+            const capitalStr = d.capital.toLocaleString('fr-FR');
+            const capitalLettres = nombreEnLettres(d.capital);
+            const partsStr = d.nbParts;
+            const valeurStr = d.valeurPart.toLocaleString('fr-FR');
+            const totalVersements = d.souscripteurs.reduce((sum, s) => sum + s.montant, 0);
+            const totalPartsSouscrites = d.souscripteurs.reduce((sum, s) => sum + s.parts, 0);
+            const dureeStr = d.duree;
+
+            // Objet social en liste
+            const objetListe = d.objetSocial.map((act, i) => `<p>${i+1}°) - ${act} ;</p>`).join('');
+
+            // Tableau des souscripteurs pour l'article 7
+            let tableSouscripteurs = `<table><tr><th>Noms, Prénoms et domicile</th><th>Nombre de parts</th><th>Montant (FCFA)</th></tr>`;
+            d.souscripteurs.forEach(s => {
+                tableSouscripteurs += `<tr><td>${s.nom}, demeurant à ${s.domicile}</td><td>${s.parts}</td><td>${s.montant.toLocaleString('fr-FR')}</td></tr>`;
+            });
+            tableSouscripteurs += `</table>`;
+
+            const html = `
+            <div class="document">
+                <p style="text-align:right;">L'AN DEUX MIL ${d.dateActe.annee}</p>
+                <p style="text-align:right;">ET LE ${d.dateActe.jour} ${moisEnLettres(d.dateActe.mois)} ${d.dateActe.annee}</p>
+
+                <p><span class="subtitle">PARDEVANT</span> ${d.notaire}, soussigné ;</p>
+                <p><span class="subtitle">A COMPARU</span> :</p>
+                <p>${gerantComplet}, ${d.gerantProfession}, demeurant à ${d.gerantDomicile} ;</p>
+                <p>Né à ${d.gerantLieuNaissance} (République du Bénin), le ${dateNaissanceFr} ;</p>
+                <p>Titulaire du certificat d'identification personnelle numéro ${d.gerantNPI} délivré par l'Agence Nationale d'Identification des Personnes et expirant le ${dateExpFr} ;</p>
+                <p>De nationalité ${d.gerantNationalite} ;</p>
+                <p><span class="subtitle">LEQUEL,</span> a établi ainsi qu'il suit les statuts d'une Société à Responsabilité Limitée qu'elle a convenu de constituer.</p>
+
+                <p class="title">STATUTS</p>
+
+                <p><span class="subtitle">ARTICLE 1<sup>er</sup> : FORME</span></p>
+                <p>Il est formé une Société ${d.formeJuridique} (S.A.R.L.) qui sera régie par les dispositions de l'Acte Uniforme Révisé de l'OHADA relatif au droit des Sociétés Commerciales et du Groupement d'Intérêt Economique (ci-après désigné « Acte Uniforme »), par toutes autres dispositions légales et règlementaires en vigueur au Bénin ainsi que par les présents statuts.</p>
+
+                <p><span class="subtitle">ARTICLE 2 : DÉNOMINATION</span></p>
+                <p>La société prend la dénomination de <strong>« ${d.denomination} »</strong>.</p>
+                <p>La dénomination sociale doit figurer sur tous les actes et documents émanant de la Société et destinés aux tiers, notamment les lettres, les factures, les annonces et publications diverses. Elle doit être précédée ou suivie immédiatement en caractères lisibles de l'indication de la forme de la société, du montant de son capital social, de l'adresse de son siège social et de la mention de son immatriculation au registre du commerce et du crédit mobilier.</p>
+
+                <p><span class="subtitle">ARTICLE 3 : OBJET SOCIAL</span></p>
+                <p>La Société a pour objet en République du Bénin et à l'Etranger :</p>
+                ${objetListe}
+                <p>Et plus généralement, toutes opérations commerciales, financières, industrielles, mobilières ou immobilières pouvant se rattacher directement ou indirectement à l'objet ci-dessus défini ainsi qu'à tous objets similaires ou connexes ou susceptibles d'en faciliter la réalisation.</p>
+
+                <p><span class="subtitle">ARTICLE 4 : SIEGE SOCIAL -- SUCCURSALE -- BUREAU DE REPRESENTATION OU DE LIAISON</span></p>
+                <p>Le siège social est fixé à <strong>${d.commune}, quartier ${d.quartier}, parcelle « ${d.parcelle} », TF ${d.tf} d'${d.commune}, maison ${d.nomProprietaire}, Téléphone : ${d.telephone}, email : ${d.email}</strong></p>
+                <p>Il pourra être transféré à un autre endroit de la même ville par décision de la gérance et en tout autre lieu par l'associé unique.</p>
+
+                <p><span class="subtitle">ARTICLE 5 : DURÉE</span></p>
+                <p>La durée de la société est fixée à ${dureeStr} années à compter de la date de son immatriculation au Registre du Commerce et du Crédit Mobilier, sauf prorogation ou dissolution anticipée.</p>
+
+                <p><span class="subtitle">ARTICLE 6 : CAPITAL SOCIAL – PARTS SOCIALES</span></p>
+                <p>Le capital social est fixé à la somme de <strong>${capitalLettres} (${capitalStr})</strong> francs CFA, divisé en ${partsStr} parts sociales de ${valeurStr} francs CFA chacune, intégralement souscrites par l'associé unique.</p>
+                ${tableSouscripteurs}
+
+                <p><span class="subtitle">ARTICLE 7 : APPORTS</span></p>
+                <p>L'associé unique apporte à la société la somme de ${capitalLettres} (${capitalStr}) francs CFA en numéraire.</p>
+
+                <p><span class="subtitle">ARTICLE 8 : AUGMENTATION ET REDUCTION DE CAPITAL</span></p>
+                <p>Le capital peut être augmenté ou réduit, par décision extraordinaire de l'associé unique, dans les conditions et suivant les modalités fixées par les textes en vigueur.</p>
+
+                <p><span class="subtitle">ARTICLE 9 : REPRESENTATION DES PARTS SOCIALES</span></p>
+                <p>Les parts sociales ne peuvent jamais être représentées par des titres négociables, nominatifs ou au porteur. Les droits de chaque Associé dans la Société résultent seulement des présentes et des cessions de parts régulièrement consenties selon les modalités énoncées à l'Article 10 alinéa premier ci-après.</p>
+
+                <p><span class="subtitle">ARTICLE 10 : CESSION ET TRANSMISSION DES PARTS SOCIALES</span></p>
+                <p>La cession de parts sociales entre vifs doit être constatée par écrit et n'est rendue opposable à la société qu'après l'accomplissement de l'une des formalités énoncées à l'article 317 de l'Acte Uniforme. Elles ne peuvent être cédées à titre onéreux ou gratuit à des tiers non associés qu'avec le consentement de la majorité des associés non-cédants représentant les trois quarts du capital social.</p>
+
+                <p><span class="subtitle">ARTICLE 11 : INDIVISIBILITE DES PARTS</span></p>
+                <p>Les parts sociales sont indivisibles à l'égard de la Société qui ne reconnaît qu'un seul propriétaire pour chaque part.</p>
+
+                <p><span class="subtitle">ARTICLE 12 : DROITS ET OBLIGATIONS DES ASSOCIES</span></p>
+                <p>Chaque part donne droit à une fraction des bénéfices et de l'actif social, proportionnellement au nombre de parts existantes ; elle donne droit à une voix dans tous les votes et délibérations. Les Associés ne sont tenus que jusqu'à concurrence du montant des parts qu'ils possèdent.</p>
+
+                <p><span class="subtitle">ARTICLE 13 : CONVENTIONS ENTRE LA SOCIETE ET LES ASSOCIES OU ENTRE LA SOCIETE ET LES GERANTS</span></p>
+                <p>Il est interdit aux personnes physiques, Gérantes ou Associées de se faire consentir par la Société des prêts ou des avances en comptes courants ou autrement, de faire cautionner ou avaliser par elle leurs engagements personnels envers des tiers.</p>
+
+                <p><span class="subtitle">ARTICLE 14 : DECES - INTERDICTION - FAILLITE ET DECONFITURE D'UN ASSOCIE</span></p>
+                <p>La Société ne sera pas dissoute par le décès, l'interdiction, la dotation de conseil judiciaire, la faillite ou la déconfiture d'un Associé.</p>
+
+                <p><span class="subtitle">ARTICLE 15 : DE LA GERANCE</span></p>
+                <p>Le gérant a les pouvoirs nécessaires pour faire tous les actes de gestion dans l'intérêt de la société. Dans les rapports avec les tiers, le gérant engage la société, sous réserve des pouvoirs expressément attribués aux associés par la loi.</p>
+
+                <p><span class="subtitle">ARTICLE 16 : NOMINATION DES GERANTS STATUTAIRES</span></p>
+                <p>${gerantComplet} est nommé aux fonctions de Gérant et ce pour une durée indéterminée. Il déclare qu'il n'est frappé d'aucune mesure prévue par l'Acte Uniforme OHADA susceptible de lui interdire l'exercice des fonctions de Gérant de société, et qu'il accepte lesdites fonctions.</p>
+
+                <p><span class="subtitle">ARTICLE 17 : COMMISSAIRE AUX COMPTES</span></p>
+                <p>Un ou plusieurs Commissaires aux Comptes peuvent être nommés si deux des conditions prévues par l'Article 376 de l'Acte Uniforme OHADA sont remplies par la Société. La Société n'est plus tenue de désigner un Commissaire aux Comptes dès lors qu'elle n'a pas rempli deux des conditions fixées ci-dessus pendant les deux exercices précédant l'expiration du mandat du Commissaire aux Comptes.</p>
+
+                <p><span class="subtitle">ARTICLE 18 : DECISION DE L'ASSOCIEE UNIQUE</span></p>
+                <p>L'associé unique exerce les pouvoirs dévolus à l'assemblée des associés par les dispositions non contraires du chapitre III relatif aux décisions collectives, du titre II de l'Acte Uniforme susvisé.</p>
+
+                <p><span class="subtitle">ARTICLE 19 : DROIT DE SURVEILLANCE PAR LES ASSOCIES NON-GERANTS</span></p>
+                <p>La Gérance, responsable d'un mandat, doit rendre compte de ses actes aux Associés qui ont un droit de contrôle permanent et sans préavis, à la seule condition de ne pas abuser et de ne pas entraver l'exercice normal des fonctions de la Gérance.</p>
+
+                <p><span class="subtitle">ARTICLE 20 : EXERCICE SOCIAL</span></p>
+                <p>L'exercice social commence le 1<sup>er</sup> Janvier et se termine le 31 Décembre de chaque année.</p>
+
+                <p><span class="subtitle">ARTICLE 21 : COMPTES</span></p>
+                <p>Il est tenu une comptabilité régulière des opérations sociales, conformément aux lois et usages du Commerce. Il est dressé chaque année, à la fin de chaque exercice social, par les soins de la Gérance, des états financiers de synthèse.</p>
+
+                <p><span class="subtitle">ARTICLE 22 : AFFECTATION ET REPARTITION DES BENEFICES - DIVIDENDES</span></p>
+                <p>Sur les bénéfices nets, il est tout d'abord prélevé dix pour cent (10 %) pour constituer le fonds de réserve légale. Le solde appelé dividende est réparti entre les Associés proportionnellement au nombre de parts sociales possédées par chacun d'eux.</p>
+
+                <p><span class="subtitle">ARTICLE 23 : DEPOT DE FONDS PAR LES ASSOCIES</span></p>
+                <p>En application des dispositions de l'Article 13 des présents Statuts, chaque Associé peut, du consentement de la Gérance, verser dans la caisse sociale, les fonds dont la Société a besoin.</p>
+
+                <p><span class="subtitle">ARTICLE 24 : DECLARATION DE SOUSCRIPTION ET DE VERSEMENT</span></p>
+                <p>Le comparant déclare que les ${partsStr} parts sociales de ${valeurStr} Francs CFA chacune ont été entièrement souscrites et que le souscripteur a versé le montant total de souscription soit la somme de <strong>${capitalLettres} (${capitalStr})</strong> Francs CFA. Laquelle somme a été déposée en l'étude du Notaire soussigné dès avant ce jour.</p>
+
+                <p><span class="subtitle">DONT ACTE SUR SEPT (07) PAGES</span></p>
+                <p style="text-align:center;">FAIT ET PASSE en l'Etude de ${d.notaire} ;</p>
+                <p style="text-align:center;">Et après lecture faite, le comparant, ès-nom a signé avec le Notaire Soussigné.</p>
+
+                <table class="signature-table">
+                    <tr><th>NOMS ET PRENOMS</th><th>SIGNATURES</th></tr>
+                    <tr><td>${gerantComplet}</td><td></td></tr>
+                    <tr><td>${d.notaire}</td><td></td></tr>
+                </table>
+            </div>
+            `;
+            return html;
+        }
+
+        // ===== GÉNÉRATEUR D'ANNEXE =====
+        function generateAnnexe(d) {
+            const capitalStr = d.capital.toLocaleString('fr-FR');
+            const totalParts = d.souscripteurs.reduce((sum, s) => sum + s.parts, 0);
+            const totalMontant = d.souscripteurs.reduce((sum, s) => sum + s.montant, 0);
+
+            let rows = '';
+            d.souscripteurs.forEach(s => {
+                rows += `<tr><td>${s.nom}, demeurant à ${s.domicile}</td><td>${s.parts}</td><td>${s.montant.toLocaleString('fr-FR')}</td><td>${s.montant.toLocaleString('fr-FR')}</td></tr>`;
+            });
+
+            const html = `
+            <div class="document">
+                <p class="title">ANNEXE</p>
+                <p class="subtitle">Liste de souscription et d'état des versements de la société</p>
+                <p><strong>« ${d.denomination} »</strong> ${d.formeJuridique}, au capital de ${capitalStr} Francs CFA</p>
+                <p><strong>Siège social :</strong> ${d.commune}, quartier ${d.quartier}, parcelle « ${d.parcelle} », TF ${d.tf} d'${d.commune}, maison ${d.nomProprietaire}, Téléphone : ${d.telephone}, email : ${d.email}</p>
+
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Noms, Prénoms et domicile des souscripteurs</th>
+                            <th>Nombre de parts sociales Souscrites</th>
+                            <th>Montant total des parts sociales (FCFA)</th>
+                            <th>Montant des versements effectués (FCFA)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        ${rows}
+                        <tr>
+                            <th>TOTAL DES PARTS SOCIALES SOUSCRITES</th>
+                            <th>${totalParts}</th>
+                            <th>${totalMontant.toLocaleString('fr-FR')}</th>
+                            <th></th>
+                        </tr>
+                        <tr>
+                            <th>TOTAL versements effectués</th>
+                            <th></th>
+                            <th></th>
+                            <th>${totalMontant.toLocaleString('fr-FR')}</th>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <p>Le présent état constatant la souscription des parts sociales en numéraires de la société est certifié sincère et véritable par le comparant, ès-nom et nom.</p>
+                <p>Mention des présentes est consentie partout où besoin sera.</p>
+                <p style="text-align:center;">FAIT ET PASSE en l'étude et reçu aux minutes du Notaire soussigné.</p>
+                <p style="text-align:center;">L'AN DEUX MIL ${d.dateActe.annee}</p>
+                <p style="text-align:center;">ET LE ${d.dateActe.jour} ${moisEnLettres(d.dateActe.mois)} ${d.dateActe.annee}</p>
+                <p>Et après lecture faite, le comparant, ès-nom et nom, a signé avec Maître ${d.notaire}, Notaire soussigné.</p>
+
+                <table class="signature-table">
+                    <tr><th>NOMS ET PRENOMS</th><th>SIGNATURES</th></tr>
+                    <tr><td>${d.civilite} ${d.gerantPrenom} ${d.gerantNom}</td><td></td></tr>
+                    <tr><td>${d.notaire}</td><td></td></tr>
+                </table>
+            </div>
+            `;
+            return html;
+        }
+
+        // ===== FONCTIONS UTILITAIRES =====
+        function formatDateFr(dateStr) {
+            if (!dateStr) return '';
+            const parts = dateStr.split('-');
+            const mois = ['janvier','février','mars','avril','mai','juin','juillet','août','septembre','octobre','novembre','décembre'];
+            return `${parseInt(parts[2])} ${mois[parseInt(parts[1])-1]} ${parts[0]}`;
+        }
+
+        function moisEnLettres(num) {
+            const mois = ['janvier','février','mars','avril','mai','juin','juillet','août','septembre','octobre','novembre','décembre'];
+            return mois[parseInt(num)-1] || '';
+        }
+
+        function nombreEnLettres(n) {
+            // Version simplifiée, pour les besoins de l'exemple
+            if (n === 1000000) return 'UN MILLION';
+            if (n === 1000) return 'MILLE';
+            // On peut étendre si nécessaire
+            return n.toLocaleString('fr-FR').toUpperCase();
+        }
+
+        // ===== EXPORTS =====
+        function getCurrentDocumentHTML() {
+            const content = document.getElementById('previewContent');
+            const inner = content.innerHTML;
+            // On extrait le document actif (soit statuts, soit annexe)
+            // On retourne le contenu complet avec les styles d'impression
+            return `
+            <!DOCTYPE html>
+            <html><head><meta charset="UTF-8">
+            <style>
+                body { font-family: 'Times New Roman', serif; font-size: 12pt; line-height: 1.6; padding: 40px; max-width: 800px; margin: auto; }
+                .document { text-align: justify; }
+                .title { font-weight: 700; text-decoration: underline; text-align: center; font-size: 14pt; margin: 20px 0 12px; }
+                .subtitle { font-weight: 600; text-decoration: underline; margin: 16px 0 8px; }
+                p { margin: 0 0 8pt 0; }
+                table { width: 100%; border-collapse: collapse; margin: 16px 0; }
+                table th, table td { border: 1px solid #000; padding: 8px 6px; vertical-align: top; }
+                table th { background: #f4f1ea; font-weight: 700; text-align: center; }
+                .signature-table { margin-top: 24px; }
+            </style>
+            </head><body>
+                ${inner}
+            </body></html>
+            `;
+        }
+
+        function exportWord() {
+            const content = getCurrentDocumentHTML();
+            const blob = new Blob([content], { type: 'application/msword' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = 'documents.doc';
+            a.click();
+            URL.revokeObjectURL(url);
+            toast('Export Word réussi', 'success');
+        }
+
+        function exportPDF() {
+            const content = getCurrentDocumentHTML();
+            const win = window.open('', '_blank', 'width=900,height=700');
+            if (win) {
+                win.document.write(content);
+                win.document.close();
+                win.focus();
+                setTimeout(() => win.print(), 500);
+            } else {
+                toast('Veuillez autoriser les fenêtres pop-up.', 'error');
+            }
+        }
+
+        function exportHTML() {
+            const content = getCurrentDocumentHTML();
+            const blob = new Blob([content], { type: 'text/html' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = 'documents.html';
+            a.click();
+            URL.revokeObjectURL(url);
+            toast('Export HTML réussi', 'success');
+        }
+
+        // ===== INITIALISATION =====
+        updateStep(0);
+
+        // ===== TOAST DE BIENVENUE =====
+        setTimeout(() => toast('Bienvenue ! Remplissez le formulaire pour générer vos documents.', 'info'), 800);
+
+    })();
+</script>
+
+</body>
+</html>
