@@ -4,9 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ActeProSarl — Générateur de statuts SARL</title>
-    <!-- Google Fonts Roboto -->
+    <!-- Google Fonts Roboto pour l'interface -->
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
-    <!-- Font Awesome 5 (gratuit) -->
+    <!-- Font Awesome 5 -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <style>
         /* ===== VARIABLES ===== */
@@ -220,10 +220,6 @@
             resize: vertical;
             min-height: 80px;
         }
-        .form-group .hint {
-            font-size: 12px;
-            color: var(--text-muted);
-        }
         .field-hint {
             font-size: 12px;
             color: var(--text-muted);
@@ -271,13 +267,6 @@
         .btn-success:hover {
             background: #218838;
         }
-        .btn-warning {
-            background: #f39c12;
-            color: white;
-        }
-        .btn-warning:hover {
-            background: #d68910;
-        }
         .btn-danger {
             background: #dc3545;
             color: white;
@@ -288,10 +277,6 @@
         .btn-sm {
             padding: 6px 14px;
             font-size: 13px;
-        }
-        .btn:disabled {
-            opacity: 0.6;
-            cursor: not-allowed;
         }
 
         /* ===== ALERTES ===== */
@@ -361,51 +346,77 @@
             max-height: 700px;
             overflow-y: auto;
         }
-        .preview-content .document {
+
+        /* ===== STYLES POUR LES DOCUMENTS ===== */
+        .document {
             font-family: 'Times New Roman', serif;
             font-size: 12pt;
-            line-height: 1.6;
+            line-height: 1.5;
             text-align: justify;
             color: #111;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20mm 15mm;
+            background: white;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
         }
-        .preview-content .document .title {
+        .document .right { text-align: right; }
+        .document .center { text-align: center; }
+        .document .bold { font-weight: 700; }
+        .document .underline { text-decoration: underline; }
+        .document .italic { font-style: italic; }
+        .document .title {
             font-weight: 700;
             text-decoration: underline;
             text-align: center;
             font-size: 14pt;
             margin: 20px 0 12px;
         }
-        .preview-content .document .subtitle {
-            font-weight: 600;
+        .document .subtitle {
+            font-weight: 700;
             text-decoration: underline;
             margin: 16px 0 8px;
         }
-        .preview-content .document p {
-            margin: 0 0 8pt 0;
+        .document p {
+            margin: 0 0 6pt 0;
         }
-        .preview-content .document table {
+        .document table {
             width: 100%;
             border-collapse: collapse;
             margin: 16px 0;
         }
-        .preview-content .document table th,
-        .preview-content .document table td {
+        .document table th,
+        .document table td {
             border: 1px solid #000;
-            padding: 8px 6px;
+            padding: 6px 8px;
             font-size: 11pt;
             vertical-align: top;
         }
-        .preview-content .document table th {
+        .document table th {
             background: #f4f1ea;
             font-weight: 700;
             text-align: center;
         }
-        .preview-content .document .signature-table {
+        .document .sig-table {
             margin-top: 24px;
+            width: 80%;
+            margin-left: auto;
+            margin-right: auto;
         }
-        .preview-content .document .signature-table td {
+        .document .sig-table td {
             border: 1px solid #000;
             padding: 8px;
+            text-align: center;
+        }
+        .document .blank-line {
+            margin: 4pt 0;
+        }
+        .document .annexe-title {
+            font-weight: 700;
+            text-decoration: underline;
+            text-align: center;
+            font-size: 14pt;
+            margin: 20px 0 12px;
         }
 
         /* ===== PIED DE PAGE ===== */
@@ -432,28 +443,10 @@
             .btn-group { flex-direction: column; }
             .preview-tabs { flex-wrap: wrap; }
         }
-
-        /* ===== UTILITAIRES ===== */
         .hidden { display: none !important; }
         .text-center { text-align: center; }
         .mt-2 { margin-top: 16px; }
         .mb-2 { margin-bottom: 16px; }
-        .gap-2 { gap: 8px; }
-        .flex { display: flex; align-items: center; }
-        .flex-between { justify-content: space-between; }
-        .flex-wrap { flex-wrap: wrap; }
-        .bold { font-weight: 700; }
-        .underline { text-decoration: underline; }
-        .right { text-align: right; }
-        .center { text-align: center; }
-        .italic { font-style: italic; }
-        .head { font-weight: 700; text-decoration: underline; text-align: center; margin: 16pt 0 8pt; }
-        .head-plain { font-weight: 400; text-decoration: none; text-align: left; margin: 16pt 0 8pt; }
-        .head-italic-underline { font-weight: 700; font-style: italic; text-decoration: underline; text-align: center; margin: 14pt 0 10pt; }
-        .blank-line { margin: 4pt 0; }
-        .sig-table { width: 100%; border-collapse: collapse; margin-top: 18pt; }
-        .sig-table th, .sig-table td { border: 1px solid #000; padding: 8pt 6pt; font-size: 11pt; vertical-align: top; }
-        .sig-table th { background: #f4f1ea; font-weight: 700; text-align: center; }
     </style>
 </head>
 <body>
@@ -722,12 +715,9 @@
                         <i class="fas fa-info-circle"></i> Vérifiez que toutes les informations sont correctes avant de générer les documents.
                     </div>
                     <div class="form-group">
-                        <label>Notaire (nom complet) <span class="required">*</span></label>
-                        <input type="text" id="notaire" placeholder="Maître Fadhil Firmin Gbadebo Eric ADAMON, Notaire à LOKOSSA">
-                    </div>
-                    <div class="form-group">
                         <label>Date de l'acte <span class="required">*</span></label>
                         <input type="date" id="dateActe">
+                        <span class="field-hint">Le notaire est fixe : Maître Fadhil Firmin Gbadebo Éric ADAMON.</span>
                     </div>
                     <div class="btn-group" style="justify-content: center; margin-top: 20px;">
                         <button id="generateBtn" class="btn btn-success btn-lg"><i class="fas fa-file-alt"></i> Générer les documents</button>
@@ -769,10 +759,9 @@
         'use strict';
 
         // =====================================================================
-        // 1. DONNÉES STATIQUES (listes complètes)
+        // 1. DONNÉES STATIQUES
         // =====================================================================
 
-        // --- Communes du Bénin (environ 77) ---
         const communesBenin = [
             "Abomey", "Abomey-Calavi", "Adja-Ouèrè", "Adjarra", "Adjohoun",
             "Agbangnizoun", "Aguégués", "Akpro-Missérété", "Allada", "Aplahoué",
@@ -789,7 +778,6 @@
             "Toviklin", "Za-Kpota", "Zagnanado", "Zè", "Zogbodomey"
         ].sort((a,b)=>a.localeCompare(b,'fr'));
 
-        // --- Professions (environ 40) ---
         const professions = [
             "Agriculteur / Agricultrice", "Agent immobilier", "Architecte",
             "Artisan / Artisane", "Avocat / Avocate", "Banquier / Banquière",
@@ -804,7 +792,6 @@
             "Étudiant / Étudiante", "Retraité / Retraitée", "Sans profession", "Autre"
         ].sort((a,b)=>a.localeCompare(b,'fr'));
 
-        // --- Nationalités (liste courte mais représentative) ---
         const nationalites = [
             "Afghane", "Albanaise", "Algérienne", "Allemande", "Américaine",
             "Angolaise", "Argentine", "Arménienne", "Australienne", "Autrichienne",
@@ -842,12 +829,11 @@
         ].sort((a,b)=>a.localeCompare(b,'fr'));
 
         // =====================================================================
-        // 2. ÉTAT DU FORMULAIRE
+        // 2. ÉTAT
         // =====================================================================
 
         let currentStep = 0;
         const totalSteps = 5;
-        let dossierData = {};
 
         // =====================================================================
         // 3. RÉFÉRENCES DOM
@@ -862,7 +848,7 @@
         const toastContainer = document.getElementById('toastContainer');
 
         // =====================================================================
-        // 4. PEUPLEMENT DES LISTES DÉROULANTES
+        // 4. PEUPLEMENT DES LISTES
         // =====================================================================
 
         function populateSelect(id, options, selected) {
@@ -873,7 +859,6 @@
             ).join('');
         }
 
-        // Peuplement des listes
         populateSelect('commune', communesBenin, 'Abomey-Calavi');
         populateSelect('gerantProfession', professions, 'Gérant de société');
         populateSelect('gerantNationalite', nationalites, 'Béninoise');
@@ -925,7 +910,6 @@
                     updateStep(currentStep);
                 }
             } else {
-                // dernière étape : génération
                 generateDocuments();
             }
         });
@@ -950,7 +934,6 @@
                     }
                 }
             });
-            // Étape 3 : souscripteurs
             if (step === 3) {
                 const items = document.querySelectorAll('.souscripteur-item');
                 if (items.length === 0) {
@@ -982,7 +965,7 @@
         }
 
         // =====================================================================
-        // 7. SOUSCRIPTEURS DYNAMIQUES
+        // 7. SOUSCRIPTEURS
         // =====================================================================
 
         const souscripteursContainer = document.getElementById('souscripteursContainer');
@@ -1004,7 +987,6 @@
             updateTotals();
         });
 
-        // Suppression initiale
         document.querySelectorAll('.remove-souscripteur').forEach(btn => {
             btn.addEventListener('click', function() {
                 if (document.querySelectorAll('.souscripteur-item').length > 1) {
@@ -1111,65 +1093,16 @@
                 gerantPieceExpiration: val('gerantPieceExpiration') || '2025-08-17',
                 gerantDomicile: val('gerantDomicile') || 'Abomey-Calavi, quartier Agori, carré sans borne, maison GNANGUENON ALLAOU',
                 souscripteurs: souscripteurs,
-                notaire: val('notaire') || 'Maître Fadhil Firmin Gbadebo Eric ADAMON, Notaire à LOKOSSA',
                 dateActe: { jour, mois, annee }
             };
         }
 
         // =====================================================================
-        // 10. GÉNÉRATION DES DOCUMENTS (STATUTS + ANNEXE)
-        // =====================================================================
-
-        function generateDocuments() {
-            const data = collectData();
-            // Vérification rapide des champs essentiels
-            if (!data.denomination || !data.capital || !data.nbParts || !data.valeurPart) {
-                toast('Veuillez renseigner la dénomination, le capital, le nombre de parts et leur valeur.', 'error');
-                return;
-            }
-            if (data.souscripteurs.length === 0) {
-                toast('Ajoutez au moins un souscripteur.', 'error');
-                return;
-            }
-
-            const statutsHTML = generateStatuts(data);
-            const annexeHTML = generateAnnexe(data);
-
-            const previewArea = document.getElementById('previewArea');
-            previewArea.classList.remove('hidden');
-            const content = document.getElementById('previewContent');
-
-            // Afficher les statuts par défaut
-            showTab('statuts', statutsHTML, annexeHTML);
-
-            // Gestion des onglets
-            document.querySelectorAll('.preview-tabs button').forEach(btn => {
-                btn.addEventListener('click', function() {
-                    document.querySelectorAll('.preview-tabs button').forEach(b => b.classList.remove('active'));
-                    this.classList.add('active');
-                    showTab(this.dataset.tab, statutsHTML, annexeHTML);
-                });
-            });
-
-            // Exports
-            document.getElementById('exportWord').onclick = () => exportWord(statutsHTML, annexeHTML);
-            document.getElementById('exportPDF').onclick = () => exportPDF(statutsHTML, annexeHTML);
-            document.getElementById('exportHTML').onclick = () => exportHTML(statutsHTML, annexeHTML);
-
-            toast('Documents générés avec succès !', 'success');
-        }
-
-        function showTab(tab, statutsHTML, annexeHTML) {
-            const content = document.getElementById('previewContent');
-            content.innerHTML = tab === 'statuts' ? statutsHTML : annexeHTML;
-            // S'assurer que le contenu est bien stylé
-        }
-
-        // =====================================================================
-        // 11. GÉNÉRATEUR DE STATUTS (conforme au modèle fourni)
+        // 10. GÉNÉRATEUR DE STATUTS (conforme aux captures)
         // =====================================================================
 
         function generateStatuts(d) {
+            const NOTAIRE = "Maître Fadhil Firmin Gbadebo Éric ADAMON";
             const gerantComplet = `${d.civilite} ${d.gerantPrenom} ${d.gerantNom}`;
             const dateNaissanceFr = formatDateFr(d.gerantDateNaissance);
             const dateExpFr = formatDateFr(d.gerantPieceExpiration);
@@ -1197,150 +1130,220 @@
                 <p style="text-align:right;">L'AN DEUX MIL ${d.dateActe.annee}</p>
                 <p style="text-align:right;">ET LE ${d.dateActe.jour} ${moisEnLettres(d.dateActe.mois)} ${d.dateActe.annee}</p>
 
-                <p><span class="subtitle">PARDEVANT</span> ${d.notaire}, soussigné ;</p>
-                <p><span class="subtitle">A COMPARU</span> :</p>
+                <p><span class="bold underline">PARDEVANT</span> ${NOTAIRE}, Notaire à LOKOSSA (République du Bénin) soussigné ;</p>
+                <p><span class="bold underline">A COMPARU</span> :</p>
                 <p>${gerantComplet}, ${d.gerantProfession}, demeurant à ${d.gerantDomicile} ;</p>
                 <p>Né à ${d.gerantLieuNaissance} (République du Bénin), le ${dateNaissanceFr} ;</p>
                 <p>Titulaire du certificat d'identification personnelle numéro ${d.gerantNPI} délivré par l'Agence Nationale d'Identification des Personnes et expirant le ${dateExpFr} ;</p>
                 <p>De nationalité ${d.gerantNationalite} ;</p>
-                <p><span class="subtitle">LEQUEL,</span> a établi ainsi qu'il suit les statuts d'une Société à Responsabilité Limitée qu'elle a convenu de constituer.</p>
+                <p><span class="bold underline">LEQUEL,</span> a établi ainsi qu'il suit les statuts d'une Société à Responsabilité Limitée qu'elle a convenu de constituer.</p>
 
                 <p class="title">STATUTS</p>
 
-                <p><span class="subtitle">ARTICLE 1<sup>er</sup> : FORME</span></p>
+                <p><span class="bold underline">ARTICLE 1<sup>er</sup> : FORME</span></p>
                 <p>Il est formé une Société ${d.formeJuridique} (S.A.R.L.) qui sera régie par les dispositions de l'Acte Uniforme Révisé de l'OHADA relatif au droit des Sociétés Commerciales et du Groupement d'Intérêt Economique (ci-après désigné « Acte Uniforme »), par toutes autres dispositions légales et règlementaires en vigueur au Bénin ainsi que par les présents statuts.</p>
 
-                <p><span class="subtitle">ARTICLE 2 : DÉNOMINATION</span></p>
-                <p>La société prend la dénomination de <strong>« ${d.denomination} »</strong>.</p>
+                <p><span class="bold underline">ARTICLE 2 : DÉNOMINATION</span></p>
+                <p>La société prend la dénomination de <span class="bold">« ${d.denomination} »</span>.</p>
                 <p>La dénomination sociale doit figurer sur tous les actes et documents émanant de la Société et destinés aux tiers, notamment les lettres, les factures, les annonces et publications diverses. Elle doit être précédée ou suivie immédiatement en caractères lisibles de l'indication de la forme de la société, du montant de son capital social, de l'adresse de son siège social et de la mention de son immatriculation au registre du commerce et du crédit mobilier.</p>
 
-                <p><span class="subtitle">ARTICLE 3 : OBJET SOCIAL</span></p>
+                <p><span class="bold underline">ARTICLE 3 : OBJET SOCIAL</span></p>
                 <p>La Société a pour objet en République du Bénin et à l'Etranger :</p>
                 ${objetListe}
                 <p>Et plus généralement, toutes opérations commerciales, financières, industrielles, mobilières ou immobilières pouvant se rattacher directement ou indirectement à l'objet ci-dessus défini ainsi qu'à tous objets similaires ou connexes ou susceptibles d'en faciliter la réalisation.</p>
 
-                <p><span class="subtitle">ARTICLE 4 : SIEGE SOCIAL -- SUCCURSALE -- BUREAU DE REPRESENTATION OU DE LIAISON</span></p>
-                <p>Le siège social est fixé à <strong>${d.commune}, quartier ${d.quartier}, parcelle « ${d.parcelle} », TF ${d.tf} d'${d.commune}, maison ${d.nomProprietaire}, Téléphone : ${d.telephone}, email : ${d.email}</strong></p>
+                <p><span class="bold underline">ARTICLE 4 : SIEGE SOCIAL – SUCCURSALE – BUREAU DE REPRESENTATION OU DE LIAISON</span></p>
+                <p>Le siège social est fixé à <span class="bold">${d.commune}, quartier ${d.quartier}, parcelle « ${d.parcelle} », TF ${d.tf} d'${d.commune}, maison ${d.nomProprietaire}, Téléphone : ${d.telephone}, email : ${d.email}</span></p>
                 <p>Il pourra être transféré à un autre endroit de la même ville par décision de la gérance et en tout autre lieu par l'associé unique.</p>
+                <p>Des succursales pourront être créées en tous lieux et en tous pays conformément aux articles 116 et suivants de l'Acte Uniforme.</p>
+                <p>De même, la société peut créer des bureaux de représentation ou de liaison en tous lieux et en tous pays conformément aux articles 120-1 et suivants de l'Acte Uniforme.</p>
+                <p>La succursale, le bureau de représentation ou de liaison doivent être immatriculés au registre du commerce et du crédit mobilier conformément aux dispositions organisant ce registre.</p>
 
-                <p><span class="subtitle">ARTICLE 5 : DURÉE</span></p>
+                <p><span class="bold underline">ARTICLE 5 : DURÉE</span></p>
                 <p>La durée de la société est fixée à ${dureeStr} années à compter de la date de son immatriculation au Registre du Commerce et du Crédit Mobilier, sauf prorogation ou dissolution anticipée.</p>
 
-                <p><span class="subtitle">ARTICLE 6 : CAPITAL SOCIAL – PARTS SOCIALES</span></p>
-                <p>Le capital social est fixé à la somme de <strong>${capitalLettres} (${capitalStr})</strong> francs CFA, divisé en ${partsStr} parts sociales de ${valeurStr} francs CFA chacune, intégralement souscrites par l'associé unique.</p>
-                ${tableSouscripteurs}
+                <p><span class="bold underline">ARTICLE 6 : CAPITAL SOCIAL – PARTS SOCIALES</span></p>
+                <p>APPORTS EN NUMERAIRE :</p>
+                <p>L'associé unique apporte à la société la somme de ${capitalLettres} (${capitalStr}) de francs CFA ;</p>
+                <p>Sur cet apport en numéraire :</p>
+                ${d.souscripteurs.map(s => `<p>${s.nom}, apporte la somme de ${s.montant.toLocaleString('fr-FR')} de Francs CFA.</p>`).join('')}
+                <p>Total des apports formant le capital social d'${capitalLettres} (${capitalStr}) de francs CFA.</p>
 
-                <p><span class="subtitle">ARTICLE 7 : APPORTS</span></p>
-                <p>L'associé unique apporte à la société la somme de ${capitalLettres} (${capitalStr}) francs CFA en numéraire.</p>
+                <p><span class="bold underline">ARTICLE 7 : APPORTS</span></p>
+                <p>Le capital social est fixé à la somme de ${capitalLettres} (${capitalStr}) de francs CFA, constitué au moyen des apports ci-dessus constatés.</p>
+                <p>Il est divisé en ${partsStr} parts égales, de ${valeurStr} francs chacune, intégralement souscrites, par l'associé unique ainsi qu'il suit :</p>
+                ${d.souscripteurs.map(s => `<p>${s.nom}, à concurrence de ${s.parts} parts, numérotées de 01 à ${s.parts} ;</p>`).join('')}
+                <p>Total égal au nombre des parts créées, soit ${partsStr} parts.</p>
 
-                <p><span class="subtitle">ARTICLE 8 : AUGMENTATION ET REDUCTION DE CAPITAL</span></p>
+                <p><span class="bold underline">ARTICLE 8 : AUGMENTATION ET REDUCTION DE CAPITAL</span></p>
                 <p>Le capital peut être augmenté ou réduit, par décision extraordinaire de l'associé unique, dans les conditions et suivant les modalités fixées par les textes en vigueur.</p>
 
-                <p><span class="subtitle">ARTICLE 9 : REPRESENTATION DES PARTS SOCIALES</span></p>
+                <p><span class="bold underline">ARTICLE 9 : REPRESENTATION DES PARTS SOCIALES</span></p>
                 <p>Les parts sociales ne peuvent jamais être représentées par des titres négociables, nominatifs ou au porteur. Les droits de chaque Associé dans la Société résultent seulement des présentes et des cessions de parts régulièrement consenties selon les modalités énoncées à l'Article 10 alinéa premier ci-après.</p>
 
-                <p><span class="subtitle">ARTICLE 10 : CESSION ET TRANSMISSION DES PARTS SOCIALES</span></p>
-                <p>La cession de parts sociales entre vifs doit être constatée par écrit et n'est rendue opposable à la société qu'après l'accomplissement de l'une des formalités énoncées à l'article 317 de l'Acte Uniforme. Elles ne peuvent être cédées à titre onéreux ou gratuit à des tiers non associés qu'avec le consentement de la majorité des associés non-cédants représentant les trois quarts du capital social.</p>
+                <p><span class="bold underline">ARTICLE 10 : CESSION ET TRANSMISSION DES PARTS SOCIALES</span></p>
+                <p>1°) La cession de parts sociales entre vifs doit être constatée par écrit et n'est rendue opposable à la société qu'après l'accomplissement de l'une des formalités énoncées à l'article 317 de l'Acte Uniforme.</p>
+                <p>2°) Elles ne peuvent être cédées à titre onéreux ou gratuit à des tiers non associés qu'avec le consentement de la majorité des associés non-cédants représentant les trois quarts du capital social, déduction faite, des parts de l'associé cédant. Ce consentement sollicité se fait selon la procédure prévue par l'Acte Uniforme (articles 319 et suivants).</p>
+                <p>3°) Si la société donne son consentement à un projet de nantissement de parts sociales soit par notification de la décision à l'intéressé, soit par défaut de réponse dans un délai de trois (3) mois à compter de sa demande, ce consentement emportera agrément du cessionnaire en cas de réalisation forcée des parts sociales régulièrement nanties, à moins que la société ne préfère, après cession racheter sans délai lesdites parts en vue de réduire son capital.</p>
 
-                <p><span class="subtitle">ARTICLE 11 : INDIVISIBILITE DES PARTS</span></p>
+                <p><span class="bold underline">ARTICLE 11 : INDIVISIBILITE DES PARTS</span></p>
                 <p>Les parts sociales sont indivisibles à l'égard de la Société qui ne reconnaît qu'un seul propriétaire pour chaque part.</p>
+                <p>Les copropriétaires sont tenus de se faire représenter auprès de la Société par un seul d'entre eux considéré comme seul propriétaire. A défaut d'entente, il sera pourvu par voie de justice à la désignation d'un mandataire commun, à la requête de l'indivisaire le plus diligent.</p>
+                <p>Usufruitier et nu-propriétaire devront également se faire représenter par l'un d'entre eux. A défaut d'entente, la Société considérera l'usufruitier comme représentant valablement le nu-propriétaire, quelle que soit la nature des décisions à prendre.</p>
 
-                <p><span class="subtitle">ARTICLE 12 : DROITS ET OBLIGATIONS DES ASSOCIES</span></p>
-                <p>Chaque part donne droit à une fraction des bénéfices et de l'actif social, proportionnellement au nombre de parts existantes ; elle donne droit à une voix dans tous les votes et délibérations. Les Associés ne sont tenus que jusqu'à concurrence du montant des parts qu'ils possèdent.</p>
+                <p><span class="bold underline">ARTICLE 12 : DROITS ET OBLIGATIONS DES ASSOCIES</span></p>
+                <p>1°) Il est reconnu à tout Associé un droit d'information permanent sur les affaires sociales, notamment le droit de communication, lequel s'exerce durant les quinze (15) jours précédant la tenue de l'Assemblée Générale.</p>
+                <p>S'agissant de l'Assemblée Générale Annuelle, le droit de communication porte sur les documents comptables et financiers de l'exercice tels que définis par l'Acte Uniforme OHADA, et le rapport de gestion établi par la Gérance.</p>
+                <p>En ce qui concerne les Assemblées autres que l'Assemblée Annuelle, le droit de communication porte sur le texte des résolutions proposées, le rapport de la Gérance, et le cas échéant, sur le rapport du Commissaire aux Comptes.</p>
+                <p>2°) Chaque part donne droit à une fraction des bénéfices et de l'actif social, proportionnellement au nombre de parts existantes ; elle donne droit à une (1) voix dans tous les votes et délibérations.</p>
+                <p>3°) Sous réserve des dispositions de l'Article 312 § 5 de l'Acte Uniforme OHADA rendant les Associés solidairement responsables, vis-à-vis des tiers pendant cinq (5) années, de la valeur attribuée aux apports en nature, les Associés ne sont tenus que jusqu'à concurrence du montant des parts qu'ils possèdent.</p>
+                <p>4°) Les droits et obligations attachés aux parts sociales suivent ces dernières, dans quelque main qu'elles passent. La possession d'une part, emporte de plein droit, l'adhésion aux Statuts de la Société et aux résolutions prises régulièrement par les Associés.</p>
 
-                <p><span class="subtitle">ARTICLE 13 : CONVENTIONS ENTRE LA SOCIETE ET LES ASSOCIES OU ENTRE LA SOCIETE ET LES GERANTS</span></p>
-                <p>Il est interdit aux personnes physiques, Gérantes ou Associées de se faire consentir par la Société des prêts ou des avances en comptes courants ou autrement, de faire cautionner ou avaliser par elle leurs engagements personnels envers des tiers.</p>
+                <p><span class="bold underline">ARTICLE 13 : CONVENTIONS ENTRE LA SOCIETE ET LES ASSOCIES OU ENTRE LA SOCIETE ET LES GERANTS</span></p>
+                <p>Il est interdit aux personnes physiques, Gérantes ou Associées de se faire consentir par la Société des prêts ou des avances en comptes courants ou autrement, de faire cautionner ou avaliser par elle leurs engagements personnels envers des tiers. Cette interdiction s'applique également aux conjoints, ascendants et descendants des personnes visées, ainsi qu'à toute personne interposée.</p>
+                <p>Toute autre convention entre la Société et un ou plusieurs Associés, ou entre la Société et un ou plusieurs de ses Gérants devra être approuvée par les autres Associés. La Gérance, ou s'il en existe un, les Commissaires aux Comptes, établiront à cet effet un rapport qu'ils présenteront à la prochaine Assemblée ou consultation des Associés. La décision d'approbation sera prise à la majorité requise pour les Décisions Ordinaires, l'Associé intéressé ne prenant pas part au vote et ses parts n'étant pas retenues pour le calcul du quorum et de la majorité.</p>
+                <p>La Gérance est tenue d'aviser le Commissaire aux Comptes, s'il en existe un, des conventions visées à l'alinéa précédent dans un délai d'un (1) mois à compter de la conclusion desdites conventions.</p>
+                <p>Les délibérations relatives aux conventions visées ci-dessus, sont nulles lorsqu'elles ont été prises en l'absence du rapport du Gérant, ou, s'il en existe un, du Commissaire aux Comptes. Elles peuvent être annulées dans le cas où le rapport ne contient pas les informations prévues à l'Article 353 alinéa 1 de l'Acte Uniforme OHADA.</p>
+                <p>Les conventions non approuvées produisent néanmoins leurs effets, à charge pour le ou les Gérants ou Associés contractants de supporter individuellement ou solidairement, selon le cas, les conséquences de ces conventions préjudiciables à la Société.</p>
+                <p>L'action en responsabilité se prescrit au terme d'un délai de trois (3) ans courant à compter de la conclusion de la convention non approuvée ou si elle a été dissimulée, de sa révélation.</p>
 
-                <p><span class="subtitle">ARTICLE 14 : DECES - INTERDICTION - FAILLITE ET DECONFITURE D'UN ASSOCIE</span></p>
+                <p><span class="bold underline">ARTICLE 14 : DECES - INTERDICTION - FAILLITE ET DECONFITURE D'UN ASSOCIE</span></p>
                 <p>La Société ne sera pas dissoute par le décès, l'interdiction, la dotation de conseil judiciaire, la faillite ou la déconfiture d'un Associé.</p>
 
-                <p><span class="subtitle">ARTICLE 15 : DE LA GERANCE</span></p>
-                <p>Le gérant a les pouvoirs nécessaires pour faire tous les actes de gestion dans l'intérêt de la société. Dans les rapports avec les tiers, le gérant engage la société, sous réserve des pouvoirs expressément attribués aux associés par la loi.</p>
+                <p><span class="bold underline">ARTICLE 15 : DE LA GERANCE</span></p>
+                <p>Le gérant a les pouvoirs nécessaires pour faire tous les actes de gestion dans l'intérêt de la société.</p>
+                <p>Dans les rapports avec les tiers, le gérant engage la société, sous réserve des pouvoirs expressément attribués aux associés par la loi.</p>
+                <p>La société est engagée même par les actes du gérant qui ne relèvent pas de l'objet social, à moins qu'elle ne prouve que le tiers sache que l'acte dépassait cet objet ou qu'il ne pouvait l'ignorer compte tenu des circonstances, sans que la seule publication des statuts suffise à constituer cette preuve.</p>
+                <p>Le gérant est responsable en cas de faute envers la société ou envers les tiers, soit des infractions aux dispositions législatives ou réglementaires, soit des violations aux présents statuts, soit des fautes commises dans sa gestion.</p>
+                <p>Aucune décision des associés ne peut avoir pour effet d'éteindre une action en responsabilité contre le gérant pour faute commise dans l'accomplissement de son mandat.</p>
 
-                <p><span class="subtitle">ARTICLE 16 : NOMINATION DES GERANTS STATUTAIRES</span></p>
-                <p>${gerantComplet} est nommé aux fonctions de Gérant et ce pour une durée indéterminée. Il déclare qu'il n'est frappé d'aucune mesure prévue par l'Acte Uniforme OHADA susceptible de lui interdire l'exercice des fonctions de Gérant de société, et qu'il accepte lesdites fonctions.</p>
+                <p><span class="bold underline">ARTICLE 16 : NOMINATION DES GERANTS STATUTAIRES</span></p>
+                <p>${gerantComplet} est nommé aux fonctions de Gérant et ce pour une durée indéterminée.</p>
+                <p>${gerantComplet}, déclare qu'il n'est frappé d'aucune mesure prévue par l'Acte Uniforme OHADA susceptible de lui interdire l'exercice des fonctions de Gérant de société, et qu'il accepte lesdites fonctions.</p>
 
-                <p><span class="subtitle">ARTICLE 17 : COMMISSAIRE AUX COMPTES</span></p>
-                <p>Un ou plusieurs Commissaires aux Comptes peuvent être nommés si deux des conditions prévues par l'Article 376 de l'Acte Uniforme OHADA sont remplies par la Société. La Société n'est plus tenue de désigner un Commissaire aux Comptes dès lors qu'elle n'a pas rempli deux des conditions fixées ci-dessus pendant les deux exercices précédant l'expiration du mandat du Commissaire aux Comptes.</p>
+                <p><span class="bold underline">ARTICLE 17 : COMMISSAIRE AUX COMPTES</span></p>
+                <p>Un ou plusieurs Commissaires aux Comptes peuvent être nommés si deux (2) des conditions prévues par l'Article 376 de l'Acte Uniforme OHADA sont remplies par la Société, à savoir :</p>
+                <p>- avoir un total du bilan supérieur à 125.000.000 F.CFA,</p>
+                <p>- ou réaliser un chiffre d'affaires annuel supérieur à 250.000.000 F.CFA</p>
+                <p>- ou avoir un effectif permanent de personnes employées supérieur à 50.</p>
+                <p>La Société n'est plus tenue de désigner un Commissaire aux Comptes dès lors qu'elle n'a pas rempli deux (2) des conditions fixées ci-dessus pendant les deux (2) exercices précédant l'expiration du mandat du Commissaire aux Comptes.</p>
+                <p>Le Commissaire aux Comptes ainsi nommé exercera sa mission de contrôle, de certification et d'information conformément aux dispositions de l'Acte Uniforme.</p>
+                <p>Le mandat du Commissaire aux Comptes est d'une durée de trois (3) exercices, renouvelable.</p>
+                <p>La responsabilité civile du Commissaire aux Comptes est engagée, tant à l'égard de la Société que des tiers, des conséquences dommageables des fautes et négligences commises dans l'exercice de ses fonctions. Il est également responsable des dommages causés par les infractions commises par le ou les Gérants de la Société, s'il est établi qu'en ayant eu connaissance, il ne les a pas révélés dans son rapport à l'Assemblée Générale.</p>
 
-                <p><span class="subtitle">ARTICLE 18 : DECISION DE L'ASSOCIEE UNIQUE</span></p>
-                <p>L'associé unique exerce les pouvoirs dévolus à l'assemblée des associés par les dispositions non contraires du chapitre III relatif aux décisions collectives, du titre II de l'Acte Uniforme susvisé.</p>
+                <p><span class="bold underline">ARTICLE 18 : DECISION DE L'ASSOCIEE UNIQUE</span></p>
+                <p>a) L'associé unique exerce les pouvoirs dévolus à l'assemblée des associés par les dispositions non contraires du chapitre III relatif aux décisions collectives, du titre II de l'Acte Uniforme susvisé.</p>
+                <p>Il s'ensuit que toutes décisions qui excèdent les pouvoirs reconnus aux gérants sont prises par l'associé unique.</p>
+                <p>Ces décisions sont provoquées par le ou les gérants. Elles le sont également par l'associé unique à la condition qu'il mette les gérants non associés en mesure de présenter leurs observations en temps utile.</p>
+                <p>Le commissaire aux comptes, s'il existe, est informé de l'intervention prochaine de toute décision d'associé, par lettre recommandée avec demande d'avis de réception postée quinze jours au moins avant la date prévue pour la prise de cette décision.</p>
+                <p>b) L'associé unique ne peut déléguer ses pouvoirs. Ses décisions sont répertoriées dans le registre des délibérations coté et paraphé. Les décisions prises en violation de ces dispositions peuvent être annulées à la demande de tout intéressé.</p>
 
-                <p><span class="subtitle">ARTICLE 19 : DROIT DE SURVEILLANCE PAR LES ASSOCIES NON-GERANTS</span></p>
-                <p>La Gérance, responsable d'un mandat, doit rendre compte de ses actes aux Associés qui ont un droit de contrôle permanent et sans préavis, à la seule condition de ne pas abuser et de ne pas entraver l'exercice normal des fonctions de la Gérance.</p>
+                <p><span class="bold underline">ARTICLE 19 : DROIT DE SURVEILLANCE PAR LES ASSOCIES NON-GERANTS</span></p>
+                <p>La Gérance, responsable d'un mandat, doit rendre compte de ses actes aux Associés qui ont un droit de contrôle permanent et sans préavis, à la seule condition de ne pas abuser et de ne pas entraver l'exercice normal des fonctions de la Gérance. En cas de difficulté, les Associés seront obligatoirement consultés et organiseront comme ils l'entendent et à la majorité en capital, l'exercice de leur droit de contrôle.</p>
+                <p>En outre, il est reconnu à tout Associé non-Gérant, le droit de poser par écrit, et ce deux (2) fois par exercice, des questions au Gérant sur tout fait de nature à compromettre la continuité de l'exploitation de la Société.</p>
+                <p>Le Gérant dispose d'un délai d'un (1) mois à compter de la date de réception desdites questions pour apporter sa réponse sous forme écrite, dont copie sera aussitôt communiquée au Commissaire aux Comptes, s'il en existe un.</p>
 
-                <p><span class="subtitle">ARTICLE 20 : EXERCICE SOCIAL</span></p>
-                <p>L'exercice social commence le 1<sup>er</sup> Janvier et se termine le 31 Décembre de chaque année.</p>
+                <p><span class="bold underline">ARTICLE 20 : EXERCICE SOCIAL</span></p>
+                <p>L'exercice social commence le 1<sup>er</sup> Janvier et se termine le 31 Décembre de chaque année ; exception faite du cas prévu à l'Article 7 dernier alinéa de l'Acte Uniforme sur le Droit Comptable du Traité OHADA.</p>
 
-                <p><span class="subtitle">ARTICLE 21 : COMPTES</span></p>
-                <p>Il est tenu une comptabilité régulière des opérations sociales, conformément aux lois et usages du Commerce. Il est dressé chaque année, à la fin de chaque exercice social, par les soins de la Gérance, des états financiers de synthèse.</p>
+                <p><span class="bold underline">ARTICLE 21 : COMPTES</span></p>
+                <p>Il est tenu une comptabilité régulière des opérations sociales, conformément aux lois et usages du Commerce.</p>
+                <p>Il est dressé chaque année, à la fin de chaque exercice social, par les soins de la Gérance, des états financiers de synthèse, conformément aux dispositions Législatives et Réglementaires et éventuellement aux dispositions de l'Acte Uniforme OHADA relatif au Droit Comptable. Ces états financiers de synthèse comprendront notamment un inventaire des éléments actifs et passifs de la Société, un bilan résumant l'inventaire et un compte de profits et pertes.</p>
+                <p>Seront également annexés aux états financiers de synthèse : un état des cautionnements avals et garanties donnés par la Société, ainsi qu'un état des sûretés réelles consenties par la Société.</p>
+                <p>La Gérance est tenue d'adresser au Commissaire aux Comptes s'il en existe un, les états financiers de synthèse et le rapport de gestion, et ceci quarante-cinq (45) jours au moins avant la date de l'Assemblée Générale.</p>
+                <p>Tout Associé peut, personnellement ou par fondé de pouvoirs de son choix, prendre communication, au siège social, et à toute époque, de l'inventaire et du bilan, conformément à l'Article 12 § 1 des présents Statuts.</p>
 
-                <p><span class="subtitle">ARTICLE 22 : AFFECTATION ET REPARTITION DES BENEFICES - DIVIDENDES</span></p>
-                <p>Sur les bénéfices nets, il est tout d'abord prélevé dix pour cent (10 %) pour constituer le fonds de réserve légale. Le solde appelé dividende est réparti entre les Associés proportionnellement au nombre de parts sociales possédées par chacun d'eux.</p>
+                <p><span class="bold underline">ARTICLE 22 : AFFECTATION ET REPARTITION DES BENEFICES - DIVIDENDES</span></p>
+                <p>Après approbation des comptes présentés dans les états financiers de synthèse, les produits de la Société constatés par l'inventaire annuel, déduction faite des frais généraux, des charges sociales, ainsi que de tous amortissements de l'actif social et de toutes provisions pour risques commerciaux, industriels et autres, constituent les bénéfices nets.</p>
+                <p>Sur ces bénéfices nets, il est tout d'abord prélevé dix pour cent (10 %) pour constituer le fonds de réserve légale. Ce prélèvement cesse d'être obligatoire lorsque ledit fonds atteint une somme égale au cinquième du capital social. Il reprend son cours lorsque, pour une cause quelconque, ladite réserve est descendue au-dessous de ce cinquième.</p>
+                <p>Le solde appelé dividende est réparti éventuellement entre les Associés, Gérants ou non Gérants, proportionnellement au nombre de parts sociales possédées par chacun d'eux.</p>
+                <p>Toutefois, par Décision Collective Ordinaire, et, le cas échéant, par la Décision même approuvant les comptes de l'exercice, les Associés ont la faculté de prélever sur les bénéfices de cet exercice les sommes qu'ils jugent convenables de fixer pour en faire tel emploi que bon leur semble, notamment, pour les reporter à nouveau, ou les porter à un ou plusieurs fonds de réserves généraux ou spéciaux, le tout selon qu'ils aviseront.</p>
+                <p>Les modalités de paiement des dividendes revenant aux Associés sont fixées par l'Assemblée Générale, laquelle peut déléguer ce droit aux Gérants. Toutefois, la mise en paiement desdits dividendes devra avoir lieu dans un délai maximum de neuf (9) mois à compter de la date de clôture de l'exercice social. Ce délai peut être prorogé par la juridiction compétente à la requête du ou des Gérants.</p>
+                <p>Les Associés ne sont soumis à aucune restitution des dividendes régulièrement distribués.</p>
+                <p>La répétition des dividendes fictives peut être exigée des Associés qui les ont perçus. L'action en répétition se prescrit au terme d'un délai de trois (3) ans courant à compter de la mise en distribution des dividendes.</p>
+                <p>Les dividendes non réclamées dans le délai de cinq (5) ans de leur exigibilité sont prescrites, conformément à la Loi.</p>
 
-                <p><span class="subtitle">ARTICLE 23 : DEPOT DE FONDS PAR LES ASSOCIES</span></p>
-                <p>En application des dispositions de l'Article 13 des présents Statuts, chaque Associé peut, du consentement de la Gérance, verser dans la caisse sociale, les fonds dont la Société a besoin.</p>
+                <p><span class="bold underline">ARTICLE 23 : DEPOT DE FONDS PAR LES ASSOCIES</span></p>
+                <p>En application des dispositions de l'Article 13 des présents Statuts, chaque Associé peut, du consentement de la Gérance, verser dans la caisse sociale, les fonds dont la Société a besoin. Les conditions d'intérêts et de retrait de ces fonds sont déterminées par les Associés prêteurs et la Gérance.</p>
 
-                <p><span class="subtitle">ARTICLE 24 : DECLARATION DE SOUSCRIPTION ET DE VERSEMENT</span></p>
-                <p>Le comparant déclare que les ${partsStr} parts sociales de ${valeurStr} Francs CFA chacune ont été entièrement souscrites et que le souscripteur a versé le montant total de souscription soit la somme de <strong>${capitalLettres} (${capitalStr})</strong> Francs CFA. Laquelle somme a été déposée en l'étude du Notaire soussigné dès avant ce jour.</p>
+                <p><span class="bold underline">ARTICLE 24 : DECLARATION DE SOUSCRIPTION ET DE VERSEMENT</span></p>
+                <p>Le comparant déclare :</p>
+                <p>- Que les ${partsStr} parts sociales de ${valeurStr} Francs CFA chacune de la société dénommée <span class="bold">« ${d.denomination} »</span>, ont été entièrement souscrites.</p>
+                <p>- Que le souscripteur a versé le montant total de souscription soit au total la somme de ${capitalLettres} (${capitalStr}) de Francs CFA.</p>
+                <p>Laquelle somme totale de ${capitalLettres} (${capitalStr}) de Francs CFA a été déposée en l'étude du Notaire soussigné au nom de la société dès avant ce jour.</p>
+                <p>Il requiert le Notaire Soussigné de lui donner acte de cette déclaration.</p>
+                <p>Sur ce requis, ${NOTAIRE}, Notaire Soussigné affirme sur la présentation qui lui a été faite, de la liste de souscription des parts sociales mentionnant la somme versée par le souscripteur.</p>
+                <p>Que le montant du versement mentionné sur la liste de souscription représentant au total la somme de ${capitalLettres} (${capitalStr}) de Francs CFA est conforme au montant des sommes effectivement déposées.</p>
 
-                <p><span class="subtitle">DONT ACTE SUR SEPT (07) PAGES</span></p>
-                <p style="text-align:center;">FAIT ET PASSE en l'Etude de ${d.notaire} ;</p>
+                <p><span class="bold underline">ANNEXES</span></p>
+                <p>Sont demeurées ci-après annexées après mention :</p>
+                <p>La liste de souscription contenant les noms, prénoms, domicile et la somme versée par l'associé unique ;</p>
+
+                <p><span class="bold underline">DONT ACTE SUR SEPT (07) PAGES</span></p>
+                <p>Contenant</p>
+                <p>Renvois :</p>
+                <p>Mots rayés nuls :</p>
+                <p>Chiffre rayé nul :</p>
+                <p>Lignes entières rayées nulles :</p>
+                <p>Barres tirées dans les blancs :</p>
+
+                <p style="text-align:center;">FAIT ET PASSE en l'Etude de ${NOTAIRE} ;</p>
                 <p style="text-align:center;">Et après lecture faite, le comparant, ès-nom a signé avec le Notaire Soussigné.</p>
 
                 <table class="sig-table">
-                    <tr><th>NOMS ET PRENOMS</th><th>SIGNATURES</th></tr>
-                    <tr><td>${gerantComplet}</td><td></td></tr>
-                    <tr><td>${d.notaire}</td><td></td></tr>
+                    <tr><td><span class="bold">${gerantComplet}</span></td><td></td></tr>
+                    <tr><td><span class="bold">${NOTAIRE}</span><br>Notaire</td><td></td></tr>
                 </table>
+                <p style="text-align:right; margin-top:8px;">7</p>
             </div>
             `;
             return html;
         }
 
         // =====================================================================
-        // 12. GÉNÉRATEUR D'ANNEXE (conforme au modèle)
+        // 11. GÉNÉRATEUR D'ANNEXE (conforme aux captures)
         // =====================================================================
 
         function generateAnnexe(d) {
+            const NOTAIRE = "Maître Fadhil Firmin Gbadebo Éric ADAMON";
             const capitalStr = d.capital.toLocaleString('fr-FR');
             const totalParts = d.souscripteurs.reduce((sum, s) => sum + s.parts, 0);
             const totalMontant = d.souscripteurs.reduce((sum, s) => sum + s.montant, 0);
 
             let rows = '';
             d.souscripteurs.forEach(s => {
-                rows += `<tr><td>${s.nom}, demeurant à ${s.domicile}</td><td>${s.parts}</td><td>${s.montant.toLocaleString('fr-FR')}</td><td>${s.montant.toLocaleString('fr-FR')}</td></tr>`;
+                rows += `<tr><td>${s.nom}, demeurant à ${s.domicile}</td><td>${s.parts} parts</td><td>${s.montant.toLocaleString('fr-FR')} FCFA</td><td>${s.montant.toLocaleString('fr-FR')} FCFA</td></tr>`;
             });
 
             const html = `
             <div class="document">
-                <p class="title">ANNEXE</p>
+                <p class="annexe-title">ANNEXE</p>
                 <p class="subtitle">Liste de souscription et d'état des versements de la société</p>
-                <p><strong>« ${d.denomination} »</strong> ${d.formeJuridique}, au capital de ${capitalStr} Francs CFA</p>
-                <p><strong>Siège social :</strong> ${d.commune}, quartier ${d.quartier}, parcelle « ${d.parcelle} », TF ${d.tf} d'${d.commune}, maison ${d.nomProprietaire}, Téléphone : ${d.telephone}, email : ${d.email}</p>
+                <p><span class="bold">« ${d.denomination} »</span> ${d.formeJuridique}, au capital de <span class="bold">${capitalStr}</span> de Francs CFA</p>
+                <p><span class="bold">Siège social :</span> ${d.commune}, quartier ${d.quartier}, parcelle « ${d.parcelle} », TF ${d.tf} d'${d.commune}, maison ${d.nomProprietaire}, Téléphone : ${d.telephone}, email : ${d.email}</p>
 
                 <table>
                     <thead>
                         <tr>
                             <th>Noms, Prénoms et domicile des souscripteurs</th>
                             <th>Nombre de parts sociales Souscrites</th>
-                            <th>Montant total des parts sociales (FCFA)</th>
-                            <th>Montant des versements effectués (FCFA)</th>
+                            <th>Montant total des parts sociales en FCFA</th>
+                            <th>Montant des versements effectués en FCFA</th>
                         </tr>
                     </thead>
                     <tbody>
                         ${rows}
                         <tr>
                             <th>TOTAL DES PARTS SOCIALES SOUSCRITES</th>
-                            <th>${totalParts}</th>
-                            <th>${totalMontant.toLocaleString('fr-FR')}</th>
+                            <th>${totalParts} Parts</th>
+                            <th>${totalMontant.toLocaleString('fr-FR')} FCFA</th>
                             <th></th>
                         </tr>
                         <tr>
                             <th>TOTAL versements effectués</th>
                             <th></th>
                             <th></th>
-                            <th>${totalMontant.toLocaleString('fr-FR')}</th>
+                            <th>${totalMontant.toLocaleString('fr-FR')} FCFA</th>
                         </tr>
                     </tbody>
                 </table>
@@ -1350,12 +1353,11 @@
                 <p style="text-align:center;">FAIT ET PASSE en l'étude et reçu aux minutes du Notaire soussigné.</p>
                 <p style="text-align:center;">L'AN DEUX MIL ${d.dateActe.annee}</p>
                 <p style="text-align:center;">ET LE ${d.dateActe.jour} ${moisEnLettres(d.dateActe.mois)} ${d.dateActe.annee}</p>
-                <p>Et après lecture faite, le comparant, ès-nom et nom, a signé avec Maître ${d.notaire}, Notaire soussigné.</p>
+                <p>Et après lecture faite, le comparant, ès-nom et nom, a signé avec <span class="bold">${NOTAIRE}</span>, Notaire soussigné.</p>
 
                 <table class="sig-table">
-                    <tr><th>NOMS ET PRENOMS</th><th>SIGNATURES</th></tr>
-                    <tr><td>${d.civilite} ${d.gerantPrenom} ${d.gerantNom}</td><td></td></tr>
-                    <tr><td>${d.notaire}</td><td></td></tr>
+                    <tr><td><span class="bold">${d.civilite} ${d.gerantPrenom} ${d.gerantNom}</span></td><td></td></tr>
+                    <tr><td><span class="bold">${NOTAIRE}</span><br>Notaire</td><td></td></tr>
                 </table>
             </div>
             `;
@@ -1363,7 +1365,7 @@
         }
 
         // =====================================================================
-        // 13. FONCTIONS UTILITAIRES
+        // 12. FONCTIONS UTILITAIRES
         // =====================================================================
 
         function formatDateFr(dateStr) {
@@ -1382,12 +1384,11 @@
             if (n === 1000000) return 'UN MILLION';
             if (n === 1000) return 'MILLE';
             if (n === 100) return 'CENT';
-            // Pour simplifier, on renvoie le nombre en lettres majuscules basique
             return n.toLocaleString('fr-FR').toUpperCase();
         }
 
         // =====================================================================
-        // 14. EXPORTS
+        // 13. EXPORTS
         // =====================================================================
 
         function getCurrentDocumentHTML() {
@@ -1400,13 +1401,18 @@
                 body { font-family: 'Times New Roman', serif; font-size: 12pt; line-height: 1.6; padding: 40px; max-width: 800px; margin: auto; }
                 .document { text-align: justify; }
                 .title { font-weight: 700; text-decoration: underline; text-align: center; font-size: 14pt; margin: 20px 0 12px; }
-                .subtitle { font-weight: 600; text-decoration: underline; margin: 16px 0 8px; }
-                p { margin: 0 0 8pt 0; }
+                .subtitle { font-weight: 700; text-decoration: underline; margin: 16px 0 8px; }
+                p { margin: 0 0 6pt 0; }
                 table { width: 100%; border-collapse: collapse; margin: 16px 0; }
-                table th, table td { border: 1px solid #000; padding: 8px 6px; vertical-align: top; }
+                table th, table td { border: 1px solid #000; padding: 6px 8px; vertical-align: top; }
                 table th { background: #f4f1ea; font-weight: 700; text-align: center; }
-                .sig-table { margin-top: 24px; }
-                .sig-table td { border: 1px solid #000; padding: 8px; }
+                .sig-table { margin-top: 24px; width: 80%; margin-left: auto; margin-right: auto; }
+                .sig-table td { border: 1px solid #000; padding: 8px; text-align: center; }
+                .annexe-title { font-weight: 700; text-decoration: underline; text-align: center; font-size: 14pt; margin: 20px 0 12px; }
+                .bold { font-weight: 700; }
+                .underline { text-decoration: underline; }
+                .center { text-align: center; }
+                .right { text-align: right; }
             </style>
             </head><body>
                 ${inner}
@@ -1452,19 +1458,65 @@
         }
 
         // =====================================================================
+        // 14. GÉNÉRATION DES DOCUMENTS (déclenchée par le bouton)
+        // =====================================================================
+
+        function generateDocuments() {
+            const data = collectData();
+            if (!data.denomination || !data.capital || !data.nbParts || !data.valeurPart) {
+                toast('Veuillez renseigner la dénomination, le capital, le nombre de parts et leur valeur.', 'error');
+                return;
+            }
+            if (data.souscripteurs.length === 0) {
+                toast('Ajoutez au moins un souscripteur.', 'error');
+                return;
+            }
+
+            const statutsHTML = generateStatuts(data);
+            const annexeHTML = generateAnnexe(data);
+
+            const previewArea = document.getElementById('previewArea');
+            previewArea.classList.remove('hidden');
+            const content = document.getElementById('previewContent');
+
+            // Afficher les statuts par défaut
+            showTab('statuts', statutsHTML, annexeHTML);
+
+            document.querySelectorAll('.preview-tabs button').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    document.querySelectorAll('.preview-tabs button').forEach(b => b.classList.remove('active'));
+                    this.classList.add('active');
+                    showTab(this.dataset.tab, statutsHTML, annexeHTML);
+                });
+            });
+
+            document.getElementById('exportWord').onclick = exportWord;
+            document.getElementById('exportPDF').onclick = exportPDF;
+            document.getElementById('exportHTML').onclick = exportHTML;
+
+            toast('Documents générés avec succès !', 'success');
+        }
+
+        function showTab(tab, statutsHTML, annexeHTML) {
+            const content = document.getElementById('previewContent');
+            content.innerHTML = tab === 'statuts' ? statutsHTML : annexeHTML;
+        }
+
+        // =====================================================================
         // 15. INITIALISATION
         // =====================================================================
 
+        // Attacher l'événement au bouton de génération
+        document.getElementById('generateBtn').addEventListener('click', generateDocuments);
+
+        // Initialisation de la navigation
         updateStep(0);
         toast('Bienvenue dans ActeProSarl ! Remplissez le formulaire pour générer vos statuts.', 'info');
 
-        // Préremplir la date d'acte par défaut
+        // Préremplir les dates
         const today = new Date().toISOString().split('T')[0];
         document.getElementById('dateActe').value = today;
-
-        // Préremplir la date de naissance et expiration
-        const birthDefault = '1990-12-17';
-        document.getElementById('gerantDateNaissance').value = birthDefault;
+        document.getElementById('gerantDateNaissance').value = '1990-12-17';
         document.getElementById('gerantPieceExpiration').value = '2025-08-17';
 
     })();
