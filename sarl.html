@@ -3,10 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Générateur de statuts SARL · Style MonEntreprise.bj</title>
+    <title>ActeProSarl — Générateur de statuts SARL</title>
     <!-- Google Fonts Roboto -->
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
-    <!-- Font Awesome 5 (gratuit) pour les icônes -->
+    <!-- Font Awesome 5 (gratuit) -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <style>
         /* ===== VARIABLES ===== */
@@ -32,6 +32,7 @@
             display: flex;
             flex-direction: column;
         }
+        a { text-decoration: none; color: inherit; }
 
         /* ===== EN-TÊTE ===== */
         header {
@@ -49,14 +50,14 @@
         .header-left {
             display: flex;
             align-items: center;
+            gap: 12px;
         }
-        .header-left img {
-            height: 40px;
-            margin-right: 15px;
+        .header-left svg {
+            flex-shrink: 0;
         }
         .header-left span {
-            font-size: 18px;
-            font-weight: 500;
+            font-size: 20px;
+            font-weight: 600;
             color: var(--primary);
         }
         .header-nav {
@@ -65,17 +66,14 @@
             gap: 20px;
             font-size: 14px;
             font-weight: 500;
-            text-transform: uppercase;
         }
         .header-nav a {
             color: var(--text-dark);
-            text-decoration: none;
             padding: 6px 0;
             border-bottom: 2px solid transparent;
             transition: 0.2s;
         }
-        .header-nav a:hover,
-        .header-nav a.active {
+        .header-nav a:hover {
             border-bottom-color: var(--primary);
             color: var(--primary);
         }
@@ -91,13 +89,11 @@
         }
         .lang-switch {
             display: flex;
-            gap: 8px;
-        }
-        .lang-switch a {
-            font-size: 12px;
+            gap: 6px;
+            font-size: 13px;
             color: var(--text-muted);
         }
-        .lang-switch a.active {
+        .lang-switch .active {
             color: var(--primary);
             font-weight: 700;
         }
@@ -111,7 +107,7 @@
             width: 100%;
         }
 
-        /* ===== BARRE DE PROGRESSION (SVG) ===== */
+        /* ===== BARRE DE PROGRESSION ===== */
         .progress-steps {
             margin-bottom: 30px;
             background: white;
@@ -218,7 +214,7 @@
         .form-group textarea:focus {
             outline: none;
             border-color: var(--primary);
-            box-shadow: 0 0 0 3px rgba(22, 112, 120, 0.15);
+            box-shadow: 0 0 0 3px rgba(22,112,120,0.15);
         }
         .form-group textarea {
             resize: vertical;
@@ -227,6 +223,11 @@
         .form-group .hint {
             font-size: 12px;
             color: var(--text-muted);
+        }
+        .field-hint {
+            font-size: 12px;
+            color: var(--text-muted);
+            margin-top: 4px;
         }
 
         /* ===== BOUTONS ===== */
@@ -245,7 +246,6 @@
             font-size: 15px;
             cursor: pointer;
             transition: 0.2s;
-            text-decoration: none;
             display: inline-flex;
             align-items: center;
             gap: 8px;
@@ -294,7 +294,7 @@
             cursor: not-allowed;
         }
 
-        /* ===== ALERTES (TOAST) ===== */
+        /* ===== ALERTES ===== */
         .toast-container {
             position: fixed;
             bottom: 30px;
@@ -317,7 +317,6 @@
             opacity: 0;
             transform: translateY(20px);
             transition: opacity 0.3s, transform 0.3s;
-            pointer-events: auto;
         }
         .toast.show {
             opacity: 1;
@@ -443,25 +442,41 @@
         .flex { display: flex; align-items: center; }
         .flex-between { justify-content: space-between; }
         .flex-wrap { flex-wrap: wrap; }
+        .bold { font-weight: 700; }
+        .underline { text-decoration: underline; }
+        .right { text-align: right; }
+        .center { text-align: center; }
+        .italic { font-style: italic; }
+        .head { font-weight: 700; text-decoration: underline; text-align: center; margin: 16pt 0 8pt; }
+        .head-plain { font-weight: 400; text-decoration: none; text-align: left; margin: 16pt 0 8pt; }
+        .head-italic-underline { font-weight: 700; font-style: italic; text-decoration: underline; text-align: center; margin: 14pt 0 10pt; }
+        .blank-line { margin: 4pt 0; }
+        .sig-table { width: 100%; border-collapse: collapse; margin-top: 18pt; }
+        .sig-table th, .sig-table td { border: 1px solid #000; padding: 8pt 6pt; font-size: 11pt; vertical-align: top; }
+        .sig-table th { background: #f4f1ea; font-weight: 700; text-align: center; }
     </style>
 </head>
 <body>
 
+<!-- ===== TOAST CONTAINER ===== -->
+<div class="toast-container" id="toastContainer"></div>
+
 <!-- ===== EN-TÊTE ===== -->
 <header>
     <div class="header-left">
-        <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 40'%3E%3Crect width='100' height='40' fill='%23167078' rx='4'/%3E%3Ctext x='50' y='24' font-family='Roboto' font-size='18' fill='white' text-anchor='middle' font-weight='bold'%3EMon%3C/t%3E%3Ctext x='50' y='24' font-family='Roboto' font-size='18' fill='%23f5e6c8' text-anchor='middle' font-weight='bold'%3EEntreprise%3C/t%3E%3C/svg%3E" alt="Logo">
-        <span>MonEntreprise</span>
+        <svg width="40" height="40" viewBox="0 0 40 40" style="flex-shrink:0;">
+            <rect width="40" height="40" rx="6" fill="#167078"/>
+            <text x="20" y="26" font-family="Roboto" font-size="18" fill="white" text-anchor="middle" font-weight="bold">A</text>
+        </svg>
+        <span>ActeProSarl</span>
     </div>
     <nav class="header-nav">
         <a href="#" class="active">Accueil</a>
-        <a href="#">Statistiques</a>
-        <a href="#">Annonces</a>
-        <a href="#">Vérifier un nom</a>
-        <a href="#" class="btn-primary">Se connecter</a>
+        <a href="#mon-compte">Mon compte</a>
+        <a href="#" class="btn-primary">Déconnexion</a>
         <div class="lang-switch">
-            <a href="#" class="active">FR</a>
-            <a href="#">EN</a>
+            <span class="active">FR</span>
+            <span>EN</span>
         </div>
     </nav>
 </header>
@@ -472,11 +487,8 @@
     <!-- ===== BARRE DE PROGRESSION ===== -->
     <div class="progress-steps" id="progressBar">
         <svg viewBox="0 0 100 60" preserveAspectRatio="xMidYMid meet">
-            <!-- Ligne de fond -->
             <rect x="2" y="30" width="96" height="2" fill="#99A6B6" opacity="0.3" rx="1"/>
-            <!-- Ligne de progression -->
             <rect x="2" y="30" width="0" height="2" fill="#167078" id="progressLine" rx="1"/>
-            <!-- Étapes (5) -->
             <g id="step0">
                 <circle cx="10" cy="30" r="8" class="step-circle" />
                 <text x="10" y="45" class="step-text" text-anchor="middle">Guide</text>
@@ -500,8 +512,9 @@
         </svg>
     </div>
 
-    <!-- ===== FORMULAIRE PAR ÉTAPES ===== -->
+    <!-- ===== FORMULAIRE ===== -->
     <div id="formContainer">
+
         <!-- Étape 0 : Guide -->
         <div class="step-content" data-step="0">
             <div class="card">
@@ -526,14 +539,7 @@
                         </div>
                         <div class="form-group">
                             <label>Commune de l'activité <span class="required">*</span></label>
-                            <select id="commune">
-                                <option value="Abomey-Calavi">Abomey-Calavi</option>
-                                <option value="Cotonou">Cotonou</option>
-                                <option value="Porto-Novo">Porto-Novo</option>
-                                <option value="Parakou">Parakou</option>
-                                <!-- Ajoutez d'autres communes si besoin -->
-                                <option value="Autre">Autre</option>
-                            </select>
+                            <select id="commune"></select>
                         </div>
                         <div class="form-group">
                             <label>Durée de la société (années) <span class="required">*</span></label>
@@ -598,7 +604,7 @@
                     <div class="form-group" style="margin-top: 12px;">
                         <label>Objet social (une activité par ligne) <span class="required">*</span></label>
                         <textarea id="objetSocial" rows="5" placeholder="Importation des vivres frais&#10;Exploitation des produits GSM&#10;Bâtiments et Travaux Publics"></textarea>
-                        <span class="hint">Séparez chaque activité par un retour à la ligne.</span>
+                        <span class="field-hint">Séparez chaque activité par un retour à la ligne.</span>
                     </div>
                 </div>
             </div>
@@ -627,7 +633,7 @@
                         </div>
                         <div class="form-group">
                             <label>Profession <span class="required">*</span></label>
-                            <input type="text" id="gerantProfession" placeholder="Gérant de société">
+                            <select id="gerantProfession"></select>
                         </div>
                         <div class="form-group">
                             <label>Lieu de naissance <span class="required">*</span></label>
@@ -639,14 +645,14 @@
                         </div>
                         <div class="form-group">
                             <label>Nationalité <span class="required">*</span></label>
-                            <input type="text" id="gerantNationalite" placeholder="béninoise">
+                            <select id="gerantNationalite"></select>
                         </div>
                         <div class="form-group">
-                            <label>NPI (Numéro Personnel d'Identification) <span class="required">*</span></label>
+                            <label>NPI <span class="required">*</span></label>
                             <input type="text" id="gerantNPI" placeholder="20540048145623">
                         </div>
                         <div class="form-group">
-                            <label>Type de pièce d'identité <span class="required">*</span></label>
+                            <label>Type de pièce <span class="required">*</span></label>
                             <select id="gerantPieceType">
                                 <option value="CIP">Certificat d'Identification Personnelle (CIP)</option>
                                 <option value="CNI">Carte Nationale d'Identité (CNI)</option>
@@ -658,11 +664,11 @@
                             <input type="text" id="gerantPieceNumero" placeholder="20540048145623">
                         </div>
                         <div class="form-group">
-                            <label>Date d'expiration de la pièce <span class="required">*</span></label>
+                            <label>Date d'expiration <span class="required">*</span></label>
                             <input type="date" id="gerantPieceExpiration">
                         </div>
                         <div class="form-group">
-                            <label>Domicile (adresse personnelle) <span class="required">*</span></label>
+                            <label>Domicile <span class="required">*</span></label>
                             <input type="text" id="gerantDomicile" placeholder="Abomey-Calavi, quartier Agori, carré sans borne, maison GNANGUENON ALLAOU">
                         </div>
                     </div>
@@ -670,12 +676,12 @@
             </div>
         </div>
 
-        <!-- Étape 3 : Parts sociales (détails) -->
+        <!-- Étape 3 : Parts sociales -->
         <div class="step-content hidden" data-step="3">
             <div class="card">
                 <div class="card-head"><h2><i class="fas fa-chart-pie"></i> Répartition des parts sociales</h2></div>
                 <div class="card-body">
-                    <p class="hint" style="margin-bottom: 16px;">Renseignez les souscripteurs (au moins un). Les totaux doivent correspondre au capital et au nombre de parts saisis précédemment.</p>
+                    <p class="field-hint" style="margin-bottom: 16px;">Renseignez les souscripteurs (au moins un). Les totaux doivent correspondre au capital et au nombre de parts saisis précédemment.</p>
                     <div id="souscripteursContainer">
                         <div class="souscripteur-item" style="border:1px solid #e5e0d5; padding:16px; border-radius:4px; margin-bottom:12px;">
                             <div class="form-grid">
@@ -707,7 +713,7 @@
             </div>
         </div>
 
-        <!-- Étape 4 : Finalisation et génération -->
+        <!-- Étape 4 : Finalisation -->
         <div class="step-content hidden" data-step="4">
             <div class="card">
                 <div class="card-head"><h2><i class="fas fa-check-circle"></i> Vérification et génération</h2></div>
@@ -716,11 +722,11 @@
                         <i class="fas fa-info-circle"></i> Vérifiez que toutes les informations sont correctes avant de générer les documents.
                     </div>
                     <div class="form-group">
-                        <label>Notaire (nom et adresse) <span class="required">*</span></label>
+                        <label>Notaire (nom complet) <span class="required">*</span></label>
                         <input type="text" id="notaire" placeholder="Maître Fadhil Firmin Gbadebo Eric ADAMON, Notaire à LOKOSSA">
                     </div>
                     <div class="form-group">
-                        <label>Date de l'acte (jour, mois, année) <span class="required">*</span></label>
+                        <label>Date de l'acte <span class="required">*</span></label>
                         <input type="date" id="dateActe">
                     </div>
                     <div class="btn-group" style="justify-content: center; margin-top: 20px;">
@@ -730,22 +736,20 @@
             </div>
         </div>
 
-        <!-- Navigation entre étapes -->
+        <!-- Navigation -->
         <div class="btn-group" style="margin-top: 10px;">
             <button id="prevStep" class="btn btn-secondary"><i class="fas fa-arrow-left"></i> Précédent</button>
             <button id="nextStep" class="btn btn-primary">Suivant <i class="fas fa-arrow-right"></i></button>
         </div>
     </div>
 
-    <!-- ===== ZONE D'APERÇU ===== -->
+    <!-- ===== APERÇU ===== -->
     <div id="previewArea" class="preview-area hidden">
         <div class="preview-tabs">
             <button class="active" data-tab="statuts">Statuts</button>
             <button data-tab="annexe">Annexe (liste de souscription)</button>
         </div>
-        <div class="preview-content" id="previewContent">
-            <!-- Le contenu sera injecté ici -->
-        </div>
+        <div class="preview-content" id="previewContent"></div>
         <div class="btn-group" style="margin-top: 20px; justify-content: center;">
             <button id="exportWord" class="btn btn-primary"><i class="fas fa-file-word"></i> Exporter Word</button>
             <button id="exportPDF" class="btn btn-primary"><i class="fas fa-file-pdf"></i> Exporter PDF (impression)</button>
@@ -757,61 +761,151 @@
 
 <!-- ===== PIED DE PAGE ===== -->
 <footer>
-    <p>© 2025 – Générateur de statuts – Inspiré de MonEntreprise.bj</p>
+    <p>© 2026 – ActeProSarl – Générateur de statuts SARL – Tous droits réservés.</p>
 </footer>
 
-<!-- ===== TOAST CONTAINER ===== -->
-<div class="toast-container" id="toastContainer"></div>
-
-<!-- ===== SCRIPTS ===== -->
 <script>
     (function() {
         'use strict';
 
-        // ===== ÉTATS =====
+        // =====================================================================
+        // 1. DONNÉES STATIQUES (listes complètes)
+        // =====================================================================
+
+        // --- Communes du Bénin (environ 77) ---
+        const communesBenin = [
+            "Abomey", "Abomey-Calavi", "Adja-Ouèrè", "Adjarra", "Adjohoun",
+            "Agbangnizoun", "Aguégués", "Akpro-Missérété", "Allada", "Aplahoué",
+            "Athiémé", "Avrankou", "Banikoara", "Bantè", "Bassila", "Bembéréké",
+            "Bohicon", "Bonou", "Bopa", "Boukoumbé", "Cobly", "Comè", "Copargo",
+            "Cotonou", "Covè", "Dangbo", "Dassa-Zoumè", "Djakotomey", "Djidja",
+            "Djougou", "Dogbo", "Glazoué", "Gogounou", "Grand-Popo", "Houéyogbé",
+            "Ifangni", "Kalalé", "Kandi", "Karimama", "Kérou", "Kétou", "Klouékanmè",
+            "Kouandé", "Kpomassè", "Lalo", "Lokossa", "Malanville", "Matéri",
+            "Natitingou", "N'Dali", "Nikki", "Ouaké", "Ouèssè", "Ouidah", "Ouinhi",
+            "Parakou", "Péhunco", "Pèrèrè", "Pobè", "Porto-Novo", "Sakété",
+            "Savalou", "Savè", "Ségbana", "Sèmè-Podji", "Sinendé", "Sô-Ava",
+            "Tanguiéta", "Tchaourou", "Toffo", "Tori-Bossito", "Toucountouna",
+            "Toviklin", "Za-Kpota", "Zagnanado", "Zè", "Zogbodomey"
+        ].sort((a,b)=>a.localeCompare(b,'fr'));
+
+        // --- Professions (environ 40) ---
+        const professions = [
+            "Agriculteur / Agricultrice", "Agent immobilier", "Architecte",
+            "Artisan / Artisane", "Avocat / Avocate", "Banquier / Banquière",
+            "Cadre administratif", "Chauffeur / Chauffeuse", "Commerçant / Commerçante",
+            "Comptable", "Consultant / Consultante", "Dentiste", "Développeur / Développeuse",
+            "Électricien / Électricienne", "Enseignant / Enseignante",
+            "Entrepreneur / Entrepreneuse", "Fonctionnaire", "Géomètre",
+            "Gestionnaire", "Ingénieur / Ingénieure", "Informaticien / Informaticienne",
+            "Journaliste", "Juriste", "Médecin", "Notaire", "Pharmacien / Pharmacienne",
+            "Plombier / Plombière", "Professeur / Professeure", "Secrétaire",
+            "Technicien / Technicienne", "Traducteur / Traductrice", "Vendeur / Vendeuse",
+            "Étudiant / Étudiante", "Retraité / Retraitée", "Sans profession", "Autre"
+        ].sort((a,b)=>a.localeCompare(b,'fr'));
+
+        // --- Nationalités (liste courte mais représentative) ---
+        const nationalites = [
+            "Afghane", "Albanaise", "Algérienne", "Allemande", "Américaine",
+            "Angolaise", "Argentine", "Arménienne", "Australienne", "Autrichienne",
+            "Azerbaïdjanaise", "Bahaméenne", "Bangladaise", "Belge", "Bélizienne",
+            "Béninoise", "Biélorusse", "Birmane", "Bolivienne", "Bosnienne",
+            "Botswanaise", "Brésilienne", "Britannique", "Bulgare", "Burkinabè",
+            "Burundaise", "Cambodgienne", "Camerounaise", "Canadienne", "Cap-Verdienne",
+            "Centrafricaine", "Chilienne", "Chinoise", "Chypriote", "Colombienne",
+            "Comorienne", "Congolaise", "Costaricienne", "Croate", "Cubaine",
+            "Danoise", "Djiboutienne", "Dominicaine", "Égyptienne", "Émirienne",
+            "Équatorienne", "Érythréenne", "Espagnole", "Estonienne", "Éthiopienne",
+            "Finlandaise", "Française", "Gabonaise", "Gambienne", "Géorgienne",
+            "Ghanéenne", "Grecque", "Guatémaltèque", "Guinéenne", "Guyanaise",
+            "Haïtienne", "Hondurienne", "Hongroise", "Indienne", "Indonésienne",
+            "Irakienne", "Iranienne", "Irlandaise", "Islandaise", "Israélienne",
+            "Italienne", "Ivoirienne", "Jamaïcaine", "Japonaise", "Jordanienne",
+            "Kazakhstanaise", "Kényane", "Kirghize", "Koweïtienne", "Laotienne",
+            "Lettonne", "Libanaise", "Libérienne", "Libyenne", "Liechtensteinoise",
+            "Lituanienne", "Luxembourgeoise", "Macédonienne", "Malaisienne",
+            "Malawienne", "Maldivienne", "Malienne", "Maltaise", "Marocaine",
+            "Mauricienne", "Mauritanienne", "Mexicaine", "Moldave", "Monégasque",
+            "Mongole", "Monténégrine", "Mozambicaine", "Namibienne", "Népalaise",
+            "Nicaraguayenne", "Nigérienne", "Nigériane", "Norvégienne", "Néo-Zélandaise",
+            "Omanaise", "Ougandaise", "Ouzbèke", "Pakistanaise", "Panaméenne",
+            "Papouasienne", "Paraguayenne", "Péruvienne", "Philippine", "Polonaise",
+            "Portugaise", "Qatarienne", "Roumaine", "Russe", "Rwandaise",
+            "Saint-Lucienne", "Salvadorienne", "Samoane", "Santoméenne", "Saoudienne",
+            "Sénégalaise", "Serbe", "Seychelloise", "Sierra-Léonaise", "Singapourienne",
+            "Slovaque", "Slovène", "Somalienne", "Soudanaise", "Sud-Africaine",
+            "Sud-Coréenne", "Sud-Soudanaise", "Sri-Lankaise", "Suédoise", "Suisse",
+            "Surinamaise", "Syrienne", "Tadjike", "Tanzanienne", "Tchadienne",
+            "Tchèque", "Thaïlandaise", "Togolaise", "Tongienne", "Tunisienne",
+            "Turkmène", "Turque", "Ukrainienne", "Uruguayenne", "Vénézuélienne",
+            "Vietnamienne", "Yéménite", "Zambienne", "Zimbabwéenne", "Autre"
+        ].sort((a,b)=>a.localeCompare(b,'fr'));
+
+        // =====================================================================
+        // 2. ÉTAT DU FORMULAIRE
+        // =====================================================================
+
         let currentStep = 0;
         const totalSteps = 5;
+        let dossierData = {};
 
-        // ===== RÉFÉRENCES DOM =====
+        // =====================================================================
+        // 3. RÉFÉRENCES DOM
+        // =====================================================================
+
         const stepContents = document.querySelectorAll('.step-content');
         const prevBtn = document.getElementById('prevStep');
         const nextBtn = document.getElementById('nextStep');
         const progressLine = document.getElementById('progressLine');
         const stepCircles = document.querySelectorAll('.step-circle');
         const stepTexts = document.querySelectorAll('.step-text');
+        const toastContainer = document.getElementById('toastContainer');
 
-        // ===== NAVIGATION =====
+        // =====================================================================
+        // 4. PEUPLEMENT DES LISTES DÉROULANTES
+        // =====================================================================
+
+        function populateSelect(id, options, selected) {
+            const sel = document.getElementById(id);
+            if (!sel) return;
+            sel.innerHTML = options.map(opt =>
+                `<option value="${opt.replace(/"/g,'&quot;')}" ${opt === selected ? 'selected' : ''}>${opt}</option>`
+            ).join('');
+        }
+
+        // Peuplement des listes
+        populateSelect('commune', communesBenin, 'Abomey-Calavi');
+        populateSelect('gerantProfession', professions, 'Gérant de société');
+        populateSelect('gerantNationalite', nationalites, 'Béninoise');
+
+        // =====================================================================
+        // 5. NAVIGATION
+        // =====================================================================
+
         function updateStep(index) {
-            // Masquer tout
             stepContents.forEach(el => el.classList.add('hidden'));
-            // Afficher l'étape courante
             stepContents[index].classList.remove('hidden');
-            // Mise à jour des cercles
             stepCircles.forEach((circle, i) => {
                 circle.classList.remove('active', 'done');
                 if (i < index) circle.classList.add('done');
                 else if (i === index) circle.classList.add('active');
             });
-            // Mise à jour des textes
             stepTexts.forEach((text, i) => {
                 text.classList.remove('active');
                 if (i === index) text.classList.add('active');
             });
-            // Ligne de progression
             const progress = (index / (totalSteps - 1)) * 96 + 2;
             progressLine.setAttribute('width', progress);
-            // Boutons
             prevBtn.classList.toggle('hidden', index === 0);
             if (index === totalSteps - 1) {
                 nextBtn.textContent = 'Finaliser';
                 nextBtn.classList.remove('btn-primary');
                 nextBtn.classList.add('btn-success');
             } else {
-                nextBtn.textContent = 'Suivant \u2192';
+                nextBtn.textContent = 'Suivant →';
                 nextBtn.classList.remove('btn-success');
                 nextBtn.classList.add('btn-primary');
             }
-            // Scroll en haut
             window.scrollTo({ top: 0, behavior: 'smooth' });
         }
 
@@ -831,19 +925,22 @@
                     updateStep(currentStep);
                 }
             } else {
-                // Dernière étape : on génère
+                // dernière étape : génération
                 generateDocuments();
             }
         });
 
-        // ===== VALIDATION SIMPLE =====
+        // =====================================================================
+        // 6. VALIDATION
+        // =====================================================================
+
         function validateStep(step) {
             const container = stepContents[step];
             const inputs = container.querySelectorAll('input, select, textarea');
             let valid = true;
             let firstError = null;
             inputs.forEach(input => {
-                if (input.hasAttribute('required') || input.closest('.form-group')?.querySelector('.required')) {
+                if (input.closest('.form-group')?.querySelector('.required')) {
                     if (!input.value.trim()) {
                         valid = false;
                         input.style.borderColor = '#dc3545';
@@ -853,7 +950,7 @@
                     }
                 }
             });
-            // Cas spécial : souscripteurs
+            // Étape 3 : souscripteurs
             if (step === 3) {
                 const items = document.querySelectorAll('.souscripteur-item');
                 if (items.length === 0) {
@@ -861,16 +958,13 @@
                     return false;
                 }
                 items.forEach(item => {
-                    const nom = item.querySelector('.souscripteur-nom');
-                    const domicile = item.querySelector('.souscripteur-domicile');
-                    const parts = item.querySelector('.souscripteur-parts');
-                    const montant = item.querySelector('.souscripteur-montant');
-                    [nom, domicile, parts, montant].forEach(inp => {
-                        if (!inp.value.trim()) {
+                    ['nom','domicile','parts','montant'].forEach(cls => {
+                        const inp = item.querySelector('.souscripteur-'+cls);
+                        if (inp && !inp.value.trim()) {
                             valid = false;
                             inp.style.borderColor = '#dc3545';
                             if (!firstError) firstError = inp;
-                        } else {
+                        } else if (inp) {
                             inp.style.borderColor = '';
                         }
                     });
@@ -887,9 +981,13 @@
             return true;
         }
 
-        // ===== SOUSCRIPTEURS DYNAMIQUES =====
-        const container = document.getElementById('souscripteursContainer');
-        document.getElementById('addSouscripteur').addEventListener('click', () => {
+        // =====================================================================
+        // 7. SOUSCRIPTEURS DYNAMIQUES
+        // =====================================================================
+
+        const souscripteursContainer = document.getElementById('souscripteursContainer');
+
+        document.getElementById('addSouscripteur').addEventListener('click', function() {
             const template = document.querySelector('.souscripteur-item').cloneNode(true);
             template.querySelectorAll('input').forEach(inp => inp.value = '');
             const removeBtn = template.querySelector('.remove-souscripteur');
@@ -901,8 +999,7 @@
                     toast('Il doit rester au moins un souscripteur.', 'warning');
                 }
             });
-            container.appendChild(template);
-            // Mettre à jour les écouteurs
+            souscripteursContainer.appendChild(template);
             template.querySelectorAll('input').forEach(inp => inp.addEventListener('input', updateTotals));
             updateTotals();
         });
@@ -919,7 +1016,6 @@
             });
         });
 
-        // Mise à jour des totaux
         function updateTotals() {
             let totalParts = 0, totalMontant = 0;
             document.querySelectorAll('.souscripteur-item').forEach(item => {
@@ -934,77 +1030,30 @@
         document.querySelectorAll('.souscripteur-item input').forEach(inp => inp.addEventListener('input', updateTotals));
         updateTotals();
 
-        // ===== TOASTS =====
+        // =====================================================================
+        // 8. TOASTS
+        // =====================================================================
+
         function toast(message, type = 'info') {
-            const container = document.getElementById('toastContainer');
             const toast = document.createElement('div');
             toast.className = `toast toast-${type}`;
             toast.textContent = message;
-            container.appendChild(toast);
-            // Animation
-            requestAnimationFrame(() => {
-                toast.classList.add('show');
-            });
-            // Auto-suppression
+            toastContainer.appendChild(toast);
+            requestAnimationFrame(() => toast.classList.add('show'));
             setTimeout(() => {
                 toast.classList.remove('show');
                 setTimeout(() => toast.remove(), 300);
             }, 3500);
         }
 
-        // ===== GÉNÉRATION DES DOCUMENTS =====
-        function generateDocuments() {
-            // Récupération des données
-            const data = collectData();
-            if (!data) return;
+        // =====================================================================
+        // 9. COLLECTE DES DONNÉES
+        // =====================================================================
 
-            // Génération des deux documents
-            const statutsHTML = generateStatuts(data);
-            const annexeHTML = generateAnnexe(data);
-
-            // Affichage dans l'aperçu
-            const previewArea = document.getElementById('previewArea');
-            previewArea.classList.remove('hidden');
-            const content = document.getElementById('previewContent');
-
-            // Par défaut afficher les statuts
-            showTab('statuts', statutsHTML, annexeHTML);
-
-            // Gestion des onglets
-            document.querySelectorAll('.preview-tabs button').forEach(btn => {
-                btn.addEventListener('click', function() {
-                    document.querySelectorAll('.preview-tabs button').forEach(b => b.classList.remove('active'));
-                    this.classList.add('active');
-                    const tab = this.dataset.tab;
-                    showTab(tab, statutsHTML, annexeHTML);
-                });
-            });
-
-            // Exports
-            document.getElementById('exportWord').onclick = () => exportWord(statutsHTML, annexeHTML);
-            document.getElementById('exportPDF').onclick = () => exportPDF(statutsHTML, annexeHTML);
-            document.getElementById('exportHTML').onclick = () => exportHTML(statutsHTML, annexeHTML);
-
-            toast('Documents générés avec succès !', 'success');
-        }
-
-        function showTab(tab, statutsHTML, annexeHTML) {
-            const content = document.getElementById('previewContent');
-            if (tab === 'statuts') {
-                content.innerHTML = statutsHTML;
-            } else {
-                content.innerHTML = annexeHTML;
-            }
-            // Appliquer le style document
-            content.querySelectorAll('.document').forEach(el => el.style.fontFamily = "'Times New Roman', serif");
-        }
-
-        // ===== COLLECTE DES DONNÉES =====
         function collectData() {
             const val = id => document.getElementById(id)?.value?.trim() || '';
             const valNum = id => parseInt(val(id)) || 0;
 
-            // Souscripteurs
             const souscripteurs = [];
             document.querySelectorAll('.souscripteur-item').forEach(item => {
                 const nom = item.querySelector('.souscripteur-nom').value.trim();
@@ -1016,11 +1065,9 @@
                 }
             });
 
-            // Objet social (liste)
             const objetRaw = val('objetSocial').split('\n').filter(l => l.trim());
             const objetSocial = objetRaw.length ? objetRaw : ['Commerce général'];
 
-            // Date de l'acte
             const dateActe = val('dateActe');
             let jour, mois, annee;
             if (dateActe) {
@@ -1035,20 +1082,15 @@
                 jour = String(now.getDate()).padStart(2, '0');
             }
 
-            // Capital, parts
-            const capital = valNum('capital');
-            const nbParts = valNum('nbParts');
-            const valeurPart = valNum('valeurPart');
-
             return {
                 formeJuridique: val('formeJuridique') || 'SARL unipersonnelle',
                 typeStatuts: val('typeStatuts') || 'notariés',
                 commune: val('commune') || 'Abomey-Calavi',
                 duree: valNum('duree') || 99,
                 denomination: val('denomination') || 'Ma société SARL',
-                capital: capital,
-                nbParts: nbParts,
-                valeurPart: valeurPart,
+                capital: valNum('capital'),
+                nbParts: valNum('nbParts'),
+                valeurPart: valNum('valeurPart'),
                 quartier: val('quartier') || 'Ahossougbéta',
                 parcelle: val('parcelle') || 'h',
                 tf: val('tf') || '6999',
@@ -1074,7 +1116,59 @@
             };
         }
 
-        // ===== GÉNÉRATEUR DE STATUTS =====
+        // =====================================================================
+        // 10. GÉNÉRATION DES DOCUMENTS (STATUTS + ANNEXE)
+        // =====================================================================
+
+        function generateDocuments() {
+            const data = collectData();
+            // Vérification rapide des champs essentiels
+            if (!data.denomination || !data.capital || !data.nbParts || !data.valeurPart) {
+                toast('Veuillez renseigner la dénomination, le capital, le nombre de parts et leur valeur.', 'error');
+                return;
+            }
+            if (data.souscripteurs.length === 0) {
+                toast('Ajoutez au moins un souscripteur.', 'error');
+                return;
+            }
+
+            const statutsHTML = generateStatuts(data);
+            const annexeHTML = generateAnnexe(data);
+
+            const previewArea = document.getElementById('previewArea');
+            previewArea.classList.remove('hidden');
+            const content = document.getElementById('previewContent');
+
+            // Afficher les statuts par défaut
+            showTab('statuts', statutsHTML, annexeHTML);
+
+            // Gestion des onglets
+            document.querySelectorAll('.preview-tabs button').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    document.querySelectorAll('.preview-tabs button').forEach(b => b.classList.remove('active'));
+                    this.classList.add('active');
+                    showTab(this.dataset.tab, statutsHTML, annexeHTML);
+                });
+            });
+
+            // Exports
+            document.getElementById('exportWord').onclick = () => exportWord(statutsHTML, annexeHTML);
+            document.getElementById('exportPDF').onclick = () => exportPDF(statutsHTML, annexeHTML);
+            document.getElementById('exportHTML').onclick = () => exportHTML(statutsHTML, annexeHTML);
+
+            toast('Documents générés avec succès !', 'success');
+        }
+
+        function showTab(tab, statutsHTML, annexeHTML) {
+            const content = document.getElementById('previewContent');
+            content.innerHTML = tab === 'statuts' ? statutsHTML : annexeHTML;
+            // S'assurer que le contenu est bien stylé
+        }
+
+        // =====================================================================
+        // 11. GÉNÉRATEUR DE STATUTS (conforme au modèle fourni)
+        // =====================================================================
+
         function generateStatuts(d) {
             const gerantComplet = `${d.civilite} ${d.gerantPrenom} ${d.gerantNom}`;
             const dateNaissanceFr = formatDateFr(d.gerantDateNaissance);
@@ -1083,12 +1177,13 @@
             const capitalLettres = nombreEnLettres(d.capital);
             const partsStr = d.nbParts;
             const valeurStr = d.valeurPart.toLocaleString('fr-FR');
-            const totalVersements = d.souscripteurs.reduce((sum, s) => sum + s.montant, 0);
-            const totalPartsSouscrites = d.souscripteurs.reduce((sum, s) => sum + s.parts, 0);
             const dureeStr = d.duree;
+            const totalSouscript = d.souscripteurs.reduce((sum, s) => sum + s.montant, 0);
 
             // Objet social en liste
-            const objetListe = d.objetSocial.map((act, i) => `<p>${i+1}°) - ${act} ;</p>`).join('');
+            const objetListe = d.objetSocial.map((act, i) =>
+                `<p>${String(i+1).padStart(2,'0')}°) - ${act} ;</p>`
+            ).join('');
 
             // Tableau des souscripteurs pour l'article 7
             let tableSouscripteurs = `<table><tr><th>Noms, Prénoms et domicile</th><th>Nombre de parts</th><th>Montant (FCFA)</th></tr>`;
@@ -1193,7 +1288,7 @@
                 <p style="text-align:center;">FAIT ET PASSE en l'Etude de ${d.notaire} ;</p>
                 <p style="text-align:center;">Et après lecture faite, le comparant, ès-nom a signé avec le Notaire Soussigné.</p>
 
-                <table class="signature-table">
+                <table class="sig-table">
                     <tr><th>NOMS ET PRENOMS</th><th>SIGNATURES</th></tr>
                     <tr><td>${gerantComplet}</td><td></td></tr>
                     <tr><td>${d.notaire}</td><td></td></tr>
@@ -1203,7 +1298,10 @@
             return html;
         }
 
-        // ===== GÉNÉRATEUR D'ANNEXE =====
+        // =====================================================================
+        // 12. GÉNÉRATEUR D'ANNEXE (conforme au modèle)
+        // =====================================================================
+
         function generateAnnexe(d) {
             const capitalStr = d.capital.toLocaleString('fr-FR');
             const totalParts = d.souscripteurs.reduce((sum, s) => sum + s.parts, 0);
@@ -1254,7 +1352,7 @@
                 <p style="text-align:center;">ET LE ${d.dateActe.jour} ${moisEnLettres(d.dateActe.mois)} ${d.dateActe.annee}</p>
                 <p>Et après lecture faite, le comparant, ès-nom et nom, a signé avec Maître ${d.notaire}, Notaire soussigné.</p>
 
-                <table class="signature-table">
+                <table class="sig-table">
                     <tr><th>NOMS ET PRENOMS</th><th>SIGNATURES</th></tr>
                     <tr><td>${d.civilite} ${d.gerantPrenom} ${d.gerantNom}</td><td></td></tr>
                     <tr><td>${d.notaire}</td><td></td></tr>
@@ -1264,7 +1362,10 @@
             return html;
         }
 
-        // ===== FONCTIONS UTILITAIRES =====
+        // =====================================================================
+        // 13. FONCTIONS UTILITAIRES
+        // =====================================================================
+
         function formatDateFr(dateStr) {
             if (!dateStr) return '';
             const parts = dateStr.split('-');
@@ -1278,19 +1379,20 @@
         }
 
         function nombreEnLettres(n) {
-            // Version simplifiée, pour les besoins de l'exemple
             if (n === 1000000) return 'UN MILLION';
             if (n === 1000) return 'MILLE';
-            // On peut étendre si nécessaire
+            if (n === 100) return 'CENT';
+            // Pour simplifier, on renvoie le nombre en lettres majuscules basique
             return n.toLocaleString('fr-FR').toUpperCase();
         }
 
-        // ===== EXPORTS =====
+        // =====================================================================
+        // 14. EXPORTS
+        // =====================================================================
+
         function getCurrentDocumentHTML() {
             const content = document.getElementById('previewContent');
             const inner = content.innerHTML;
-            // On extrait le document actif (soit statuts, soit annexe)
-            // On retourne le contenu complet avec les styles d'impression
             return `
             <!DOCTYPE html>
             <html><head><meta charset="UTF-8">
@@ -1303,7 +1405,8 @@
                 table { width: 100%; border-collapse: collapse; margin: 16px 0; }
                 table th, table td { border: 1px solid #000; padding: 8px 6px; vertical-align: top; }
                 table th { background: #f4f1ea; font-weight: 700; text-align: center; }
-                .signature-table { margin-top: 24px; }
+                .sig-table { margin-top: 24px; }
+                .sig-table td { border: 1px solid #000; padding: 8px; }
             </style>
             </head><body>
                 ${inner}
@@ -1348,14 +1451,23 @@
             toast('Export HTML réussi', 'success');
         }
 
-        // ===== INITIALISATION =====
-        updateStep(0);
+        // =====================================================================
+        // 15. INITIALISATION
+        // =====================================================================
 
-        // ===== TOAST DE BIENVENUE =====
-        setTimeout(() => toast('Bienvenue ! Remplissez le formulaire pour générer vos documents.', 'info'), 800);
+        updateStep(0);
+        toast('Bienvenue dans ActeProSarl ! Remplissez le formulaire pour générer vos statuts.', 'info');
+
+        // Préremplir la date d'acte par défaut
+        const today = new Date().toISOString().split('T')[0];
+        document.getElementById('dateActe').value = today;
+
+        // Préremplir la date de naissance et expiration
+        const birthDefault = '1990-12-17';
+        document.getElementById('gerantDateNaissance').value = birthDefault;
+        document.getElementById('gerantPieceExpiration').value = '2025-08-17';
 
     })();
 </script>
-
 </body>
 </html>
