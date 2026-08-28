@@ -23,7 +23,10 @@
     .nav a{color:#263238;text-decoration:none}
     .nav a:hover{color:var(--p)}
 
+    /* Conteneur */
     main{max-width:1200px;width:100%;margin:auto;padding:30px 20px;flex:1}
+
+    /* Barre de progression */
     .progress{background:#fff;padding:18px 24px;margin-bottom:26px;box-shadow:0 2px 8px rgba(0,0,0,0.04);border-radius:var(--radius)}
     .progress svg{width:100%;height:68px}
     .dot{fill:#fff;stroke:#99a6b6;stroke-width:2}
@@ -33,11 +36,13 @@
     .line{stroke:#99a6b6;stroke-width:2;opacity:.35}
     .line2{stroke:var(--p);stroke-width:2}
 
+    /* Cartes */
     .card{background:#fff;box-shadow:0 2px 12px rgba(0,0,0,0.06);margin-bottom:22px;border-radius:var(--radius);overflow:hidden}
     .head{padding:17px 23px;background:#fafafa;border-bottom:2px solid var(--p);color:var(--p)}
     .head h2{font-size:18px;font-weight:500}
     .body{padding:24px}
 
+    /* Grilles */
     .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:17px}
     .fg{display:flex;flex-direction:column;gap:5px}
     .fg label{font-size:14px;font-weight:500}
@@ -48,12 +53,14 @@
     .bad{border-color:#dc3545!important;box-shadow:0 0 0 3px rgba(220,53,69,0.2)!important}
     .hint{font-size:12px;color:var(--mut)}
 
+    /* Autocomplete */
     .ac{position:relative}
     .suggest{position:absolute;z-index:30;left:0;right:0;top:100%;background:#fff;border:1px solid #ddd;box-shadow:0 5px 15px rgba(0,0,0,0.12);max-height:220px;overflow:auto;display:none}
     .suggest.show{display:block}
     .suggest div{padding:9px 12px;cursor:pointer}
     .suggest div:hover{background:#eef5f8;color:var(--p)}
 
+    /* Boutons */
     .buttons{display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;margin-top:18px}
     .btn{border:0;border-radius:var(--radius);padding:10px 22px;font-weight:600;transition:0.2s}
     .btn:disabled{opacity:0.45;cursor:not-allowed}
@@ -66,22 +73,26 @@
     .danger{background:#dc3545;color:#fff}
     .danger:hover:not(:disabled){background:#c82333}
 
+    /* Souscripteurs */
     .sub{border:1px solid #e5e0d5;padding:15px;margin-bottom:12px;background:#fff;border-radius:var(--radius)}
     .summary{background:#f8f9fa;padding:13px;margin-top:12px;border-radius:var(--radius)}
     .summary strong{color:var(--p)}
 
+    /* Toasts */
     .toastbox{position:fixed;right:24px;bottom:24px;z-index:99;width:min(390px,calc(100vw - 30px))}
     .toast{background:#fff;border-left:4px solid var(--p);box-shadow:0 4px 16px rgba(0,0,0,0.12);padding:13px 16px;margin-top:9px;opacity:0;transform:translateY(15px);transition:.25s;border-radius:var(--radius)}
     .toast.show{opacity:1;transform:none}
     .toast.error{border-color:#dc3545}
     .toast.success{border-color:#28a745}
 
+    /* Aperçu */
     .preview{margin-top:28px;padding-top:28px;border-top:2px solid #e5e0d5}
     .tabs{display:flex;gap:8px;margin-bottom:15px}
     .tabs button{border:0;padding:10px 18px;background:#eee;border-radius:var(--radius) var(--radius) 0 0;font-weight:500}
     .tabs .active{background:#fff;color:var(--p);border-bottom:3px solid var(--p)}
     .paperwrap{background:#ddd;padding:18px;max-height:820px;overflow:auto;border-radius:var(--radius)}
 
+    /* Documents */
     .document{font-family:"Times New Roman",serif;font-size:12pt;line-height:1.45;text-align:justify;color:#111;background:#fff;max-width:820px;min-height:1120px;margin:auto;padding:18mm;box-shadow:0 2px 12px rgba(0,0,0,0.06)}
     .document p{margin:0 0 7pt}
     .right{text-align:right}
@@ -98,9 +109,11 @@
     .page{text-align:right;margin-top:24pt}
     .email-blue{color:#0563C1;}
 
+    /* Pied de page */
     footer{background:#1e2b3c;color:rgba(255,255,255,0.7);text-align:center;padding:20px;font-size:14px;margin-top:40px}
     footer a{color:#65b7bd;text-decoration:none}
 
+    /* Responsive */
     @media(max-width:700px){
       header{height:auto;padding:12px 16px;gap:10px;flex-wrap:wrap}
       .nav{font-size:12px;gap:10px}
@@ -122,13 +135,18 @@
   </style>
 </head>
 <body>
+
 <header>
-  <div class="brand"><div class="mark">A</div>ActePro Sarl</div>
+  <div class="brand">
+    <div class="mark">A</div>
+    ActePro Sarl
+  </div>
   <nav class="nav">
     <a href="#" id="newDoc"><i class="fa-regular fa-file"></i> Nouveau</a>
     <a href="#preview"><i class="fa-regular fa-eye"></i> Aperçu</a>
   </nav>
 </header>
+
 <main>
 
   <!-- BARRE DE PROGRESSION -->
@@ -146,7 +164,8 @@
 
   <!-- ÉTAPES -->
   <div id="steps">
-    <!-- Étape 0 -->
+
+    <!-- Étape 0 : Guide -->
     <section class="step" data-step="0">
       <div class="card">
         <div class="head"><h2><i class="fa-solid fa-compass"></i> Guide – Informations préliminaires</h2></div>
@@ -186,7 +205,7 @@
       </div>
     </section>
 
-    <!-- Étape 1 -->
+    <!-- Étape 1 : Entreprise -->
     <section class="step hidden" data-step="1">
       <div class="card">
         <div class="head"><h2><i class="fa-solid fa-building"></i> Informations sur l'entreprise</h2></div>
@@ -218,7 +237,7 @@
       </div>
     </section>
 
-    <!-- Étape 2 -->
+    <!-- Étape 2 : Gérant -->
     <section class="step hidden" data-step="2">
       <div class="card">
         <div class="head"><h2><i class="fa-solid fa-user-tie"></i> Identité du gérant / associé</h2></div>
@@ -245,7 +264,7 @@
       </div>
     </section>
 
-    <!-- Étape 3 -->
+    <!-- Étape 3 : Parts -->
     <section class="step hidden" data-step="3">
       <div class="card">
         <div class="head"><h2><i class="fa-solid fa-chart-pie"></i> Répartition des parts sociales</h2></div>
@@ -261,7 +280,7 @@
       </div>
     </section>
 
-    <!-- Étape 4 -->
+    <!-- Étape 4 : Finaliser -->
     <section class="step hidden" data-step="4">
       <div class="card">
         <div class="head"><h2><i class="fa-solid fa-check-circle"></i> Vérification et génération</h2></div>
@@ -282,7 +301,7 @@
     </section>
   </div>
 
-  <!-- BOUTONS NAVIGATION -->
+  <!-- BOUTONS DE NAVIGATION -->
   <div class="buttons no-print">
     <button class="btn secondary" id="prev" disabled><i class="fa-regular fa-arrow-left"></i> Précédent</button>
     <button class="btn primary" id="next">Suivant <i class="fa-regular fa-arrow-right"></i></button>
@@ -303,15 +322,23 @@
   </section>
 
 </main>
-<footer>Développé par <strong>Amoussou Frédy ANAHAHOUNDE</strong> — Août 2026 — <a href="https://wa.me/2290152552106" target="_blank">WhatsApp</a></footer>
+
+<footer>
+  Développé par <strong>Amoussou Frédy ANAHAHOUNDE</strong> — Août 2026 —
+  <a href="https://wa.me/2290152552106" target="_blank">WhatsApp</a>
+</footer>
+
 <div class="toastbox" id="toastbox"></div>
 
 <script>
 'use strict';
+
 (() => {
   // ========================================================================
-  // LISTES DE RÉFÉRENCE (inchangées)
+  // 1. LISTES DE RÉFÉRENCE
   // ========================================================================
+
+  // Communes (77)
   const communes = [
     'Abomey','Abomey-Calavi','Adjarra','Adjohoun','Adja-Ouèrè','Aguégués','Aplahoué','Allada',
     'Athiémé','Avrankou','Banikoara','Bantè','Bassila','Bembéréké','Bohicon','Bopa','Bonou',
@@ -324,6 +351,7 @@
     'Ouinhi','Agbangnizoun'
   ].sort((a,b)=>a.localeCompare(b,'fr'));
 
+  // Professions (50)
   const professions = [
     'Agent commercial','Agent immobilier','Agriculteur','Architecte','Artisan','Artiste','Avocat',
     'Banquier','Boucher','Boulanger','Cadre administratif','Cadre commercial','Chauffeur','Chirurgien',
@@ -334,6 +362,7 @@
     'Opérateur économique','Restaurateur','Transporteur','Sans profession','Retraité','Autre'
   ].sort((a,b)=>a.localeCompare(b,'fr'));
 
+  // Nationalités (200+)
   const nationalites = [
     'Afghane','Albanaise','Algérienne','Allemande','Andorrane','Angolaise','Antiguaise','Argentine',
     'Arménienne','Australienne','Autrichienne','Azerbaïdjanaise','Bahamaise','Bahreïnienne','Bangladaise',
@@ -360,15 +389,683 @@
     'Uruguayenne','Vanuatuane','Vaticanaise','Vénézuélienne','Vietnamienne','Yéménite','Zambienne','Zimbabwéenne'
   ].sort((a,b)=>a.localeCompare(b,'fr'));
 
+  // ========================================================================
+  // 2. LISTE COMPLÈTE DES ACTIVITÉS (1209 éléments)
+  // ========================================================================
   const activites = [
     'Abattage, transformation et conservation des viandes','Accessoiriste',
     'Achat, vente, importation et exportation de véhicules automobiles neufs ou occasion',
-    // ... (la liste est très longue, je la tronque pour l'exemple ; dans votre code elle est complète)
-    // Pour gagner de la place, je ne reproduis pas les 1200 activités ici, mais elles sont dans votre fichier original.
+    'Achat de textiles','Achat et distribution de produits brassicols',
+    'Achat et vente d\'acajou','Achat et vente d\'accessoires de couture, mercerie',
+    'Achat et vente d\'accessoires de portables','Achat et vente d\'appareils électroménagers',
+    'Achat et vente d\'appareils radiophoniques, télévisuels et photographiques',
+    'Achat et vente d\'articles de bonneterie','Achat et vente d\'articles de décoration',
+    'Achat et vente d\'articles de plomberie','Achat et vente d\'articles de quincaillerie',
+    'Achat et vente d\'articles optiques','Achat et vente de bijoux','Achat et vente de bois',
+    'Achat et vente de boissons','Achat et vente de casques','Achat et vente de cercueils',
+    'Achat et vente de charbon','Achat et vente de chaussures',
+    'Achat et vente de combustibles solides, liquides, gazeux et de produits dérivés',
+    'Achat et vente de compléments alimentaires','Achat et vente de consommables biomédicaux',
+    'Achat et vente de ferraille','Achat et vente de fournitures de bureau',
+    'Achat et vente de fournitures de bureau,librairie et papeterie',
+    'Achat et vente de fournitures de matelasserie','Achat et vente de fournitures scolaires',
+    'Achat et vente de friperie','Achat et vente de fruits et légumes frais',
+    'Achat et vente de gravillons, sable','Achat et vente de groupes électrogènes',
+    'Achat et vente de jeux vidéos','Achat et vente de jouets, articles de décoration',
+    'Achat et vente de Layettes','Achat et vente de lingerie','Achat et vente de livres',
+    'Achat et vente de machines à coudre','Achat et vente de matériels de bureau',
+    'Achat et vente de matériels de vitrerie','Achat et vente de matériels électriques',
+    'Achat et vente de matériels électriques et électroniques',
+    'Achat et vente de matériels informatiques','Achat et vente de matières plastiques',
+    'Achat et vente de mêches','Achat et vente de mobiliers','Achat et vente de montres et de bracelets',
+    'Achat et vente de montures','Achat et vente de motocycles et accessoires',
+    'Achat et vente de Mousse et Matelas','Achat et vente de noix d\'anacarde',
+    'Achat et vente de panneaux solaires','Achat et vente de peau de boeuf',
+    'Achat et vente de pétrole lampant et diverses huiles de vidange',
+    'Achat et vente de pièces de rechange industrielles',
+    'ACHAT ET VENTE DE PIÈCES DÉTACHÉES D\'AUTOMOBILES ET AUTRES VÉHICULES OUTILLAGE ÉLECTRIQUE',
+    'Achat et vente de pierres précieuses Or et Diamant',
+    'Achat et vente de plantes médicales','Achat et vente de pneus et accessoires automobiles',
+    'Achat et vente de poules locales','Achat et vente de produits agricoles',
+    'Achat et vente de produits agroalimentaires','Achat et vente de produits alimentaires',
+    'Achat et vente de produits bio','Achat et vente de produits chimiques',
+    'Achat et vente de produits congelés','Achat et vente de produits cosmétiques et parfumerie',
+    'Achat et vente de produits de boulangerie','Achat et vente de produits d\'entretien',
+    'Achat et vente de produits d\'hygiène','Achat et vente de produits d\'origine végétale et animale',
+    'Achat et vente de produits électroniques','Achat et vente de produits forestiers',
+    'Achat et vente de produits GSM','Achat et vente de produits halieutiques poissonnerie',
+    'Achat et vente de produits laitiers','Achat et vente de produits manufacturés',
+    'Achat et vente de produits pétroliers, hydrocarbures et dérivées de pétrole',
+    'Achat et vente de produits pharmaceutiques et appareils médicaux',
+    'Achat et vente de produits phytosanitaires','Achat et vente de produits tropicaux',
+    'Achat et vente de produits vivriers','Achat et vente de Provende',
+    'achat et vente de sel','Achat et vente de semences agricoles',
+    'Achat et vente de tabacs manufacturés','Achat et vente de tapis et moquettes',
+    'Achat et vente de téléphones et accessoires',
+    'Achat et vente de textile et d\'effets vestimentaires','Achat et vente de tissus',
+    'Achat et vente de véhicules d\'occasion et autres biens d\'occasion',
+    'Achat et vente de verres','Achat et vente de vêtements, prêt à porter',
+    'Achat et vente de viande et boucherie','Achat et vente d\'eau minérale',
+    'Achat et vente d\'emballage','Achat et vente d\'engrais et produits de traitement organique',
+    'Achat et vente d\'équipements de plomberie','Achat et vente d\'équipements de sécurité',
+    'Achat et vente d\'équipements de sport','Achat et vente de produits de la loterie',
+    'Achat et vente d\'extincteurs','Achat et vente d\'huile à moteur',
+    'Achat et vente d\'huile végétale','Achat et vente d\'instruments de musique',
+    'Achat et vente d\'objets d\'arts','Achat et vente d\'objets de piété',
+    'Achat et vente d\'ustensiles de cuisine','Action sociale','Activités aéroportuaires',
+    'Activités annexes à la culture et à l\'Elevage',
+    'Activités annexes à la sylviculture et à l\'exploitation forestière',
+    'Activités annexes à l\'extraction de pétrole brut et de gaz naturel',
+    'Activités artistiques et culturelles',
+    'Activités cinématographiques, de radio, de télévision et de spectacle',
+    'Activités comptables et d\'audit, conseil fiscal',
+    'Activités d\'administration générale, économique et sociale',
+    'Activités d\'administration publique','Activités d\'agences de presse',
+    'Activités d\'architecture, d\'ingénierie et autres activités techniques',
+    'Activités d\'autres organisations associatives','Activités d\'auxiliaires d\'assurance',
+    'Activités d\'auxiliaires financières et d\'assurance','Activités de banque centrale',
+    'Activités de centre de loisirs','Activités de change',
+    'Activités de formation permanente et autres activités d\'enseignement',
+    'Activités de jeux de hasard et d\'argent',
+    'Activités de jeux, activités sportives ou récréatives',
+    'Activités de poste et de courrier',
+    'Activités de production, d\'égrennage et de contrôle de coton',
+    'Activités de radio et de télévision','Activités de santé et d\'action sociale',
+    'Activités de services personnels','Activités d\'enquête et de sécurité',
+    'Activités des agences de voyages','Activités des agences immobilières',
+    'Activités des auxiliaire des transport',
+    'Activités des médiathèques, musées, réserves',
+    'Activités des médiathèques, musées, réserves naturelles',
+    'Activités des ménages en tant qu\'employeurs de personnel domestique',
+    'Activités des organisations économiques',
+    'Activités des organisations extraterritoriales',
+    'Activités des organisations politiques','Activités des organisations religieuses',
+    'Activités des syndicats de travailleurs','Activités des tradipraticiens',
+    'Activités d\'essais et d\'analyses techniques',
+    'Activités d\'études de marché et de sondage, conseil pour les affaires et le management',
+    'Activités d\'organisation des transports','Activités hospitalières',
+    'Activités immobilières','Activités informatiques et activités connexes',
+    'Activités juridiques, comptables et de conseil de gestion',
+    'Activités photographiques','Activités portuaires','Activités pour la santé humaine',
+    'Activités récréatives, culturelles et sportives',
+    'Activités sportives ou récréatives','Activités vétérinaires',
+    'Affichage et location de panneaux publicitaires','Agence de communication',
+    'Agence de voyage','Agence générale d\'assurances','Agence maritime',
+    'Agriculture','Agriculture, chasse et activités annexes','Agro Business','Agropastorale',
+    'Ajusteur','Analyse et recherche de projet de financement','Analyses biomédiacales',
+    'Apprêt et tannage des cuirs',
+    'Approvisionnement en intrants agricoles et en produits phytosanitaires de toutes cultures',
+    'Architecture','Arts plastiques','arts plstiques',
+    'Assainissement, voirie et gestion des déchets','Assistance administrative',
+    'Assistance aux entreprises, gestion des ressources humaines, entretien de recrutement, formation personnelle',
+    'Assistance comptable','Assistance en Gestion des Entreprises','Assurance',
+    'Assurance, dommages','Assurance-vie, capitalisation et caisses de retraite','Auberge',
+    'Authentificaion, certification et protection internationale de documents','Auto-école',
+    'Autres activités liées au numérique','Autres intermédiations monétaires',
+    'Autres transformations et conservations des poissons, crustacés et mollusques',
+    'Banque','Bar restaurant','Bâtiments et travaux publics, assainissement','Bijouterie',
+    'Biscuiterie et pâtisseries de conservation','Boucherie','Boulangerie',
+    'Bureau de change et de devises manuelles','Bureau d\'études','Cabinet conseil',
+    'Cabinet d\'architecture et d\'urbanisme',
+    'Cabinet d\'études en économie et finances publiques,travaux statistiques et bases de données',
+    'Cabinet et Pharmacie vétérinaire','Cabinet médical',
+    'Captage, traitement et distribution d\'eau',
+    'Chasse, piégeage, repeuplement en gibier et activités annexes',
+    'Chocolaterie, confiserie','Climatisation','Coiffure et soins de beauté',
+    'Cokéfaction, traitement de combustibles nucléaires','Collecte des ordures ménagères',
+    'Commerce de détail de biens d\'occasion','Commerce de détail de carburants',
+    'Commerce de détail en magasin spécialisé de produits pharmaceutiques et médicaux, de parfumerie et de produits de beauté',
+    'Commerce de détail en magasin spécialisé de quincaillerie, peintures, verre et articles techniques en verre',
+    'Commerce de détail en magasin spécialisé de textiles, habillement, chaussures et articles en cuir',
+    'Commerce de détail et réparation d\'articles domestiques',
+    'Commerce de détail sur éventaires et marchés de viandes et poissons',
+    'Commerce de gros de machines, d\'équipements et fournitures industriels',
+    'Commerce de gros de machines, d\'équipements et fournitures mécaniques',
+    'Commerce de gros de produits agricoles bruts et d\'aliments pour animaux',
+    'Commerce de gros de produits agricoles bruts, d\'animaux vivants, de produits alimentaires, boissons et tabacs',
+    'Commerce de gros de produits alimentaires, boissons et tabacs manufacturés',
+    'Commerce de gros de produits intermédiaires non agricoles',
+    'Commerce de gros de produits pharmaceutiques et médicaux',
+    'Commerce de gros de textiles, habillement et chaussures',
+    'Commerce de gros et activités d\'intermédiaires du commerce de gros',
+    'Commerce de véhicules automobiles','Commerce électronique',
+    'Commerce et réparation d\'automobiles','Commerce et réparation de motocycles',
+    'Commerce général','Commerce général et divers',
+    'Commerce, réparation de véhicules automobiles et d\'articles domestiques',
+    'Commercialisation de centrales photovoltaiques ou tous produits,matériels liées aux énergies renouvelables',
+    'Commercialisation de riz','Commercialisation de savons','Commercialisation de soja',
+    'Commercialisation des oeufs de table',
+    'Commercialisation, industrialisation et exportation des produits forestiers et tropicaux en occurrence l\'acajou et karité',
+    'COMMISSION DE TRANSPORT FRÊT ET VOYAGEURS','Communication',
+    'Communications, informations, réalisation et Edition de magazines traduction, interprétariat',
+    'Conception et réalisation de logiciels, études informatiques',
+    'Conception et réalisation de supports et articles publicitaires',
+    'Conception, développement et exploitation de plates formes de transaction à distance',
+    'Conception, étude et réalisation de tous travaux publics et privés, de bâtiment, de génie civil',
+    'Confection et vente de bijoux,sacs et chaussures en perles',
+    'Confection et vente de lunettes','Confection et vente de vêtements',
+    'Conseil en management de la qualité',
+    'Conseil en transformation numérique, en services en ingénierie informatique',
+    'Conseil informatique et développements logiciels',
+    'Conseil juridique et fiscal aux entreprises et aux sociétés','Conseils agricoles',
+    'Conseils en communication et en marketing','Conseils en fiscalité',
+    'Conseils en gestion','Conseils en relations clients des entreprises',
+    'Conseils en stratégie et organisation','Conseils et Formation en Stratégie',
+    'Conseils juridiques','Conseils, étude et équipements','Consignation maritime',
+    'Construction de bâtiments, génie civil','Construction de bâtiments, travaux publics et génie civil',
+    'Construction de véhicules automobiles',
+    'Construction et menuiserie métalliques, fabrication de citernes, réservoirs et générateurs de vapeur',
+    'Constructions et réparations navales,aéronautiques et ferroviaires',
+    'Consultation en analyse de projets et formation','Consulting','Cordonnerie',
+    'Courtage d\'assurances et de réassurances',
+    'Courtage, transport public de personnes et de marchandises, entretien','Couture',
+    'Création de mode','Création d\'objets d\'arts',
+    'Création et gestion d\'agences maritimes, toutes opérations de manutention',
+    'Création et référencement de sites internet',
+    'Création, installation, gestion et administration de complexes hôteliers, de restauration, de bars, de boîtes de nuit, de centre de distraction',
+    'Crêche','Crédit-bail et autres activités de crédit','Culture de céréales',
+    'Culture de fruits, de noix, de plantes pour boisson ou épices','Culture de banane',
+    'CULTURE DE L\'ANANAS','Culture de légumes, horticulture, pépinières',
+    'Culture de plantes à épices','Culture de plantes oléagineuses',
+    'Culture de tubercules et de légumes à cosse secs','Culture du cacao',
+    'Culture du café (café coque), du thé','Culture du coton','Décoration',
+    'Déménagement','Dépôt de ciments','Design graphique','Dessin bâtiment',
+    'Développement informatique, développement de sites web','Distribution de gaz domestique',
+    'Distribution de matériel paramédical','Distribution de matériels industriels',
+    'Distribution, vente, location de bâches et chaises','Diverses prestations de services',
+    'Domiciliation de toutes sociétés, établissements, recouvrement de créances',
+    'Dressage d\'animaux','Ebénisterie','Edition','Edition de livres et périodiques',
+    'Edition de livres, journaux, revues et périodiques',
+    'Edition de logiciels, de solutions numériques',
+    'Edition et diffusion de programmes radio',
+    'Edition et diffusion de programmes télévisuels','Edition et Impression de publications',
+    'Edition, imprimerie et reproduction d\'enregistrements','Égrenage du coton',
+    'Egrenage du coton-graine','Electricité bâtiment','Electricité industrielle',
+    'Elevage','Elevage de bétails','Elevage de bovins','Elevage de camélidés',
+    'Elevage de volailles','Elevage d\'ovins, de caprins, d\'équidés','Elevage et vente de lapins',
+    'Energie et systèmes énergétiques, Ingénierie, hygiène sécurité et environnement',
+    'Energie renouvelable','Enlèvement portuaire','Enseignement préscolaire et primaire',
+    'Enseignement secondaire général',
+    'Enseignement secondaire technique et/ou professionnel','Enseignement supérieur',
+    'Entreposage','Entreprise générale de production et de diffusion audiovisuelle',
+    'Entretien de véhicule','Entretien et nettoyage',
+    'Entretien et réparation d\'appareils électroménagers et autres',
+    'Entretien et réparation de véhicules automobiles','Esthétique','Etude environnementale',
+    'Etude et réalisation de tous travaux de terrassement , de génie civil et du bâtiment',
+    'Etude et réalisation des travaux en Télécommunications',
+    'Etudes, contrôle et Suivi des Travaux de BTP','Etudes et conseils en gestion',
+    'Etudes, recherches et formation en finances publiques','Etudes statistiques',
+    'Etudes techniques économiques,sociales et environnementales des routes',
+    'Etudes, appui, Conseils aux entreprises','Evènementiel',
+    'Exercice de la profession d\'expert comptable',
+    'Exercice de toutes activités et de toutes prestations de services en Informatique',
+    'Exercice de toutes prestations de services liées au secteur des technologies informatiques et de la communication',
+    'Expertise en micro finance, finance et management','Expertise maritime',
+    'Expertises et analyses chimiques','Exploitation agricole','Exploitation avicole',
+    'Exploitation de bureaux d\'achat','Exploitation de débit de boissons',
+    'Exploitation de radiodiffusion sonore commerciale','Exploitation de salles de jeux',
+    'Exploitation d\'infrastructures de transport','Exploitation d\'un cafétariat',
+    'Exploitation d\'un cyber centre',
+    'Exploitation d\'un réseau de téléphone cellulaire GSM installé au Bénin',
+    'Exploitation d\'un restaurant','exploitation d\'une garderie et crêche',
+    'Exploitation d\'une mini-sation','Exploitation d\'une officine de pharmacie',
+    'Exploitation d\'une unité d\'entretien','Exploitation d\'une usine de fabrication',
+    'Exploitation et gérance d\'hôtels','Exploitation et gestion agricole',
+    'Exploitation forestière','Exploitation, extraction et commercialisation de sable lagunaire et carrières',
+    'Exportation de produits forestiers, de produits vivriers, céréales',
+    'Extraction d\'autres minerais métalliques','Extraction de bauxite',
+    'Extraction de charbon et de lignite, extraction de tourbe',
+    'Extraction de diamants et d\'autres pierres précieuses',
+    'Extraction de minerais de cuivre','Extraction de minerais de fer',
+    'Extraction de minerais de manganèse','Extraction de minerais de métaux non ferreux',
+    'Extraction de minerais de métaux précieux','Extraction de minerais d\'uranium',
+    'Extraction de minerais métalliques','Extraction de pétrole brut et de gaz naturel, activités annexes',
+    'Extraction de phosphates et de sels de potassium,naturels',
+    'Extraction de pierres, de sables et d\'argiles','Contrôle technique BTP',
+    'Extraction d\'engrais naturels et de minéraux pour l\'industrie chimique',
+    'Extraction ou production de sel et de natron',
+    'Extractions de minéraux pour l\'industrie chimique','Fabrication d\'appareils domestiques',
+    'Fabrication d\'articles de maroquinerie locaux',
+    'Fabrication d\'articles de voyage et de maroquinerie, d\'articles de sellerie et de bourrellerie',
+    'Fabrication d\'articles d\'habillement, préparation et teinture des fourrures',
+    'Fabrication d\'articles divers en bois ou en liège',
+    'Fabrication d\'articles en bois ou de vannerie',
+    'Fabrication d\'articles en bois, liège, vannerie et sparterie',
+    'Fabrication d\'articles en cuir','Fabrication d\'articles en papier ou en carton',
+    'Fabrication d\'autres articles textiles','Fabrication d\'autres matériels de transport',
+    'Fabrication d\'autres ouvrages en caoutchouc','Fabrication d\'autres ouvrages en métaux',
+    'Fabrication d\'autres produits céramiques','Fabrication d\'autres produits chimiques',
+    'Fabrication d\'autres produits chimiques de base','Fabrication de boissons',
+    'Fabrication de boissons alcoolisées','Fabrication de bougies ou d\'allumettes',
+    'Fabrication de briques','Fabrication de carreaux en céramique',
+    'Fabrication de carton ondulé et d\'emballages en papier ou en carton',
+    'Fabrication de charbon de bois','Fabrication de chaussures',
+    'Fabrication de ciment, chaux et plâtre',
+    'Fabrication de ciment, de matériaux et d\'ouvrages en béton ou en pierre et d\'autres produits minéraux métalliques',
+    'Fabrication de condiments et assaisonnements','Fabrication de corps gras',
+    'Fabrication de feuilles de placage, de contreplaqués et de panneaux',
+    'Fabrication de fibres synthétiques ou artificielles',
+    'Fabrication de machines de bureau et de matériel informatique',
+    'Fabrication de machines d\'usage général','Fabrication de machines d\'usage spécifique',
+    'Fabrication de machines et de matériels','Fabrication de machines et de matériels électriques',
+    'Fabrication de matelas et de meubles','Fabrication de matelas et sommiers',
+    'Fabrication de matelas mousse et ressort',
+    'Fabrication de matériaux de construction, de brique de tuiles, de carreaux',
+    'Fabrication de matériaux et d\'ouvrages en ciment, en béton ou en plâtre, travail de la pierre',
+    'Fabrication de médicaments traditionnels','Fabrication de meubles',
+    'Fabrication de meubles, activités de fabrication',
+    'Fabrication de pain et de pâtisseries fraîches',
+    'Fabrication de papier, de carton et d\'articles en papier ou en carton',
+    'Fabrication de parfums et de produits de toilette',
+    'Fabrication de pâte à papier, de papier et de carton',
+    'Fabrication de pâtes alimentaires, de couscous et de produits farineux similaires',
+    'Fabrication de peintures et vernis, adjuvants et encres d\'imprimerie',
+    'Fabrication de pneumatiques et de chambres à air,rechapage',
+    'Fabrication de portes métalliques','Fabrication de produits à base de tabac',
+    'Fabrication de produits agrochimiques',
+    'Fabrication de produits agrochimiques, de peintures et d\'autres produits chimiques',
+    'Fabrication de produits alimentaires à base de céréales',
+    'Fabrication de produits alimentaires divers',
+    'Fabrication de produits azotés et d\'engrais',
+    'Fabrication de produits en caoutchouc ou en matières plastiques',
+    'Fabrication de produits laitiers et de glaces',
+    'Fabrication de produits minéraux non métalliques','Fabrication de produits pharmaceutiques',
+    'Fabrication de protheses dentaires','Fabrication de savons, détergents et produits d\'entretien',
+    'Fabrication de sucre','Fabrication de tapis et carpettes','Fabrication de textiles',
+    'Fabrication de tuiles et briques en terre','Fabrication de verre et d\'articles en verre',
+    'Fabrication de verre, poteries et matériaux pour la construction',
+    'Fabrication d\'équipements et appareils de radio,télévision et communication',
+    'Fabrication des médicaments génériques','Fabrication des produits amylacés',
+    'Fabrication d\'étoffes et d\'articles de bonneterie',
+    'Fabrication d\'huile de maïs et autres produits amylacés',
+    'Fabrication d\'instruments de musique',
+    'Fabrication d\'instruments médicaux, de précision,d\'optique et d\'horlogerie',
+    'Fabrication d\'ouvrages de charpenterie et de menuiserie, fabrication d\'emballages en bois',
+    'Fabrication d\'ouvrages en métaux, travail des métaux',
+    'Fabrication et vente de farines naturelles de croissance',
+    'Fabrication et vente de jus d\'ananas','Fabrication et vente de miel',
+    'fabrication mécanique','Fabrication, distribution et vente de barres de glaces',
+    'Facilitation commerciale','Filature, tissage et ennoblissement textile','Fonderie',
+    'Forage','Formation en anglais','Formation en diverses langues',
+    'Formation en Informatique','Formation en management','Formation professionnelle',
+    'Formation, orientation et suivi de carrière des footballeurs',
+    'Fournisseurs d\'accès à Internet',
+    'Fourniture d\'accès aux réseaux de télécommunication',
+    'Fourniture de services et solutions intégrées, en informatique et autres technologies de l\'information et de la communication',
+    'Fournitures de matériels et consommables médicaux','Froid et Climatisation',
+    'Garage automobile, réparation de véhicule',
+    'Gardiennage, surveillance, sécurisation des personnes, des biens et services',
+    'Génie civil','Génie électrique','Gestion de projets en énergies renouvelables',
+    'Gestion des Ressources Humaines','Gestion documentaire',
+    'Gestion et exploitation de boîte de nuit',
+    'Gestion et administration des hôpitaux et services de santé','Gestion immobilière',
+    'Gynécologie, obstétrique, échographie','Hébergement','Horticulture, pépinières',
+    'Hôtellerie','Immobilier, locations et services aux entreprises','Importation de bijoux',
+    'Importation de denrées alimentaires','Importation de fournitures de bureau',
+    'Importation de friperie','Importation de fruits et légumes frais',
+    'Importation de la génétique animale, produits de nutrition animale',
+    'Importation de matériaux de construction','Importation de matériels de pressing',
+    'Importation de produits pharmaceutiques et appareils médicaux',
+    'Importation de produits tropicaux et autres produits agricoles',
+    'Importation de Textiles','Importation de véhicules d\'occasion',
+    'Importation des effets vestimentaires',
+    'Importation des engrais liquides organiques,suppléménts alimentaires',
+    'Importation d\'ustensiles de cuisine et appareils électroménagers',
+    'Importation et exportation de farine de blé',
+    'Importation et exportation de matériels d’étanchéités',
+    'Importation et exportation de produits vivriers',
+    'Importation et fourniture d\'équipements industriels, d\'engins lourds',
+    'Importation et vente des matériels électriques',
+    'Importation et exportation de tous produits alimentaires,agricoles et agropastoraux',
+    'Importation et vente d\'accessoire de couture et mercerie',
+    'Importation et vente de casques homologués',
+    'Importation et vente des produits cosmétiques et parfumerie',
+    'Importation, commercialisation et vente des produits et denrées alimentaires,de textiles,',
+    'Importations de matériels de télécommunication et accessoires',
+    'Importations de matériels électriques','Importations de matériels frigorifiques',
+    'Importations de pièces détachées, de pneus et accessoires automobiles',
+    'Imprimerie','Industrie pharmaceutique','Industries alimentaires',
+    'Ingénierie électrique','Ingénierie géologique','Ingénierie informatique',
+    'Installation de feux tricolore, éclairage public',
+    'Installation d\'usine pour la fabrication des produits divers',
+    'Intégrateurs','Intermédiation financière',
+    'Intermédiation financière non monétaire','Intermédiation monétaire','Interprétariat',
+    'Laboratoire d\'analyse biomédicale','Lavage auto moto',
+    'Lavage et nettoyage de textiles','Location d\'articles personnels et domestiques',
+    'Location d\'autres matériels de transport','Location de bâches','Location de chaises',
+    'Location de machines et équipements',
+    'Location de matériel de construction avec opérateur',
+    'Location de matériels de transport','Location de salle de manifestations',
+    'Location de véhicules, transport et activités connexes','Location de voitures',
+    'Location des engins lourds','Location immobilière',
+    'Maintenance de matériels informatiques et d\'équipements de bureau',
+    'Maintenance industrielle','Maintenance informatiques et réseau','Manutention',
+    'Manutention et entreposage','Maraîchage','Maroquinerie','Mécanique générale',
+    'Mécanique Moto','Mécanique, automobile, électricité','Mécanographie',
+    'Médécine générale','Médecine traditionnelle et pharmacopée','Meneurie',
+    'Menuiserie générale','Métallurgie, fonderie','Microfinance',
+    'Mise en sachet et vente d\'eau','Motel','Murissage',
+    'Négoce et distribution d\'équipement électriques, informatiques industriels et télécommunications',
+    'Négoce et représentation commerciale','Négoce international','Nettoyage industriel',
+    'Nutrition diététique','Opérateurs mobiles','Organisation du transport de fret',
+    'Parallélisme, équilibrage de roues','Pâtisserie et boulangerie','Pêche artisanale',
+    'Pêche industrielle','Pêche, pisciculture, aquaculture','Peinture',
+    'Peinture automobile et tôlerie','Perlage de bijoux','Pesage','Photographie',
+    'Plomberie générale','Postes et télécommunications','Poterie',
+    'Presse écrite et audiovisuelle','Pressing','Prestation et animation musicale',
+    'Prestations de service en électrotechnique','Prestations de services en Communication',
+    'Prestations de services en électricité','Prestations de services en électronique',
+    'Prestations de services en entretien','Prestations de services informatiques',
+    'Prestations de services liés à l\'activité de voyage',
+    'Prestations de services numériques','Prestations d\'hôtesses',
+    'Prestations radiologiques et échographiques','Production agricole',
+    'Production agroalimentaire','Production animale','Production audio et édition musicale',
+    'Production audiovisuelle','Production de biens de consommation',
+    'Production de café marchand','Production de films',
+    'Production de gaz, distribution par conduite de combustibles gazeux','Production de riz',
+    'Production de semence','Production de soja',
+    'Production d\'eaux de table et fabrication de boissons non alcoolisées',
+    'Production des oeufs de table',
+    'Production et commercialisation de granulés secs et dérivés de noix de palme',
+    'Production et distribution d\'électricité',
+    'Production et vente de produits cosmétiques','Production et vente de savons',
+    'Production et vente d\'eau potable (Pure water)',
+    'Production et vente des jus de fruits','Production vidéo : cinéma et télévision',
+    'Production, distribution et vente de ciment','Promotion de la culture',
+    'Promotion de produits pharmaceutiques',
+    'Promotion et vulgarisation de sites touristiques','Promotion immobilière',
+    'Protection incendie et sécurité','Provenderie','Publicité','Quincaillerie générale',
+    'Raffinage pétrolier','Raffinage pétrolier, cokéfaction, industries nucléaires',
+    'Réalisation d\'études pluridisciplinaires (plan d\'affaires, étude marketing, étude socio-économique et autres)',
+    'Rebobinage','Recherche et développement',
+    'Recherche et développement expérimental en sciences physiques et naturelles et en ingénierie',
+    'Recherche et développement expérimental en sciences sociales et humaines',
+    'Recherche et exploitation minière','Recouvrement de créances','Recrutement, intérim',
+    'Rectification des vibrequins, tambours, disques','Rédaction de plan d\'affaires',
+    'Réparation d\'appareils de mesure','Réparation d\'articles personnels et domestiques',
+    'Réparation de matériels électroniques et informatiques','Réparation de motocycles',
+    'Reportage photo vidéo','Représentation commerciale de Société Mère',
+    'Reproduction d\'enregistrements','Reprographie','Restauration',
+    'Sciage et rabotage du bois','Scierie','Séchage, salage ou fumage du poisson',
+    'Sécurisation des installations pétrolières','Sécurité et Incendie',
+    'Sécurité sociale obligatoire','Sérigraphie','Serrurerie','Services traiteur',
+    'Services bureautiques','Services de livraison','Services dépannage',
+    'Services fournis principalement aux entreprises','Services funéraires','Shipping',
+    'Sidérurgie et première transformation de l\'acier',
+    'Site internet, équipements de matériels informatiques','Soudure','Stylisme',
+    'Sylviculture, exploitation forestière, activités annexes','Tapisserie moderne',
+    'Teinturie','Télécentre, cybercafé','Télécommunications','Télétravail','Tourisme',
+    'Tournage, ajustage',
+    'Toutes activités d\'agent général des assurances et d\'agent commissionnaire en Assurance',
+    'Toutes activités de micro finance notamment les opérations de crédits, de mobilisation de l\'épargne',
+    'Toutes activités de rénovation, de construction de bâtiments et travaux publics, BTP, génie civil, exécution d\'ouvrages d\'arts',
+    'Toutes activités industrielles et commerciales liées à la conception',
+    'Toutes activtés relatives à l\'agence générale et au courtage en matière d\'assurance et de réassurance',
+    'Toutes opérations de logistique','Toutes opérations de transit',
+    'Toutes opérations de transport terrestre maritime et aérien','Trading',
+    'Traitement de données, hébergement et activités connexes',
+    'Transactions portuaires','Transfert d\'argent','Transfert d\'argent via réseaux mobiles',
+    'Transformation agroalimentaire','Transformation de bois',
+    'Transformation de produits alimentaires','Transformation de produits locaux',
+    'Transformation des produits agricoles','Transformation du café, du thé',
+    'Transformation et conservation de fruits et légumes',
+    'Transformation et conservation des poissons, crustacés et mollusques','Transit',
+    'Transport et logistique','Transports aériens','Transports ferroviaires',
+    'Transports maritimes et côtiers','Transports par voies navigables',
+    'Transports routiers de marchandises','Transports routiers de passagers',
+    'Transports terrestres','Travaux topographiques','VENTE DE VERRES MÉDICAUX',
+    'Vente d\'aquarium','Vente de bétails','Vente de Boissons','Vente de ciment',
+    'Vente de ferrailles','Vente de machines agricoles','Vente de manuels scolaires',
+    'VENTE DE MATÉRIELS D\'ASCENSEURS','Vente de Poulets fermiers',
+    'Vente de produits agroalimentaires','Vente d\'épices',
+    'Vente d\'équipements médicaux et réactifs','Vente des produits spirituels',
+    'Vente d\'objets d\'art','Vente et entretien de chiots',
+    'Vente et maintenance des appareils électroniques',
+    'Vente et réparation de matériels informatiques et électriques',
+    'Vente et stockage de graviers','Vitrerie','Vulcanisation','???',
+    'Toutes activités liées aux bâtiments et travaux publics (BTP)',
+    'Achat et vente de matériels informatiques bureautique','Froid',
+    'Achat et vente de produits cosmétiques',
+    'Achat et vente de fournitures de bureau librairie et papeterie','Production',
+    'Transfert d\'argent par réseaux mobiles',
+    'Achat et vente de produits alimentaires et des boissons','Toutes prestations',
+    'Menuiserie','Achat et vente de diverses marchandises','Conseils','Exploitation',
+    'Achat et ventes de portables et accessoires de télécommunication',
+    'Bâtiments et travaux publics-Assainissement',
+    'Achat et vente de matériaux de construction',
+    'Achat et vente de tissus WAX hollandais','Alimentation générale',
+    'Achat et vente de vêtements-Prêt-à-porter','Maintenance informatique et réseau',
+    'Achat et vente de matériels d\'électricité','Toutes activités',
+    'Achat et vente de gravillons, sable Gestion de carrière','Bureautique',
+    'Achat et vente d\'ustensiles de cuisine et d\'appareils électroménagers',
+    'Location d\'articles personnels et domestiques n.c.a.','Achat et vente de textiles',
+    'Transports','Etude','Garage automobile-Réparation de véhicule','Restaurants',
+    'Service traiteur','Production audio visuelle',
+    'Achat et vente de vêtements et accessoires pour enfants et adolescents',
+    'Pisciculture, aquaculture','Activités de nettoyage',
+    'Achat et vente de cartes de recharge',
+    'Achat et vente de produits tropicaux et autres produits agricoles',
+    'le commerce général',
+    'Achat et vente de pièces détachées, de pneus et accessoires automobiles',
+    'Coiffure','Achat et vente','Mécanique-automobile-Electricité',
+    'Hôtels et autres moyens d\'hébergement de courte durée','Construction de bâtiments',
+    'Bureau de change manuel de devises','Achat et vente de vêtements',
+    'Achat et vente des produits tropicaux',
+    'Achat et ventes de meubles et biens d\'équipement',
+    'Activités de formation permanente et autres','Activités de presse et édition',
+    'Autres activités informatiques','Achat et vente de produits congelés chambres froides',
+    'Commerce de gros de combustibles solides,liquides et gazeux et de produits dérivés',
+    'Achat et vente de matériaux de construction quincaillerie, peinture et articles',
+    'Élevage d\'animaux n.c.a.',
+    'Achat et vente de produits forestiers et de produits vivriers et de céréales',
+    'Bars, cafés et autres débits de boissons',
+    'Gérant Mini station/Station trottoir','Travaux d\'installation',
+    'Autres activités de spectacle',
+    'Assistance aux entreprises/Gestion des ressources humaines/Entretien de recrutement /Formation personnelle',
+    'Achat et vente de boissons gazeuses et boissons sucrées',
+    'Transports urbains de passagers',
+    'Achat et vente de combustibles solides, liquides, gazeuses et de produits dérivés',
+    'Soins médicaux et spécialités',
+    'Achat et vente de jouets, articles de décoration et articles pour cadeaux',
+    'Activités cinématographiques et vidéo',
+    'Exploitation d\'un réseau de téléphonie cellulaire GSM installé au Bénin',
+    'Commerce de gros d\'autres matériaux de construction, quincaillerie et fournitures pour plomberie',
+    'Activités de fabrication diverses','Presse écrite et audio-visuelle',
+    'Achat et vente de pierres précieuses Or-Diamant','Télécommunication',
+    'centre d\'affaires',
+    'l\'exercice de toutes prestations de services liées au secteur des technologies informatiques et de la communication',
+    'Etudes ,Contrôle et Suivi des Travaux de BTP','Couture et Mercerie',
+    'Achat et vente de pièces détachées industrielles','achat et vente de gaz domestiques',
+    'Etudes,Appui,Conseils aux entreprises','Styliste',
+    'Site d\'internet,équipements de matériels informatiques',
+    'La conception et la réalisation de logiciels,les études informatiques',
+    'Importation de matériels informatiques, bureautiques',
+    'Parallélisme-Equilibrage de roues','Organisation de foires',
+    'Usine de transformation de bois',
+    'Activités d\'architecture et d\'ingénierie, conseil technique',
+    'Fabrication et vente de portions de glace',
+    'La promotion et la vulgarisation des sites touristiques',
+    'L\'étude et la réalisation de tous travaux de terrassement , de génie civil et du bâtiment;',
+    'Le Gardiennage, la surveillance, la sécurisation des personnes, des biens et services',
+    'Le courtage d\'assurances et de réassurances au BENIN','Toutes opérations',
+    'Conception et réalisation de décor',
+    'Fabrication-distribution et vente de barres de glaces',
+    'Toutes activités pouvant concerner directement ou indirectement la consultation de divers services',
+    'l\'achat et vente de tous matériels',
+    'l\'étude des marchés publics et privés et leur faisabilité,le consulting,',
+    'Travaux d\'entretien de ménages, de Bureaux, d\'espaces publiques',
+    'Prépayement factures d\'électricité -Eau-Téléphone',
+    'La prestation de services en tous genres','L\'agriculture',
+    'L\'approvisionnement en intrants agricoles et en produits phytosanitaires de toutes cultures',
+    'Communications-Informations-Réalisation et édition de magazines traduction-Interprétariat',
+    'Activités juridiques',
+    'La construction de bâtiments, les travaux publics et le génie civil',
+    'La création,l\'installation,la gestion et l\'administration de complexes hôteliers,de restauration,de bars , de boîtes de nuit,de centre de distraction',
+    'Activités sportives ou récréatives n.c.a.','Achat et vente de clés',
+    'Fabrication de produits en matières plastiques',
+    'La fabrication de matériaux de construction, de brique de tuiles, de carreaux etc',
+    'Importation de produits alimentaires et de boissons',
+    'toutes activités de rénovation, de construction de bâtiments et travaux publics,le BTP,le génie civil,l\'exécution d\'ouvrages d\'arts,',
+    'L\'exercice de toutes activités et de toutes prestations de services en Informatique',
+    'Toutes activités liées à l\'installation d\'usines de transformations des produits vivriers',
+    'L\'Exploitation d\'une unité d\'entretien',
+    'le négoce et la distribution d\'équipement électriques,informatiques industriels et de télécommunications',
+    'Exportations de produits forestiers, de produits vivriers, céréales',
+    'Culture et élevage associés',
+    'Fabrication de matériaux et d\'ouvrages en ciment,en béton ou en plâtre, travail de la pierre',
+    'Achat et vente d\'effets vestimentaires','L\'agence générale d\'assurances.',
+    'Achat et vente de matériels plastiques','Super Marché et Boucherie',
+    'Energie et systèmes énergétiques,Ingénierie,hygiène sécurité et environnement',
+    'Achat et vente d\'équipements GSM',
+    'Conception,développement et exploitation de plates formes de transaction à distance',
+    'Rectification des vibrequins,tambours,disques',
+    'L\'évenementiel (congrès et consulting)',
+    'Le conseil juridique et fiscal aux entreprises et aux sociétés',
+    'Réalisation d\'études pluridisciplinaires (plan d\'affaires;étude marketing;étude socio-économique et autres)',
+    'Etudes de recherche formation en Finances publiques',
+    'Toutes activités pouvant concerner directement ou indirectement',
+    'L\'entreprise générale de production et de diffusion audiovisuelle',
+    'Commerce de détail en magasin spécialisé de livres, journaux et articles de papeterie',
+    'Auto-école/Enseigenement de conduite automobile',
+    'La conception,l\'étude et la réalisation de tous travaux publics et privés,de bâtiment,de génie civil,',
+    'Transports interurbains de passagers','Commerce de motocycles et accessoires',
+    'La société a pour objet','Agence immobilière',
+    'Exposition des créations vestimentaires JB-HOUNYOVI',
+    'Achat et vente des produits d\'entretien',
+    'Achat et vente d\'aliments destinés à la volaille et au bétail','Élevage de porcins',
+    'Tournage-ajustage','Achat et vente des produits de la loterie','Bureau de change manuel',
+    'La location de véhicules,le transport et les activités connexes','Tous travaux',
+    'Fourniture de services et solutions intégrées,en informatique et autre technologie de l\'information et de la communication',
+    'Gynécologie-Obstétrique-Echographie,',
+    'La commercialisation, l\'industrialisation et l\'exportation des produits forestiers et tropicaux en occurrence l\'acajou et karité',
+    'Toutes activités d\'agent général des assurances et d\'agent commissionnaireen Assurance;',
+    'La commercialisation de centrales photovoltaiques ou tous produits,matériels liées aux énergies renouvelables',
+    'Expertise','Vulcanisateur',
+    'Eploitation d\'un réseau de téléphone cellulaire GSM installé au Bénin',
+    'Activités d\'intermédiaires du commerce de gros',
+    'L\'exécution des études d\'avant-projet','Soins de beauté',
+    'Location de machines et équipements n.c.a.',
+    'Activités d\'autres organisations associatives n.c.a.',
+    'Congélation de poissons, crustacés et mollusques','Peintre bâtiment',
+    'Achat et vente de produits de beauté',
+    'L\'étude et la réalisation des travaux en Télécommunication','Recrutement-Intérim',
+    'Teinturière','Culture de légumes','Travaux de finition',
+    'Autres intermédiations financières',
+    'Commerce de gros de machines, d\'équipements et fournitures électriques',
+    'Activités pour la santé humaine n.c.a.',
+    'L\'exercice de la profession d\'expert comptable','Autres cultures n.c.a.',
+    'La production de films','Achat et vente de pièces détachées','Promotion',
+    'Achat et vente de consommables GSM',
+    'Commerce de détail en magasin spécialisé de matériels de bureau, d\'ordinateurs, d\'articles optiques et photographiques et de matériels de télécommunication',
+    'Assurance-dommages','l\'achat et la distribution de produits brassicols',
+    'Autres activités de services personnels','Achat et vente de gaz domestique',
+    'Édition d\'enregistrements sonores','Garde de véhicules à 02 et 04 roues',
+    'La fabrication de matelas Mousse et Ressort','Préparation des sites',
+    'Production et vente de savons parfumés','Coordonnier','Cardiologie',
+    'La production et vente de tous objets',
+    'Commerce de pièces et d\'accessoires automobiles',
+    'Autres activités de services fournis principalement aux entreprises n.c.a.',
+    'Elevage de petits ruminants',
+    'Achat et vente d\'accessoires de femmes et de maisons','Dépôt de boissons',
+    'Travail des grains, fabrication d\'aliments pour animaux','Achat et Vente de',
+    'Tout travaux de perles en collier',
+    'Le Courtage, le transport public de personnes et de marchandises, l\'entretien',
+    'Dépôt local de boissons',
+    'Travaux d\'entretien de ménages,de bureaux,d\'espaces publiques',
+    'Tous travaux de tapisserie moderne','Le consulting','Elevage de porcs',
+    'Formation,orientation et suivi de carrière des footballeurs',
+    'Installation de feux tricolore-éclairage public','Intermédiations',
+    'Distribution,vente,location de bâches et chaises','Tradi-thérapie',
+    'Achat et vente de chaussures plastiques','Céregraphie','Audit','Formation',
+    'Vente de semence','Vente de sable et gravier','Exploitation d\'une cafétariat',
+    'Achat et vente de meubles','Achat et vente des équipements d\'entretien','Bar',
+    'Production du Pain','Organisation de séances de Lecture',
+    'Achat et vente matériels,mobiliers et équipements de bureau',
+    'Achat et vente d\'emballages paniers',
+    'Etudes et recherches formation en Finances publiques',
+    'Achat et vente de pièces mécaniques','Touts prestations','Ingénieurie',
+    'Pratique médicale et/ou dentaire','Sylviculture','Fabrication','Location','Dessin',
+    'Activités','Activités d\'auxiliaires financiers',
+    'Achat et vente de téléphones accessoires','Forge','Vente d\'eau en sachet',
+    'Fabrication d\'articles de vannerie ou de sparterie','Transports par conduites',
+    'Achat et vente de motos','Achat et vente d\'huile','Achat et vente de savons',
+    'Commerce de détail en magasin spécialisé d\'articles et appareils d\'équipement domestique',
+    'L\'installation d\'usine pour la fabrication des produits divers','Offrir des services',
+    'Autres commerces de gros','La recherche et l\'exploitation minière',
+    'Vente d\'eau glacée en sachet recyclable',
+    'Commerce de détail en magasin non spécialisé','Activités forestières',
+    'Fabrication d\'autres articles textiles n.c.a.','Achat et vente de farine de maïs',
+    'Librairie','Achat et vente de chiens',
+    'Achat et vente d\'articles et accessoires de coiffure',
+    'Achat et vente de machines agricoles','Bar-Maquis','Presse écrite et en ligne',
+    'Achat et vente de carreaux','Culture d\'autres fruits','Vente de peintures',
+    'Achat et vente de produits d\'aluminium et de vitrerie','Achat et vente de rideaux',
+    'Achat et vente de matériels de transport','Achat et vente de papeterie',
+    'La vente en ligne','Achat et vente de draps de lit',
+    'Achat et vente de matériels agricoles',
+    'Achat et vente de matériels de dragage de sable','Vente des produits d\'élevage',
+    'L\'inspection','Vente d\'aliments pour animaux','Achat et vente d\'huile rouge',
+    'Achat et vente de produits pharmaceutiques','Achat et vente de pneus',
+    'Achat et vente d\'essences désodorisantes','Achat et vente d\'huile de palme',
+    'Charcuterie','Achat et vente de vitres','Achat et vente de céréales',
+    'Achat et vente de batteries','Achat et vente de matériels de forage',
+    'Cuisinier','Vente d\'objets d\'art.','la microfinance,la création',
+    'L\'importation et l\'exportation',
+    'Toutes opérations généralement quelconques pouvant concerner directement ou indirectement',
+    'l\'importation et l\'exportation de tous produits alimentaires,agricoles et agropastoraux',
+    'importation de matières premières pour la production d\'eau minérale',
+    'Importation de produits de pétroles, hydrocarbures et dérivés pétrole',
+    'l\'importation,la commercialisation et la vente des produits et denrées alimentaires,de textiles, de pattes alimentaires',
+    'L\'égrenage du coton-graine','Importation de meubles et biens d\'équipements',
+    'La prise de participation au capital d\'autres sociétés commerciales',
+    'La consignation maritime','Représentation Commerciale de la Société Mère',
+    'Toutes prestations pouvant concerner l\'achat, la vente,l\'échange,le négoce,l\'importation,l\'exportation',
+    'l\'achat ,la vente,l\'importation et l\'exportation de véhicules automobiles neufs ou d\'occasion',
+    'Importation de pneus ou usagers','toutes opérations de banque',
+    'Importation de motocycles et accessoires',
+    'Toutes activités liées à l\'importation, l\'exportation',
+    'Exploitation d\'infrastructures de transport terrestre',
+    'Aller au secours financier à tout salarié du secteur public ou privé',
+    'Micro finance','Importation de produits congelés et accessoire de chambres froides',
+    'L\'importation et la fourniture d\'équipements industriels, d\'engins lourds',
+    'Importation de produits naturels','Le Groupement a pour objet',
+    'L\'écoute médicale 24 heures sur 24 heures',
+    'L\'Authentificaion, la Certification et la Protection internationale de documents',
+    'L\'activité d\'agent maritime de l\'armement G.S.L/ZIM ou d\'un armateur ligne membre du groupe G.S.L/ZIM',
+    'La domiciliation de toutes sociétés,établissements,le recouvrement de créances,le conseil aux',
+    'Importation et exportation de la farine de blé',
+    'Importation de produits agroalimentaires',
+    'Importation de la génétique animale,produits de nutrition animale',
+    'La consignation maritime,la création et la gestion d\'agences maritimes,toutes opérations de manutention',
+    'Commerce de gros de bois','La production, la distribution et la vente de ciment',
+    'la gestion et l\'administration des hôpitaux et services de santé',
+    'Apport d\'appui en matière de gestion aux bureaux de liaison de l\'Afrique centrale et Occidentale',
+    'Importation de matériels d\'imprimerie',
+    'Apporter son concours financier à la promotion et à l\'amélioration de l\'habitat au Bénin',
+    'Les industries alimentaires','L\'exercice de la profession d\'assureur',
+    'La société a pour objet, commerce et réparation de consommables informatiques, de bureautique et autres',
+    'La propriété par voie d\'apport','L\'exploitation d\'une usine de fabrication',
+    'La classification','La gestion de Construction du GAZODUC Ouest Africain',
+    'Les services financiers de proximité par l\'octroi de crédit et la collecte de l\'épargne répondant aux besoins des petites et moyennes entreprises et industries béninoises',
+    'Importation de panneaux solaires et accessoires',
+    'Toutes activités de micro finance notamment les opérations de crédits,de mobilisation de l\'épargne',
+    'Extraction de pétrole brut et de gaz naturel',
+    'L\'importation et la vente des matériels électriques',
+    'La fourniture de tout conseil,sous toutes ses formes, aux administrations, aux associations,aux entreprises,aux banques',
+    'les activités de production,d\'égrennage et de contrôle de coton',
+    'Fabrication d\'autres ouvrages en métaux, travaildes métaux',
+    'Prise de participation sous quelque forme que soit dans les entreprises',
+    'Métallurgie et première transformation des métaux précieux et des métaux non ferreux',
+    'Fabrication d\'autres équipements de transport',
+    'La production de biens de consommation',
+    'Importation de matériels de pressing et de Mercerie',
+    'Conseil en transformation numérique, SSII','L\'exploitation de bureaux d\'achat',
+    'Fabrication d\'appareils domestiques n.c.a.',
+    'Commerce de gros de produits alimentaires,boissons et tabacs manufacturés'
   ];
 
   // ========================================================================
-  // UTILITAIRES
+  // 3. UTILITAIRES
   // ========================================================================
   const $ = id => document.getElementById(id);
   const esc = s => String(s ?? '').replace(/[&<>"']/g, m => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'})[m]);
@@ -387,6 +1084,7 @@
     }, 3500);
   }
 
+  // Auto‑complétion (générique)
   function autocomplete(inputId, listId, items) {
     const inp = $(inputId);
     const list = $(listId);
@@ -406,15 +1104,20 @@
         inp.value = e.target.textContent;
         list.classList.remove('show');
         inp.dispatchEvent(new Event('input'));
-        if (inp.tagName === 'TEXTAREA') inp.dispatchEvent(new Event('input'));
+        // Pour le textarea, on déclenche aussi l'événement input
+        if (inp.tagName === 'TEXTAREA') {
+          inp.dispatchEvent(new Event('input'));
+        }
       }
     });
   }
 
+  // Auto‑complétion pour communes, professions, nationalités
   autocomplete('commune', 'communeList', communes);
   autocomplete('profession', 'professionList', professions);
   autocomplete('nationalite', 'nationaliteList', nationalites);
 
+  // Auto‑complétion pour l'objet social (textarea)
   (function() {
     const inp = $('objet');
     const list = document.createElement('div');
@@ -445,7 +1148,7 @@
   })();
 
   // ========================================================================
-  // ÉTAT ET NAVIGATION
+  // 4. ÉTAT ET NAVIGATION
   // ========================================================================
   let step = 0;
   const totalSteps = 5;
@@ -468,6 +1171,9 @@
     $('next').classList.toggle('hidden', step === totalSteps - 1);
   }
 
+  // ========================================================================
+  // 5. VALIDATION
+  // ========================================================================
   function validateStep(n) {
     let ok = true, first = null;
     const container = document.querySelector(`.step[data-step="${n}"]`);
@@ -480,39 +1186,62 @@
         first = first || f;
       }
     });
+
     if (n === 0) {
       const d = parseInt($('duree').value);
       if (isNaN(d) || d < 1 || d > 99) {
-        ok = false; first = first || $('duree'); toast('La durée doit être entre 1 et 99 ans.', 'error');
+        ok = false;
+        first = first || $('duree');
+        toast('La durée doit être comprise entre 1 et 99 ans.', 'error');
       }
     }
+
     if (n === 2) {
       const npi = $('npi').value.replace(/\D/g,'');
       const pno = $('pieceNo').value.replace(/\D/g,'');
-      if (npi.length < 1 || npi.length > 14) { ok = false; first = first || $('npi'); toast('NPI invalide.', 'error'); }
-      if (pno.length < 1 || pno.length > 14) { ok = false; first = first || $('pieceNo'); toast('Numéro de pièce invalide.', 'error'); }
+      if (npi.length < 1 || npi.length > 14) {
+        ok = false;
+        first = first || $('npi');
+        toast('Le NPI doit contenir entre 1 et 14 chiffres.', 'error');
+      }
+      if (pno.length < 1 || pno.length > 14) {
+        ok = false;
+        first = first || $('pieceNo');
+        toast('Le numéro de pièce doit contenir entre 1 et 14 chiffres.', 'error');
+      }
     }
+
     if (n === 3) {
       const rows = document.querySelectorAll('.sub');
-      if (!rows.length) { toast('Ajoutez au moins un souscripteur.', 'error'); return false; }
+      if (!rows.length) {
+        toast('Ajoutez au moins un souscripteur.', 'error');
+        return false;
+      }
       let totalParts = 0, totalMoney = 0;
       rows.forEach(r => {
         r.querySelectorAll('[required]').forEach(f => {
           f.classList.remove('bad');
-          if (!String(f.value || '').trim()) { f.classList.add('bad'); ok = false; first = first || f; }
+          if (!String(f.value || '').trim()) {
+            f.classList.add('bad');
+            ok = false;
+            first = first || f;
+          }
         });
         totalParts += parseInt(r.querySelector('.parts')?.value || 0);
         totalMoney += parseInt(r.querySelector('.money')?.value || 0);
       });
       const nbParts = parseInt($('nbparts').value) || 0;
       if (totalParts !== nbParts) {
-        ok = false; toast(`Le total des parts (${totalParts}) doit être égal à ${nbParts}.`, 'error');
+        ok = false;
+        toast(`Le total des parts (${totalParts}) doit être égal à ${nbParts}.`, 'error');
       }
       const capital = parseInt($('capital').value) || 0;
       if (totalMoney > capital) {
-        ok = false; toast(`Le total des versements (${money(totalMoney)}) dépasse le capital (${money(capital)}).`, 'error');
+        ok = false;
+        toast(`Le total des versements (${money(totalMoney)}) dépasse le capital (${money(capital)}).`, 'error');
       }
     }
+
     if (!ok && first) {
       first.focus();
       if (!first.closest('.step')?.classList.contains('hidden')) {
@@ -522,20 +1251,30 @@
     return ok;
   }
 
+  // ========================================================================
+  // 6. NAVIGATION
+  // ========================================================================
   $('next').addEventListener('click', () => {
     if (validateStep(step)) {
-      if (step === 3) updateRecap();
+      if (step === 3) { // avant l'étape 4, on met à jour le récapitulatif
+        updateRecap();
+      }
       step++;
       updateProgress();
       window.scrollTo({ top: 0, behavior: 'smooth' });
     }
   });
+
   $('prev').addEventListener('click', () => {
-    if (step > 0) { step--; updateProgress(); window.scrollTo({ top: 0, behavior: 'smooth' }); }
+    if (step > 0) {
+      step--;
+      updateProgress();
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
   });
 
   // ========================================================================
-  // SOUSCRIPTEURS
+  // 7. SOUSCRIPTEURS
   // ========================================================================
   function addSubscriber() {
     const div = document.createElement('div');
@@ -549,13 +1288,16 @@
       </div>
       <button type="button" class="btn danger remove" style="margin-top:8px"><i class="fa-regular fa-trash"></i> Supprimer</button>
     `;
-    div.querySelector('.remove').addEventListener('click', () => { div.remove(); updateTotals(); });
+    div.querySelector('.remove').addEventListener('click', () => {
+      div.remove();
+      updateTotals();
+    });
     div.querySelectorAll('input').forEach(inp => inp.addEventListener('input', updateTotals));
     $('subs').append(div);
     updateTotals();
   }
   $('add').addEventListener('click', addSubscriber);
-  addSubscriber();
+  addSubscriber(); // Premier souscripteur par défaut
 
   function updateTotals() {
     let p=0, m=0;
@@ -568,7 +1310,7 @@
   }
 
   // ========================================================================
-  // RÉCAPITULATIF
+  // 8. RÉCAPITULATIF
   // ========================================================================
   function updateRecap() {
     const d = collectData();
@@ -590,7 +1332,7 @@
   }
 
   // ========================================================================
-  // COLLECTE DES DONNÉES
+  // 9. COLLECTE DES DONNÉES
   // ========================================================================
   function collectData() {
     const ids = ['forme','type','commune','duree','denom','capital','nbparts','valpart',
@@ -616,10 +1358,11 @@
   }
 
   // ========================================================================
-  // GÉNÉRATION DES DOCUMENTS
+  // 10. GÉNÉRATION DES DOCUMENTS (TEXTES EXACTS)
   // ========================================================================
   const NOTAIRE = 'Maître Fadhil Firmin Gbadebo Éric ADAMON';
 
+  // Conversion nombre → lettres (français)
   function nw(n) {
     n = Math.round(+n || 0);
     if (n === 0) return 'zéro';
@@ -650,6 +1393,7 @@
     return parts.join(' ');
   }
 
+  // Date en toutes lettres
   function dw(dateStr) {
     if (!dateStr) return '';
     const d = new Date(dateStr + 'T12:00:00');
@@ -659,7 +1403,7 @@
   }
 
   // ========================================================================
-  // TEXTES EXACTS DES ARTICLES (CORRIGÉS)
+  // TEXTES EXACTS DES ARTICLES (d'après STATUTS GAFER SARL.doc)
   // ========================================================================
   const EXACT_ARTICLES = {
     8: "Le capital peut être augmenté ou réduit, par décision extraordinaire de l’associé unique, dans les conditions et suivant les modalités fixées par les textes en vigueur.",
@@ -689,7 +1433,7 @@
     const year = new Date(d.dateActe+'T12:00:00').getFullYear();
     let html = `<div class="document">`;
 
-    // Préambule
+    // En‑tête
     html += `<p class="right"><span class="bold">L’AN ${nw(year).toUpperCase()}</span><br><span class="bold">ET LE ${dw(d.dateActe)}</span></p>`;
     html += `<p><span class="bold u">PARDEVANT</span> <span class="bold">${NOTAIRE}</span>, Notaire à LOKOSSA (République du Bénin), soussigné ;</p>`;
     html += `<p class="center bold u">A COMPARU :</p>`;
@@ -700,10 +1444,10 @@
     html += `<p><span class="bold u">${fem?'LAQUELLE':'LEQUEL'}</span>, a établi ainsi qu’il suit les statuts d’une ${esc(d.forme)} qu’il/elle a convenu de constituer.</p>`;
     html += `<p class="title">STATUTS</p>`;
 
-    // Articles
+    // Articles 1 à 24
     const articles = [
       { num: 1, titre: 'FORME', corps: `Il est formé une ${esc(d.forme)} qui sera régie par les dispositions de l’Acte Uniforme Révisé de l’OHADA relatif au droit des Sociétés Commerciales et du Groupement d’Intérêt Economique (ci‑après désigné « Acte Uniforme »), par toutes autres dispositions légales et règlementaires en vigueur au Bénin ainsi que par les présents statuts.` },
-      { num: 2, titre: 'DÉNOMINATION', corps: `La société prend la dénomination de <span class="bold">« ${esc(d.denom)} »</span>. La dénomination sociale doit figurer sur tous les actes et documents émanant de la Société et destinés aux tiers, notamment les lettres, les factures, les annonces et publications diverses. Elle doit être précédée ou suivie immédiatement en caractères lisibles de l’indication de la forme de la société, du montant de son capital social, de l’adresse de son siège social et de la mention de son immatriculation au registre du commerce et du crédit mobilier.` },
+      { num: 2, titre: 'DÉNOMINATION', corps: `La société prend la dénomination de « ${esc(d.denom)} ». La dénomination sociale doit figurer sur tous les actes et documents émanant de la Société et destinés aux tiers, notamment les lettres, les factures, les annonces et publications diverses. Elle doit être précédée ou suivie immédiatement en caractères lisibles de l’indication de la forme de la société, du montant de son capital social, de l’adresse de son siège social et de la mention de son immatriculation au registre du commerce et du crédit mobilier.` },
       { num: 3, titre: 'OBJET SOCIAL', corps: `La Société a pour objet en République du Bénin et à l’Etranger :<br>${d.objet.map(x => `- ${esc(x)} ;`).join('<br>')}<br>Et plus généralement, toutes opérations commerciales, financières, industrielles, mobilières ou immobilières pouvant se rattacher directement ou indirectement à l’objet ci‑dessus défini ainsi qu’à tous objets similaires ou connexes ou susceptibles d’en faciliter la réalisation.` },
       { num: 4, titre: 'SIEGE SOCIAL – SUCCURSALE – BUREAU DE REPRESENTATION OU DE LIAISON', corps: `Le siège social est fixé à ${esc(d.commune)}, quartier ${esc(d.quartier)}${d.parcelle?', parcelle « '+esc(d.parcelle)+' »':''}, TF ${esc(d.tf)}${d.proprietaire?', maison '+esc(d.proprietaire):''}, Téléphone : ${esc(d.tel)}, email : <span class="email-blue">${esc(d.email)}</span>. Il pourra être transféré à un autre endroit de la même ville par décision de la gérance et en tout autre lieu par l’associé unique. Des succursales pourront être créées en tous lieux et en tous pays conformément aux articles 116 et suivants de l’Acte Uniforme. De même, la société peut créer des bureaux de représentation ou de liaison en tous lieux et en tous pays conformément aux articles 120-1 et suivants de l’Acte Uniforme. La succursale, le bureau de représentation ou de liaison doivent être immatriculés au registre du commerce et du crédit mobilier conformément aux dispositions organisant ce registre.` },
       { num: 5, titre: 'DURÉE', corps: `La durée de la société est fixée à ${d.duree} années à compter de la date de son immatriculation au Registre du Commerce et du Crédit Mobilier, sauf prorogation ou dissolution anticipée.` },
@@ -711,7 +1455,7 @@
       { num: 7, titre: 'APPORTS', corps: `Le capital social est fixé à la somme de ${nw(d.capital)} (${money(d.capital)}) de francs CFA, constitué au moyen des apports ci‑dessus constatés. Il est divisé en ${nw(d.nbparts)} (${money(d.nbparts)}) parts égales, de ${money(d.valpart)} francs chacune, intégralement souscrites, par l’associé unique ainsi qu’il suit :<br>${ (() => { let cumul = 0; return d.subs.map(s => { const debut = cumul + 1; const fin = cumul + s.parts; cumul = fin; return `<span class="bold">${esc(s.name)}</span>, à concurrence de ${money(s.parts)} parts, numérotées de ${debut} à ${fin} ;`; }).join('<br>'); })() }<br>Total égal au nombre des parts créées, soit ${nw(d.nbparts)} parts.` }
     ];
 
-    // Articles 8 à 23
+    // Articles 8 à 23 avec textes exacts
     const titres = [
       'AUGMENTATION ET REDUCTION DE CAPITAL',
       'REPRESENTATION DES PARTS SOCIALES',
@@ -734,6 +1478,7 @@
       const idx = i-8;
       const titre = titres[idx] || '';
       let corps = EXACT_ARTICLES[i] || `(Dispositions de l’article ${i} selon l’Acte Uniforme.)`;
+      // Article 16 personnalisé
       if (i === 16) {
         corps = `${esc(d.civilite)} ${esc(d.prenom)} <span class="bold">${esc(d.nom)}</span> est nommé aux fonctions de Gérant et ce pour une durée indéterminée. ${esc(d.civilite)} ${esc(d.prenom)} <span class="bold">${esc(d.nom)}</span>, déclare qu’il/elle n’est frappé(e) d’aucune mesure prévue par l’Acte Uniforme OHADA susceptible de lui interdire l’exercice des fonctions de Gérant de société, et qu’il/elle accepte lesdites fonctions.`;
       }
@@ -745,20 +1490,21 @@
     const sujet = nbSouscripteurs === 1 ? 'le souscripteur' : 'les souscripteurs';
     const verbeVerser = nbSouscripteurs === 1 ? 'a versé' : 'ont versé';
     const verbeDeposer = nbSouscripteurs === 1 ? 'a été déposée' : 'ont été déposées';
+    const pronom = nbSouscripteurs === 1 ? 'lui' : 'eux';
     articles.push({
       num: 24,
       titre: 'DECLARATION DE SOUSCRIPTION ET DE VERSEMENT',
-      corps: `Le comparant déclare :<br>- Que les ${nw(d.nbparts)} (${money(d.nbparts)}) parts sociales de ${money(d.valpart)} Francs CFA chacune de la société dénommée <span class="bold">« ${esc(d.denom)} »</span>, ont été entièrement souscrites.<br>- Que ${sujet} ${verbeVerser} le montant total de souscription soit au total la somme de ${nw(totalVersements)} (${money(totalVersements)}) de Francs CFA. Laquelle somme totale de ${nw(totalVersements).toUpperCase()} (${money(totalVersements)}) de Francs CFA ${verbeDeposer} en l’étude du Notaire soussigné au nom de la société dès avant ce jour. Il requiert le Notaire Soussigné de lui donner acte de cette déclaration. Sur ce requis, ${NOTAIRE}, Notaire Soussigné affirme sur la présentation qui lui a été faite, de la liste de souscription des parts sociales mentionnant la somme versée par ${nbSouscripteurs === 1 ? 'le souscripteur' : 'les souscripteurs'}. Que le montant du versement mentionné sur la liste de souscription représentant au total la somme de ${nw(totalVersements).toUpperCase()} (${money(totalVersements)}) de Francs CFA est conforme au montant des sommes effectivement déposées.`
+      corps: `Le comparant déclare :<br>- Que les ${nw(d.nbparts)} (${money(d.nbparts)}) parts sociales de ${money(d.valpart)} Francs CFA chacune de la société dénommée <span class="bold">« ${esc(d.denom)} »</span>, ont été entièrement souscrites.<br>- Que ${sujet} ${verbeVerser} le montant total de souscription soit au total la somme de ${nw(totalVersements)} (${money(totalVersements)}) de Francs CFA. Laquelle somme totale de ${nw(totalVersements).toUpperCase()} (${money(totalVersements)}) de Francs CFA ${verbeDeposer} en l’étude du Notaire soussigné au nom de la société dès avant ce jour. Il requiert le Notaire Soussigné de ${pronom} donner acte de cette déclaration. Sur ce requis, ${NOTAIRE}, Notaire Soussigné affirme sur la présentation qui lui a été faite, de la liste de souscription des parts sociales mentionnant la somme versée par ${sujet}. Que le montant du versement mentionné sur la liste de souscription représentant au total la somme de ${nw(totalVersements).toUpperCase()} (${money(totalVersements)}) de Francs CFA est conforme au montant des sommes effectivement déposées.`
     });
 
-    // Génération des articles
+    // Générer les articles
     articles.forEach(a => {
       const numStr = a.num === 1 ? '1<sup>er</sup>' : a.num;
       html += `<p class="article">ARTICLE ${numStr} : ${esc(a.titre)}</p>`;
       html += `<p>${a.corps}</p>`;
     });
 
-    // Annexes et fin
+    // Annexes
     html += `<p class="article">ANNEXES</p>`;
     html += `<p>Sont demeurées ci‑après annexées après mention :</p>`;
     html += `<p>La liste de souscription contenant les noms, prénoms, domicile et la somme versée par l’associé unique ;</p>`;
@@ -767,7 +1513,7 @@
     html += `<p>FAIT ET PASSE en l’Etude de <span class="bold">${NOTAIRE}</span> ;</p>`;
     html += `<p>Et après lecture faite, le comparant, ès‑nom et nom, a signé avec le Notaire Soussigné.</p>`;
 
-    // Tableau des signatures
+    // Tableau des signatures (conforme à la capture)
     html += `<table class="sig"><thead><tr><th>NOMS ET PRENOMS</th><th>SIGNATURES</th></tr></thead><tbody>`;
     html += `<tr><td>${esc(d.civilite)} ${esc(d.prenom)} <span class="bold">${esc(d.nom)}</span></td><td>&nbsp;</td></tr>`;
     html += `<tr><td><span class="bold">${NOTAIRE}</span><br>Notaire</td><td>&nbsp;</td></tr>`;
@@ -787,7 +1533,7 @@
     html += `<p class="center">« ${esc(d.denom)} » ${esc(d.forme)}, au capital de ${nw(d.capital).toUpperCase()} (${money(d.capital)}) de Francs CFA</p>`;
     html += `<p><span class="bold">Siège social :</span> à ${esc(d.commune)}, quartier ${esc(d.quartier)}${d.parcelle?', parcelle « '+esc(d.parcelle)+' »':''}, TF ${esc(d.tf)}${d.proprietaire?', maison '+esc(d.proprietaire):''}, Téléphone : ${esc(d.tel)}, email : <span class="email-blue">${esc(d.email)}</span></p>`;
 
-    // Tableau
+    // Tableau de l'annexe (4 colonnes)
     html += `<table><thead><tr><th>Noms, Prénoms et domicile des souscripteurs</th><th>Nombre de parts sociales Souscrites</th><th>Montant total des parts sociales en FCFA</th><th>Montant des versements effectués en FCFA</th></tr></thead><tbody>`;
     d.subs.forEach(s => {
       html += `<tr><td><span class="bold">${esc(s.name)}</span>, demeurant à ${esc(s.home)}</td><td style="text-align:center">${money(s.parts)} parts</td><td style="text-align:right">${money(s.money)} FCFA</td><td style="text-align:right">${money(s.money)} FCFA</td></tr>`;
@@ -805,7 +1551,7 @@
     html += `<p class="right">L’AN ${nw(year).toUpperCase()}<br>ET LE ${dw(d.dateActe)}</p>`;
     html += `<p>Et après lecture faite, le comparant, ès‑nom et nom, a signé avec <span class="bold">${NOTAIRE}</span>, Notaire soussigné.</p>`;
 
-    // Tableau des signatures
+    // Tableau des signatures (identique aux statuts)
     html += `<table class="sig"><thead><tr><th>NOMS ET PRENOMS</th><th>SIGNATURES</th></tr></thead><tbody>`;
     html += `<tr><td>${esc(d.civilite)} ${esc(d.prenom)} <span class="bold">${esc(d.nom)}</span></td><td>&nbsp;</td></tr>`;
     html += `<tr><td><span class="bold">${NOTAIRE}</span><br>Notaire</td><td>&nbsp;</td></tr>`;
@@ -815,7 +1561,7 @@
   }
 
   // ========================================================================
-  // GÉNÉRATION ET EXPORTS
+  // 11. GÉNÉRATION ET EXPORTS
   // ========================================================================
   function generate() {
     if (!validateStep(4)) return;
@@ -864,11 +1610,13 @@ body{font-family:"Times New Roman",serif;color:#111}.document{max-width:820px;ma
     download(new Blob([wrapForExport(docs[currentTab], currentTab)], { type: 'application/msword' }), currentTab+'.doc');
     toast('Export Word réussi.', 'success');
   });
+
   $('html').addEventListener('click', () => {
     if (!docs[currentTab]) { toast('Générez d’abord les documents.', 'error'); return; }
     download(new Blob([wrapForExport(docs[currentTab], currentTab)], { type: 'text/html' }), currentTab+'.html');
     toast('Export HTML réussi.', 'success');
   });
+
   $('pdf').addEventListener('click', () => {
     if (!docs[currentTab]) { toast('Générez d’abord les documents.', 'error'); return; }
     const w = window.open('', '_blank', 'width=900,height=800');
@@ -879,7 +1627,7 @@ body{font-family:"Times New Roman",serif;color:#111}.document{max-width:820px;ma
   });
 
   // ========================================================================
-  // PERSISTANCE LOCALE
+  // 12. PERSISTANCE LOCALE
   // ========================================================================
   function saveState() {
     const data = {};
@@ -937,7 +1685,7 @@ body{font-family:"Times New Roman",serif;color:#111}.document{max-width:820px;ma
   document.addEventListener('change', saveState);
 
   // ========================================================================
-  // INITIALISATION
+  // 13. INITIALISATION
   // ========================================================================
   function init() {
     const today = new Date().toISOString().slice(0,10);
