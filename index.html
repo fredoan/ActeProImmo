@@ -150,6 +150,18 @@
     @media(max-width:700px){.dashboard-summary{grid-template-columns:1fr}.header-flex{gap:10px;align-items:flex-start}.header-flex h1{font-size:1.2rem}}
 
     .app-footer { text-align: center; padding: 1rem; font-size: 0.75rem; color: var(--muted); margin-top: auto; }
+    .legal-alert{margin:12px 0 16px;padding:13px 15px;border-radius:10px;font-size:.78rem;line-height:1.5;border-left:4px solid;}
+    .legal-alert.info{background:#eef6ff;color:#244b70;border-color:#3b82f6;}
+    .legal-alert.warning{background:#fff8e7;color:#75520a;border-color:#d99a16;}
+    .legal-alert.danger{background:#fff0f0;color:#8b1e1e;border-color:#c0392b;}
+    .designation-box{margin:10px 0 16px;padding:14px;border:1px solid #e3e8ee;border-radius:12px;background:#f8fafc;}
+    .audit-actions{display:flex;gap:10px;flex-wrap:wrap;margin:0 0 18px;}
+    .audit-screen-title{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:16px;}
+    .audit-filter{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:14px;}
+    .audit-filter input,.audit-filter select{padding:10px;border:1.5px solid #d7d3c6;border-radius:8px;}
+    .audit-table td{font-size:.76rem;vertical-align:top;}
+    .audit-action{font-weight:700;color:var(--navy);}
+    .audit-details{color:#64748b;font-size:.68rem;white-space:pre-wrap;word-break:break-word;}
 
     .subsection-title{font-size:.68rem;text-transform:uppercase;letter-spacing:.08em;color:var(--accent);font-weight:700;margin:14px 0 6px;border-bottom:1px solid #e5dfd2;padding-bottom:4px}.three-col-grid{grid-template-columns:repeat(3,1fr)}.review-box{background:#fbfaf7;border:1px solid var(--line);border-radius:8px;padding:18px;line-height:1.8}.review-box p{margin:0;border-bottom:1px solid #eee;padding:5px 0}.no-preview-note{margin-top:18px;padding:14px;border-radius:8px;background:#eef5f8;border-left:4px solid var(--navy);font-size:.78rem;color:var(--navy)}.wizard-security-note{font-size:.7rem;color:var(--muted);margin-top:8px}@media(max-width:600px){.three-col-grid{grid-template-columns:1fr}}
 
@@ -194,7 +206,10 @@
     @keyframes splashArrow{0%,100%{opacity:.25;transform:translateX(-35px) scaleX(.75)}50%{opacity:1;transform:translateX(35px) scaleX(1)}}
     @keyframes splashPulse{0%,100%{transform:scale(.92);opacity:.45}50%{transform:scale(1.04);opacity:.9}}
     @media(max-width:600px){.splash-letters{font-size:2.1rem;gap:2px}.splash-arrow{bottom:20%;width:100px}}
-  </style>
+  
+/* ===== ACTEPRO IMMO · INTERFACE PREMIUM ===== */
+.property-head{display:flex;align-items:flex-end;justify-content:space-between;gap:20px;margin-bottom:18px;padding:4px 2px 2px}.property-head h2{margin:4px 0 6px;font-size:1.55rem;letter-spacing:-.02em}.eyebrow{font-size:.65rem;font-weight:800;letter-spacing:.14em;color:#a77b2b}.property-head .section-intro{margin:0;max-width:760px}.live-status,.status-live,.status-neutral{display:inline-flex;align-items:center;gap:7px;border-radius:999px;padding:8px 12px;font-size:.66rem;font-weight:800;letter-spacing:.06em;white-space:nowrap}.live-status{background:#f0f6fa;color:#31546e;border:1px solid #d7e5ee}.status-live{background:#ecfdf3;color:#147447;border:1px solid #bce8ce}.status-neutral{background:#f3f5f7;color:#667381;border:1px solid #e1e6ea}.live-dot{width:7px;height:7px;border-radius:50%;background:#20a56b;box-shadow:0 0 0 4px rgba(32,165,107,.12);animation:actePulse 1.8s infinite}.property-layout{display:grid;grid-template-columns:minmax(0,1fr) 330px;gap:18px;align-items:start}.property-form{min-width:0}.form-section-card{background:linear-gradient(180deg,#fff 0%,#fcfdfd 100%);border:1px solid #e1e8ed;border-radius:16px;padding:18px;box-shadow:0 10px 28px rgba(23,43,61,.055)}.form-section-title{display:flex;align-items:center;gap:11px;margin-bottom:15px}.form-section-title strong{display:block;font-size:.88rem;color:#23384c}.form-section-title small{display:block;color:#7a8792;margin-top:2px;font-size:.68rem}.section-icon{width:34px;height:34px;display:grid;place-items:center;border-radius:10px;background:#eef5f8;color:#24516c;font-size:1.1rem}.legal-panel{position:sticky;top:18px;overflow:hidden;border:1px solid #dce5eb;border-radius:16px;background:#fff;box-shadow:0 14px 36px rgba(24,43,61,.09);min-height:260px;animation:panelIn .35s ease}.legal-panel-top{display:flex;align-items:center;justify-content:space-between;padding:14px 15px;border-bottom:1px solid #edf1f3;background:linear-gradient(135deg,#fbfcfd,#f5f8fa)}.legal-badge{font-size:.62rem;font-weight:900;letter-spacing:.1em;color:#29475c}.legal-empty{padding:28px 22px;text-align:center;color:#6e7c88}.legal-empty-icon{width:46px;height:46px;border-radius:50%;display:grid;place-items:center;margin:0 auto 12px;background:#eef7f2;color:#19825b;font-size:1.2rem;font-weight:900}.legal-empty strong{display:block;color:#33495a;font-size:.84rem}.legal-empty p{font-size:.7rem;line-height:1.55;margin:7px 0 0}.legal-hero{display:flex;gap:12px;padding:17px 16px 15px;border-bottom:1px solid rgba(0,0,0,.05)}.legal-hero-icon{font-size:1.35rem;line-height:1}.legal-hero strong{display:block;font-size:.9rem;line-height:1.3}.legal-hero p{margin:6px 0 0;font-size:.7rem;line-height:1.55}.legal-level{display:inline-block;font-size:.56rem;font-weight:900;letter-spacing:.1em;margin-bottom:5px;opacity:.75}.legal-hero.info{background:linear-gradient(135deg,#eff8ff,#f8fbff);color:#1f5279;border-left:4px solid #3b82f6}.legal-hero.warning{background:linear-gradient(135deg,#fff8e8,#fffdf7);color:#76520b;border-left:4px solid #e0a12a}.legal-hero.danger{background:linear-gradient(135deg,#fff0f0,#fffafa);color:#8c2020;border-left:4px solid #d33a3a;animation:alertGlow 2.2s ease-in-out infinite}.legal-metric{padding:14px 16px}.legal-metric>div:first-child{display:flex;justify-content:space-between;align-items:end;gap:8px}.legal-metric span{font-size:.62rem;color:#77838e}.legal-metric strong{font-size:1rem;color:#23394c}.legal-progress{height:6px;background:#edf0f2;border-radius:999px;overflow:hidden;margin-top:9px}.legal-progress i{display:block;height:100%;border-radius:999px;background:linear-gradient(90deg,#2e7658,#b58a35);transition:width .45s cubic-bezier(.2,.8,.2,1)}.legal-procedure{margin:0 16px 12px;padding:11px 12px;border:1px solid #e6ebee;border-radius:10px;background:#f8fafb}.legal-procedure span{display:block;font-size:.55rem;font-weight:900;letter-spacing:.1em;color:#8a969f;margin-bottom:4px}.legal-procedure strong{font-size:.72rem;color:#30485a}.legal-note{margin:0 16px 16px;padding:10px 11px;border-radius:9px;background:#f7f9fa;color:#687681;font-size:.61rem;line-height:1.5}.form-section-card .form-grid{margin-bottom:0}.form-section-card .field input,.form-section-card .smart-field input{transition:border-color .2s,box-shadow .2s,transform .2s}.form-section-card .field input:focus,.form-section-card .smart-field input:focus{border-color:#426d88;box-shadow:0 0 0 3px rgba(66,109,136,.10);transform:translateY(-1px)}@keyframes actePulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.55;transform:scale(.82)}}@keyframes panelIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}@keyframes alertGlow{0%,100%{box-shadow:inset 0 0 0 rgba(211,58,58,0)}50%{box-shadow:inset 0 0 22px rgba(211,58,58,.06)}}@media(max-width:900px){.property-layout{grid-template-columns:1fr}.legal-panel{position:relative;top:auto;order:-1}.property-head{align-items:flex-start;flex-direction:column}.live-status{align-self:flex-start}}@media(max-width:600px){.form-section-card{padding:13px}.property-head h2{font-size:1.3rem}.legal-panel{border-radius:13px}}
+</style>
 </head>
 <body>
 <div id="toast" class="toast" role="status" aria-live="polite"></div>
@@ -235,10 +250,39 @@
     </select>
     <button class="btn btn-success btn-sm" id="btnAddUser">➕ Ajouter</button>
   </div>
+  <div class="audit-actions">
+    <button class="btn btn-primary" id="btnAdminWorkspace">✍️ Travailler comme notaire</button>
+    <button class="btn btn-warning" id="btnOpenAudit">🛡️ Journal d'audit</button>
+  </div>
   <div class="table-wrap"><table id="usersTable">
     <thead><tr><th>Nom</th><th>Email</th><th>Rôle</th><th>Créé le</th><th>Action</th></tr></thead>
     <tbody></tbody>
   </table></div>
+</div>
+
+<!-- JOURNAL D'AUDIT -->
+<div id="auditScreen" class="panel hidden">
+  <div class="audit-screen-title">
+    <h1>🛡️ Journal d'audit</h1>
+    <button class="btn btn-back" id="btnBackFromAudit">← Administration</button>
+  </div>
+  <div class="no-preview-note" style="margin-bottom:14px;">🔒 Journal des actions métier importantes avec utilisateur, rôle et date/heure. Les règles Firestore doivent interdire la modification et la suppression des documents <strong>auditLogs</strong>.</div>
+  <div class="audit-filter">
+    <input type="text" id="auditSearch" placeholder="Rechercher utilisateur, action, description…">
+    <select id="auditActionFilter">
+      <option value="">Toutes les actions</option>
+      <option value="CONNEXION">Connexion</option><option value="DECONNEXION">Déconnexion</option>
+      <option value="CREATION_UTILISATEUR">Création utilisateur</option><option value="MODIFICATION_UTILISATEUR">Modification utilisateur</option><option value="SUPPRESSION_UTILISATEUR">Suppression utilisateur</option>
+      <option value="NOUVEAU_DOSSIER">Nouveau dossier</option><option value="OUVERTURE_DOSSIER">Ouverture dossier</option><option value="ENREGISTREMENT_DOSSIER">Enregistrement dossier</option>
+      <option value="GENERATION_ACTE">Génération acte</option><option value="EXPORT_WORD">Export Word</option><option value="EXPORT_PDF">Export PDF</option><option value="EXPORT_HTML">Export HTML</option><option value="SUPPRESSION_DOSSIER">Suppression dossier</option>
+      <option value="ESPACE_NOTAIRE">Espace notaire</option><option value="OUVERTURE_AUDIT">Ouverture audit</option>
+    </select>
+  </div>
+  <div class="table-wrap"><table id="auditTable" class="audit-table">
+    <thead><tr><th>Date / heure</th><th>Utilisateur</th><th>Rôle</th><th>Action</th><th>Description</th><th>Détails</th></tr></thead>
+    <tbody></tbody>
+  </table></div>
+  <div class="dashboard-empty hidden" id="auditEmpty">🛡️ Aucun événement d'audit enregistré.</div>
 </div>
 
 <!-- DASHBOARD -->
@@ -1179,7 +1223,7 @@ function val(id){
   const map={
     vGenre:['vendeur','genre'],vPrenom:['vendeur','prenom'],vNom:['vendeur','nom'],vProfession:['vendeur','profession'],vDomVille:['vendeur','commune'],vDomQuartier:['vendeur','quartier'],vDomCarre:['vendeur','carre'],vDomMaison:['vendeur','maison'],vLieuNaissance:['vendeur','lieuNaissance'],vNaissJour:['vendeur','naissJour'],vNaissMois:['vendeur','naissMois'],vNaissAnnee:['vendeur','naissAnnee'],vNPI:['vendeur','npi'],vPieceType:['vendeur','pieceType'],vPieceAutre:['vendeur','pieceAutre'],vPieceNumero:['vendeur','pieceNumero'],vExpJour:['vendeur','expJour'],vExpMois:['vendeur','expMois'],vExpAnnee:['vendeur','expAnnee'],vNationalite:['vendeur','nationalite'],
     aGenre:['acquereur','genre'],aPrenom:['acquereur','prenom'],aNom:['acquereur','nom'],aProfession:['acquereur','profession'],aDomVille:['acquereur','commune'],aDomQuartier:['acquereur','quartier'],aDomCarre:['acquereur','carre'],aDomMaison:['acquereur','maison'],aLieuNaissance:['acquereur','lieuNaissance'],aNaissJour:['acquereur','naissJour'],aNaissMois:['acquereur','naissMois'],aNaissAnnee:['acquereur','naissAnnee'],aNPI:['acquereur','npi'],aPieceType:['acquereur','pieceType'],aPieceAutre:['acquereur','pieceAutre'],aPieceNumero:['acquereur','pieceNumero'],aExpJour:['acquereur','expJour'],aExpMois:['acquereur','expMois'],aExpAnnee:['acquereur','expAnnee'],aNationalite:['acquereur','nationalite'],
-    bienType:['bien','type'],bienForme:['bien','forme'],bienEtat:['bien','etat'],bienSis:['bien','sis'],bienArrondissement:['bien','arrond'],bienCommune:['bien','commune'],communeFormalites:['bien','communeFormalites'],bienHa:['bien','ha'],bienA:['bien','a'],bienCa:['bien','ca'],bienTF:['bien','tf'],bienVolume:['bien','volume'],bienFolio:['bien','folio'],
+    bienType:['bien','type'],bienDesignation:['bien','designation'],bienQuartier:['bien','quartier'],bienIlot:['bien','ilot'],bienLot:['bien','lot'],bienParcelle:['bien','parcelle'],bienForme:['bien','forme'],bienEtat:['bien','etat'],bienSis:['bien','sis'],bienArrondissement:['bien','arrond'],bienCommune:['bien','commune'],communeFormalites:['bien','communeFormalites'],bienHa:['bien','ha'],bienA:['bien','a'],bienCa:['bien','ca'],bienTF:['bien','tf'],bienVolume:['bien','volume'],bienFolio:['bien','folio'],
     origMode:['origine','mode'],origModeAutre:['origine','modeAutre'],origVendeurPrecedent:['origine','vendeur'],origConventionRef:['origine','ref'],origConventionDate:['origine','dateConv'],origPrix:['origine','prix'],prixVente:['root','prix'],acteAnnee:['dateActe','annee'],acteJourMois:['dateActe','jourMois']
   };
   const m=map[id];
@@ -1259,6 +1303,7 @@ function generateActeHTML(){
   let bienForme = val("bienForme");
   if(bienForme === "autre") bienForme = val("bienFormeAutre") || "autre";
   const bienEtat = val("bienEtat");
+  const bienDesignation = val("bienDesignation"), bienQuartier = val("bienQuartier"), bienIlot = val("bienIlot"), bienLot = val("bienLot"), bienParcelle = val("bienParcelle");
   const bienSis = val("bienSis");
   const bienArr = val("bienArrondissement");
   const bienCommune = val("bienCommune");
@@ -1295,7 +1340,8 @@ function generateActeHTML(){
   doc += `<p class="right bold underline">D'AUTRE PART ;</p>`;
   doc += `<p>${bTitle}, à ce ${bPresentAdj} et qui accepte, les bien et droits immobiliers, dont la désignation ci-après plus amplement désignée.</p>`;
   doc += `<p class="head">DESIGNATION</p>`;
-  doc += `<p>Les biens et droits immobiliers présentement vendus comprennent la propriété exclusive et particulière d'un immeuble ${esc(bienType)} ${esc(bienEtat)}, de forme ${esc(bienForme)}, sis à ${esc(bienSis)}, Arrondissement de ${esc(bienArr)}, Commune de ${esc(bienCommune)}, d'une contenance superficielle de <span class="bold">${superficieTxt}</span>, objet du titre foncier numéro ${esc(bienTF)}, inséré au registre foncier de la Commune de ${esc(bienCommune)}, Volume <span class="bold">${esc(bienVolume)},</span> Folio <span class="bold">${esc(bienFolio)}.</span></p>`;
+  const designationParts=[bienDesignation?`mode de désignation ${esc(bienDesignation)}`:"",bienQuartier?`quartier/village ${esc(bienQuartier)}`:"",bienIlot?`îlot ${esc(bienIlot)}`:"",bienLot?`lot ${esc(bienLot)}`:"",bienParcelle?`parcelle ${esc(bienParcelle)}`:""].filter(Boolean).join(", ");
+  doc += `<p>Les biens et droits immobiliers présentement vendus comprennent la propriété exclusive et particulière d'un immeuble ${esc(bienType)} ${esc(bienEtat)}, de forme ${esc(bienForme)}${designationParts ? ", identifié selon "+designationParts : ""}, sis à ${esc(bienSis)}, Arrondissement de ${esc(bienArr)}, Commune de ${esc(bienCommune)}, d'une contenance superficielle de <span class="bold">${superficieTxt}</span>, objet du titre foncier numéro ${esc(bienTF)}, inséré au registre foncier de la Commune de ${esc(bienCommune)}, Volume <span class="bold">${esc(bienVolume)},</span> Folio <span class="bold">${esc(bienFolio)}.</span></p>`;
   doc += `<p>Ainsi au surplus que ledit bien immobilier existe, s'étend, se poursuit et se comporte avec toutes ses aisances, dépendances et toutes mitoyennetés, sans aucune exception, ni réserve.</p>`;
   doc += `<p class="head-plain">SERVITUDE</p>`;
   doc += `<p>${sArtCap} ${sTitle} déclare qu'à sa connaissance le bien objet de la présente vente n'est grevé d'aucune autre servitude que celles administratives ordinaires.</p>`;
@@ -1388,9 +1434,11 @@ function generateActeHTML(){
   // ==== ÉCRANS ====
   const loginScreen = document.getElementById("loginScreen");
   const adminScreen = document.getElementById("adminScreen");
+  const auditScreen = document.getElementById("auditScreen");
   const userDashboard = document.getElementById("userDashboard");
   const wizardScreen = document.getElementById("wizardScreen");
   let currentUser = null, currentProfile = {}, currentDossierId = null, currentStep = 0;
+  let auditUnsubscribe=null;
   const totalSteps = 7;
   let dossierData = { vendeur:{}, acquereur:{}, bien:{}, origine:{}, prix:"", dateActe:{} };
 
@@ -1420,6 +1468,15 @@ function generateActeHTML(){
     el.textContent=message; el.className="toast show "+type;
     clearTimeout(toast._timer); toast._timer=setTimeout(()=>el.classList.remove("show"),3600);
   }
+
+  async function auditLog(action, description="", details={}){
+    if(!currentUser)return;
+    try{await db.collection("auditLogs").add({uid:currentUser.uid,email:currentUser.email||"",nom:profileValue(currentProfile,"nom","Nom")||"",role:getProfileRole(currentProfile)||"",action:String(action||""),description:String(description||""),details:details||{},date:firebase.firestore.FieldValue.serverTimestamp(),timestampClient:new Date().toISOString()});}
+    catch(e){console.error("Journal d'audit indisponible :",e);}
+  }
+  function auditDate(d){const x=d?.date?.toDate?.();if(x)return x.toLocaleString("fr-FR",{dateStyle:"short",timeStyle:"medium"});if(d?.timestampClient){const y=new Date(d.timestampClient);if(!Number.isNaN(y.getTime()))return y.toLocaleString("fr-FR",{dateStyle:"short",timeStyle:"medium"});}return "—";}
+  function showAudit(){if(getProfileRole(currentProfile)!=="admin"){toast("Accès réservé à l'administrateur.","error");return;}loginScreen.classList.add("hidden");adminScreen.classList.add("hidden");auditScreen.classList.remove("hidden");userDashboard.classList.add("hidden");wizardScreen.classList.add("hidden");loadAuditLogs();auditLog("OUVERTURE_AUDIT","L'administrateur a ouvert le journal d'audit");}
+  function loadAuditLogs(){if(auditUnsubscribe){auditUnsubscribe();auditUnsubscribe=null;}const tbody=document.querySelector("#auditTable tbody"),empty=document.getElementById("auditEmpty"),search=(document.getElementById("auditSearch")?.value||"").trim().toLowerCase(),action=document.getElementById("auditActionFilter")?.value||"";auditUnsubscribe=db.collection("auditLogs").orderBy("date","desc").limit(500).onSnapshot(snap=>{tbody.innerHTML="";let n=0;snap.forEach(doc=>{const d=doc.data()||{},hay=[d.nom,d.email,d.role,d.action,d.description,JSON.stringify(d.details||{})].join(" ").toLowerCase();if(action&&d.action!==action)return;if(search&&!hay.includes(search))return;n++;tbody.innerHTML+=`<tr><td>${esc(auditDate(d))}</td><td><strong>${esc(d.nom||"—")}</strong><br><span style="font-size:.68rem;color:#64748b">${esc(d.email||"")}</span></td><td>${esc(d.role||"—")}</td><td class="audit-action">${esc(d.action||"—")}</td><td>${esc(d.description||"")}</td><td class="audit-details">${esc(Object.keys(d.details||{}).length?JSON.stringify(d.details):"")}</td></tr>`;});empty.classList.toggle("hidden",n!==0);},err=>toast("Impossible de charger le journal d'audit : "+(err.code||err.message),"error"));}
   function loginStatus(text,type=""){
     const el=document.getElementById("loginStatus"); if(!el)return;
     el.className="login-status "+type; el.innerHTML=text;
@@ -1487,9 +1544,9 @@ function generateActeHTML(){
         currentProfile=snap.exists?snap.data():{};
         const role=getProfileRole(currentProfile), active=getProfileActive(currentProfile);
         if(snap.exists && role==="admin" && active){
-          loginStatus("✅ Session restaurée automatiquement · administrateur reconnu.","success"); showAdmin();
+          loginStatus("✅ Session restaurée automatiquement · administrateur reconnu.","success"); showAdmin(); await auditLog("CONNEXION","Connexion réussie — accès administrateur",{session:"restauree"});
         }else if(snap.exists && active){
-          loginStatus("✅ Session restaurée automatiquement · accès autorisé.","success"); showDashboard();
+          loginStatus("✅ Session restaurée automatiquement · accès autorisé.","success"); showDashboard(); await auditLog("CONNEXION","Connexion réussie — accès utilisateur",{session:"restauree"});
         }else{
           await auth.signOut();
           loginStatus("⚠️ Votre compte n'est pas encore configuré ou est désactivé.","error");
@@ -1505,24 +1562,26 @@ function generateActeHTML(){
   });
 
   async function logout(){
-    try{currentProfile={}; currentDossierId=null; await auth.signOut();toast("Vous êtes déconnecté.","success");}
+    try{if(currentUser)await auditLog("DECONNEXION","Déconnexion du logiciel");if(auditUnsubscribe){auditUnsubscribe();auditUnsubscribe=null;}currentProfile={};currentDossierId=null;await auth.signOut();toast("Vous êtes déconnecté.","success");}
     catch(e){toast("Impossible de terminer la session.","error");}
   }
   document.getElementById("btnLogoutAdmin").addEventListener("click", logout);
   document.getElementById("btnLogoutUser").addEventListener("click", logout);
 
   function showAdmin(){
-    loginScreen.classList.add("hidden"); adminScreen.classList.remove("hidden"); userDashboard.classList.add("hidden"); wizardScreen.classList.add("hidden");
-    loadUsers();
+    loginScreen.classList.add("hidden"); adminScreen.classList.remove("hidden"); auditScreen.classList.add("hidden"); userDashboard.classList.add("hidden"); wizardScreen.classList.add("hidden");
+    if(auditUnsubscribe){auditUnsubscribe();auditUnsubscribe=null;} loadUsers();
   }
   function showDashboard(){
-    loginScreen.classList.add("hidden"); adminScreen.classList.add("hidden"); userDashboard.classList.remove("hidden"); wizardScreen.classList.add("hidden");
-    const welcome=document.getElementById("userWelcome"); if(welcome)welcome.textContent=currentUser?.email?("· "+currentUser.email):"";
-    loadDossiers();
+    loginScreen.classList.add("hidden"); adminScreen.classList.add("hidden"); auditScreen.classList.add("hidden"); userDashboard.classList.remove("hidden"); wizardScreen.classList.add("hidden");
+    if(auditUnsubscribe){auditUnsubscribe();auditUnsubscribe=null;}
+    const isAdmin=getProfileRole(currentProfile)==="admin",title=userDashboard.querySelector("h1");
+    if(title)title.firstChild.textContent=isAdmin?"📁 Tous les dossiers ":"📁 Mes dossiers ";
+    const back=document.getElementById("btnBackToDashboard");if(back)back.textContent=isAdmin?"← Administration":"← Tableau de bord";
+    const welcome=document.getElementById("userWelcome");if(welcome)welcome.textContent=currentUser?.email?("· "+currentUser.email):"";loadDossiers();
   }
-  function showWizard(){
-    loginScreen.classList.add("hidden"); adminScreen.classList.add("hidden"); userDashboard.classList.add("hidden"); wizardScreen.classList.remove("hidden");
-  }
+  function showWizard(){loginScreen.classList.add("hidden");adminScreen.classList.add("hidden");auditScreen.classList.add("hidden");userDashboard.classList.add("hidden");wizardScreen.classList.remove("hidden");if(auditUnsubscribe){auditUnsubscribe();auditUnsubscribe=null;}}
+
 
   // ==== PROFILS / COMPATIBILITE ANCIENNES DONNEES ====
   function profileValue(data, ...keys){
@@ -1548,7 +1607,7 @@ function generateActeHTML(){
     const v=normalizePerson(raw.vendeur||{}), a=normalizePerson(raw.acquereur||{}), b=raw.bien||{}, o=raw.origine||{}, da=raw.dateActe||{};
     return {
       vendeur:v, acquereur:a,
-      bien:{type:profileValue(b,"type","Type"),etat:profileValue(b,"etat","ETAT","Etat"),forme:profileValue(b,"forme","Forme"),ha:profileValue(b,"ha"),a:profileValue(b,"a"),ca:profileValue(b,"ca"),tf:profileValue(b,"tf","Tf"),volume:profileValue(b,"volume","Volume"),folio:profileValue(b,"folio","Folio"),sis:profileValue(b,"sis","Sœur","Soeur","Sis"),dept:profileValue(b,"dept","Département","Departement"),commune:profileValue(b,"commune","Commune"),arrond:profileValue(b,"arrond","arrondissement","Arrondissement"),communeFormalites:profileValue(b,"communeFormalites","Formalités de la commune","Commune du bureau des formalités")},
+      bien:{type:profileValue(b,"type","Type"),designation:profileValue(b,"designation","Designation","modeDesignation"),quartier:profileValue(b,"quartier","Quartier","Village"),ilot:profileValue(b,"ilot","Îlot","Ilot"),lot:profileValue(b,"lot","Lot"),parcelle:profileValue(b,"parcelle","Parcelle"),etat:profileValue(b,"etat","ETAT","Etat"),forme:profileValue(b,"forme","Forme"),ha:profileValue(b,"ha"),a:profileValue(b,"a"),ca:profileValue(b,"ca"),tf:profileValue(b,"tf","Tf"),volume:profileValue(b,"volume","Volume"),folio:profileValue(b,"folio","Folio"),sis:profileValue(b,"sis","Sœur","Soeur","Sis"),dept:profileValue(b,"dept","Département","Departement"),commune:profileValue(b,"commune","Commune"),arrond:profileValue(b,"arrond","arrondissement","Arrondissement"),communeFormalites:profileValue(b,"communeFormalites","Formalités de la commune","Commune du bureau des formalités")},
       origine:{mode:profileValue(o,"mode","Mode"),modeAutre:profileValue(o,"modeAutre"),vendeur:profileValue(o,"vendeur","Vendeur"),ref:profileValue(o,"ref","Ref"),dateConv:profileValue(o,"dateConv","DateConvention"),prix:profileValue(o,"prix","Prix")},
       prix:raw.prix !== undefined ? raw.prix : profileValue(raw,"Prix"),
       dateActe:{annee:profileValue(da,"annee","Annee","Année"),jourMois:profileValue(da,"jourMois","JourMois")}
@@ -1590,6 +1649,12 @@ function generateActeHTML(){
     }
   }
 
+  document.getElementById("btnAdminWorkspace").addEventListener("click",async()=>{await auditLog("ESPACE_NOTAIRE","L'administrateur a ouvert son espace de travail notaire",{mode:"admin"});showDashboard();});
+  document.getElementById("btnOpenAudit").addEventListener("click",showAudit);
+  document.getElementById("btnBackFromAudit").addEventListener("click",showAdmin);
+  document.getElementById("auditSearch").addEventListener("input",loadAuditLogs);
+  document.getElementById("auditActionFilter").addEventListener("change",loadAuditLogs);
+
   document.getElementById("btnAddUser").addEventListener("click", async () => {
     const name=document.getElementById("newUserName").value.trim(), email=document.getElementById("newUserEmail").value.trim().toLowerCase(), pwd=document.getElementById("newUserPassword").value, role=document.getElementById("newUserRole").value;
     if(!name||!email||!pwd){toast("Veuillez renseigner le nom, l'email et le mot de passe.","error");return;}
@@ -1609,6 +1674,7 @@ function generateActeHTML(){
         throw fireErr;
       }
       await secondaryAuth.signOut().catch(()=>{});
+      await auditLog("CREATION_UTILISATEUR","Création d'un utilisateur",{uid:created.uid,email,nom:name,role});
       ["newUserName","newUserEmail","newUserPassword"].forEach(id=>document.getElementById(id).value="");
       toast("✅ Utilisateur créé. Votre session administrateur est conservée.","success");
     }catch(e){
@@ -1624,12 +1690,12 @@ function generateActeHTML(){
     const toggle=e.target.closest("[data-toggle-user]");
     if(toggle){
       const uid=toggle.dataset.toggleUser; if(uid===currentUser?.uid){toast("Impossible de désactiver votre propre compte.","error");return;}
-      try{await db.collection("users").doc(uid).set({actif:toggle.dataset.active!=="true"},{merge:true});toast(toggle.dataset.active==="true"?"Compte désactivé.":"Compte réactivé.","success");}catch(err){toast("Action refusée : "+(err.code||err.message),"error");} return;
+      try{const actif=toggle.dataset.active!=="true";await db.collection("users").doc(uid).set({actif},{merge:true});await auditLog("MODIFICATION_UTILISATEUR",actif?"Réactivation d'un compte":"Désactivation d'un compte",{uid,actif});toast(toggle.dataset.active==="true"?"Compte désactivé.":"Compte réactivé.","success");}catch(err){toast("Action refusée : "+(err.code||err.message),"error");} return;
     }
     if(e.target.classList.contains("btn-delete")){
       const uid=e.target.dataset.uid; if(uid===currentUser?.uid)return toast("Impossible de supprimer votre propre compte.","error");
       if(confirm("Supprimer la fiche Firestore de cet utilisateur ?\n\nAttention : cela ne supprime pas son compte Firebase Authentication. Utilisez plutôt Désactiver pour bloquer son accès dans l'application.")){
-        try{await db.collection("users").doc(uid).delete();toast("Fiche utilisateur supprimée de Firestore.","success");}catch(err){toast("Suppression refusée : "+(err.code||err.message),"error");}
+        try{await db.collection("users").doc(uid).delete();await auditLog("SUPPRESSION_UTILISATEUR","Suppression de la fiche Firestore d'un utilisateur",{uid});toast("Fiche utilisateur supprimée de Firestore.","success");}catch(err){toast("Suppression refusée : "+(err.code||err.message),"error");}
       }
     }
   });
@@ -1686,6 +1752,7 @@ function generateActeHTML(){
     document.getElementById("btnSaveDraft").classList.remove("hidden");
     showWizard();
     renderStep();
+    auditLog("NOUVEAU_DOSSIER","Création d'un nouveau dossier");
   });
   document.addEventListener("click", async (e) => {
     const continueBtn=e.target.closest(".btn-continue");
@@ -1697,20 +1764,20 @@ function generateActeHTML(){
         if(snap.exists){
           const data=snap.data(); dossierData=normalizeDossierData(data.donnees||{});
           currentStep=Math.max(0,Math.min(totalSteps-1,(data.etapeActuelle||1)-1)); currentDossierId=id;
-          showWizard(); renderStep(); toast("Dossier chargé avec succès.","success");
+          showWizard(); renderStep(); await auditLog("OUVERTURE_DOSSIER","Ouverture d'un dossier",{dossierId:id}); toast("Dossier chargé avec succès.","success");
         }
       }catch(err){toast("Impossible d'ouvrir le dossier.","error");}
     }
     if(deleteBtn){
       const id=deleteBtn.dataset.id;
       if(confirm("Supprimer définitivement ce dossier ? Cette action est irréversible.")){
-        try{await db.collection("dossiers").doc(id).delete();toast("Dossier supprimé.","success");}
+        try{await db.collection("dossiers").doc(id).delete();await auditLog("SUPPRESSION_DOSSIER","Suppression définitive d'un dossier",{dossierId:id});toast("Dossier supprimé.","success");}
         catch(err){toast("Suppression refusée : "+(err.code||"erreur"),"error");}
       }
     }
   });
 
-  document.getElementById("btnBackToDashboard").addEventListener("click", () => showDashboard());
+  document.getElementById("btnBackToDashboard").addEventListener("click",()=>{if(getProfileRole(currentProfile)==="admin"){auditLog("ESPACE_NOTAIRE","Retour vers l'administration",{mode:"admin"});showAdmin();}else showDashboard();});
 
   // WIZARD
   function renderProgress() {
@@ -1753,17 +1820,38 @@ function generateActeHTML(){
     switch(currentStep){
       case 0:container.innerHTML=person("vendeur","Identité du Vendeur");break;
       case 1:container.innerHTML=person("acquereur","Identité de l'Acquéreur");break;
-      case 2:{const b=dossierData.bien||{},cs=b.dept&&territoireBenin[b.dept]?Object.keys(territoireBenin[b.dept]):[],as=b.dept&&b.commune&&territoireBenin[b.dept]?.[b.commune]?territoireBenin[b.dept][b.commune]:[];container.innerHTML=`<h2>Désignation du bien</h2><p class="section-intro">Les listes administratives sont vides par défaut, puis se filtrent selon votre saisie.</p><div class="form-grid">${smart("bienType","Type",b.type,["rural","urbain","Autre"],true,"Sélectionner le type…","bienTypeAutre")}${smart("bienEtat","État",b.etat,["non bâti","bâti","Autre"],true,"Sélectionner l'état…","bienEtatAutre")}${smart("bienForme","Forme",b.forme,["irrégulière","quadrangulaire","rectangulaire","Autre"],true,"Sélectionner la forme…","bienFormeAutre")}${f("bienHa","Hectares",b.ha||"","number",true,"min=0 max=999999")}${f("bienA","Ares",b.a||"","number",true,"min=0 max=99")}${f("bienCa","Centiares",b.ca||"","number",true,"min=0 max=99")}${f("bienTF","N° titre foncier",b.tf)}${f("bienVolume","Volume",b.volume)}${f("bienFolio","Folio",b.folio)}${f("bienSis","Sis à",b.sis)}${smart("bienDept","Département",b.dept,depts,true,"Sélectionner un département…")}${smart("bienCommune","Commune",b.commune,cs,true,"Sélectionner une commune…")}${smart("bienArrondissement","Arrondissement",b.arrond,as,true,"Sélectionner un arrondissement…")}${smart("communeFormalites","Commune du bureau des formalités",b.communeFormalites,toutesCommunesBenin,true,"Rechercher une commune…")}</div>`;break;}
+      case 2:{const b=dossierData.bien||{},cs=b.dept&&territoireBenin[b.dept]?Object.keys(territoireBenin[b.dept]):[],as=b.dept&&b.commune&&territoireBenin[b.dept]?.[b.commune]?territoireBenin[b.dept][b.commune]:[];container.innerHTML=`<div class="property-head"><div><span class="eyebrow">ÉTAPE 03 · IDENTIFICATION FONCIÈRE</span><h2>Désignation du bien</h2><p class="section-intro">Décrivez précisément le bien et laissez ActePro contrôler automatiquement le régime foncier applicable.</p></div><div class="live-status"><span class="live-dot"></span> Contrôle en temps réel</div></div><div class="property-layout"><div class="property-form"><div class="form-section-card"><div class="form-section-title"><span class="section-icon">⌖</span><div><strong>Localisation & désignation</strong><small>Références géographiques et cadastrales</small></div></div><div class="form-grid">${smart("bienType","Type de milieu",b.type,["rural","urbain","périurbain","Autre"],true,"Sélectionner le milieu…","bienTypeAutre")}${smart("bienDesignation","Mode de désignation",b.designation,["Lot-Parcelle","QIP","REP","ZIP","État des lieux","Autre"],true,"Sélectionner le mode…","bienDesignationAutre")}${f("bienQuartier","Quartier / Village",b.quartier||"")}${f("bienIlot","Îlot",b.ilot||"")}${f("bienLot","Lot",b.lot||"")}${f("bienParcelle","Parcelle",b.parcelle||"")}${smart("bienEtat","État",b.etat,["non bâti","bâti","Autre"],true,"Sélectionner l'état…","bienEtatAutre")}${smart("bienForme","Forme",b.forme,["irrégulière","quadrangulaire","rectangulaire","Autre"],true,"Sélectionner la forme…","bienFormeAutre")}${f("bienHa","Hectares",b.ha||"","number",true,"min=0 step=1")}${f("bienA","Ares",b.a||"","number",true,"min=0 max=99 step=1")}${f("bienCa","Centiares",b.ca||"","number",true,"min=0 max=99 step=1")}${f("bienTF","N° titre foncier",b.tf)}${f("bienVolume","Volume",b.volume)}${f("bienFolio","Folio",b.folio)}${f("bienSis","Sis à",b.sis)}${smart("bienDept","Département",b.dept,depts,true,"Sélectionner un département…")}${smart("bienCommune","Commune",b.commune,cs,true,"Sélectionner une commune…")}${smart("bienArrondissement","Arrondissement",b.arrond,as,true,"Sélectionner un arrondissement…")}${smart("communeFormalites","Commune du bureau des formalités",b.communeFormalites,toutesCommunesBenin,true,"Rechercher une commune…")}</div></div></div><aside class="legal-panel" id="bienAlertes"><div class="legal-panel-top"><span class="legal-badge">⚖ CONTRÔLE FONCIER</span><span class="live-dot"></span></div><div class="legal-empty"><div class="legal-empty-icon">✓</div><strong>En attente des informations</strong><p>Sélectionnez le milieu et renseignez la superficie pour afficher le contrôle juridique.</p></div></aside></div>`;break;}
       case 3:{const o=dossierData.origine||{};container.innerHTML=`<h2>Origine de propriété</h2><div class="form-grid">${smart("origMode","Mode d'acquisition",o.mode,["achat","donation","succession","Autre"],true,"Sélectionner un mode…","origModeAutre")}${f("origVendeurPrecedent","Ancien vendeur / propriétaire",o.vendeur)}${f("origConventionRef","Référence convention",o.ref)}${f("origConventionDate","Date de convention (en lettres)",o.dateConv)}${f("origPrix","Prix d'acquisition (FCFA)",o.prix,"number")}</div>`;break;}
       case 4:container.innerHTML=`<h2>Prix de vente</h2><div class="form-grid">${f("prixVente","Montant de vente (FCFA)",dossierData.prix||"","number",true,"min=1")}</div><p class="hint">Le montant sera automatiquement converti en lettres dans l'acte final.</p>`;break;
       case 5:{const d=dossierData.dateActe||{};let dt="";if(d.annee&&d.jourMois){const mm=months.findIndex(m=>String(d.jourMois).toLowerCase().includes(m))+1,dd=(String(d.jourMois).match(/\d{1,2}/)||[])[0];if(mm&&dd)dt=`${d.annee}-${String(mm).padStart(2,"0")}-${String(dd).padStart(2,"0")}`;}container.innerHTML=`<h2>Date de l'acte</h2><div class="form-grid">${dateField("dateActeUnique","Date de l'acte",dt)}</div>`;break;}
-      case 6:container.innerHTML=`<h2>Vérification finale</h2><div class="review-box"><p><strong>Vendeur :</strong> ${esc((dossierData.vendeur?.prenom||'')+' '+(dossierData.vendeur?.nom||''))}</p><p><strong>Acquéreur :</strong> ${esc((dossierData.acquereur?.prenom||'')+' '+(dossierData.acquereur?.nom||''))}</p><p><strong>Bien :</strong> ${esc(dossierData.bien?.sis||'')} — ${esc(dossierData.bien?.commune||'')}</p><p><strong>Prix :</strong> ${esc(dossierData.prix||'')} FCFA</p><div class="no-preview-note">🔒 <strong>L'acte juridique n'est pas affiché pendant la saisie.</strong><br>Après validation, cliquez sur « Générer l'acte » pour afficher le document final.</div></div>`;break;
+      case 6:container.innerHTML=`<h2>Vérification finale</h2><div class="review-box"><p><strong>Vendeur :</strong> ${esc((dossierData.vendeur?.prenom||'')+' '+(dossierData.vendeur?.nom||''))}</p><p><strong>Acquéreur :</strong> ${esc((dossierData.acquereur?.prenom||'')+' '+(dossierData.acquereur?.nom||''))}</p><p><strong>Bien :</strong> ${esc(dossierData.bien?.sis||'')} — ${esc(dossierData.bien?.commune||'')} — ${esc(dossierData.bien?.designation||'')}</p><p><strong>Prix :</strong> ${esc(dossierData.prix||'')} FCFA</p><div class="no-preview-note">🔒 <strong>L'acte juridique n'est pas affiché pendant la saisie.</strong><br>Après validation, cliquez sur « Générer l'acte » pour afficher le document final.</div></div>`;break;
     }
     bindCurrentStep();
   }
   function smartValue(id,otherId){const v=document.getElementById(id)?.value||"";return v==="Autre"&&otherId?(document.getElementById(otherId)?.value||"Autre").trim():v;}
   function updateList(id,values){const el=document.getElementById(id);if(!el)return;let list=document.getElementById(id+"List");if(!list){list=document.createElement("datalist");list.id=id+"List";el.parentElement.insertAdjacentElement("afterend",list);}const old=el.value;list.innerHTML=values.map(x=>`<option value="${esc(x)}"></option>`).join("");if(old&&!values.includes(old))el.value="";}
   function updateCascade(prefix){const dept=document.getElementById(prefix+"Dept")?.value||"",comm=document.getElementById(prefix+"Commune")?.value||"";const communes=dept&&territoireBenin[dept]?Object.keys(territoireBenin[dept]):[],arrs=dept&&comm&&territoireBenin[dept]?.[comm]?territoireBenin[dept][comm]:[];updateList(prefix+"Commune",communes);updateList(prefix+"Arrond",arrs);}
+  function updateBienAlertes(){
+    const box=document.getElementById("bienAlertes"); if(!box)return;
+    const type=String(document.getElementById("bienType")?.value||"").toLowerCase().trim();
+    let ha=Math.max(0,Number(document.getElementById("bienHa")?.value||0));
+    let a=Math.max(0,Math.min(99,Number(document.getElementById("bienA")?.value||0)));
+    let ca=Math.max(0,Math.min(99,Number(document.getElementById("bienCa")?.value||0)));
+    const total=ha+(a/100)+(ca/10000);
+    const totalTxt=total.toLocaleString('fr-FR',{minimumFractionDigits:0,maximumFractionDigits:4});
+    const rural=type==='rural';
+    let level=''; let title=''; let text=''; let cls=''; let icon=''; let procedure=''; let pct=0;
+    if(!rural){
+      box.innerHTML=`<div class="legal-panel-top"><span class="legal-badge">⚖ CONTRÔLE FONCIER</span><span class="status-neutral">${type?'MILIEU '+esc(type.toUpperCase()):'EN ATTENTE'}</span></div><div class="legal-empty"><div class="legal-empty-icon">✓</div><strong>${type?'Contrôle standard du milieu':'Sélectionnez un milieu'}</strong><p>${type?'Les contrôles spécifiques aux terres rurales ne sont pas déclenchés.':'Choisissez « Rural » pour activer le contrôle foncier renforcé.'}</p></div>`;
+      return;
+    }
+    if(total<2){cls='info';icon='ℹ️';level='NIVEAU 1';title='Terre rurale — moins de 2 ha';text='Le seuil de 2 hectares n’est pas atteint. Les vérifications foncières ordinaires restent nécessaires.';procedure='Contrôle foncier ordinaire';pct=20;}
+    else if(total<=20){cls='warning';icon='⚠️';level='NIVEAU 2';title='De 2 à 20 hectares';text='Une approbation préalable du conseil communal ou municipal du projet de mise en valeur doit être vérifiée.';procedure='Conseil communal / municipal';pct=40;}
+    else if(total<=100){cls='warning';icon='🟠';level='NIVEAU 3';title='Plus de 20 à 100 hectares';text='Le projet de mise en valeur doit être contrôlé au regard de la procédure ANDF après avis du conseil communal ou municipal.';procedure='ANDF + avis communal / municipal';pct=60;}
+    else if(total<=500){cls='danger';icon='🚨';level='NIVEAU 4';title='Plus de 100 à 500 hectares';text='Contrôle renforcé : conseil communal ou municipal, avis favorable de l’ANDF et approbation du ministre chargé du foncier.';procedure='Commune + ANDF + Ministre';pct=80;}
+    else{cls='danger';icon='🛑';level='NIVEAU 5';title='Plus de 500 hectares';text='Procédure exceptionnelle : le projet de mise en valeur relève d’une approbation par décret pris en Conseil des ministres. Ne pas finaliser automatiquement.';procedure='Conseil des ministres';pct=100;}
+    box.innerHTML=`<div class="legal-panel-top"><span class="legal-badge">⚖ CONTRÔLE FONCIER</span><span class="status-live">● RURAL ACTIF</span></div><div class="legal-hero ${cls}"><div class="legal-hero-icon">${icon}</div><div><span class="legal-level">${level}</span><strong>${title}</strong><p>${text}</p></div></div><div class="legal-metric"><div><span>Superficie calculée</span><strong>${totalTxt} ha</strong></div><div class="legal-progress"><i style="width:${pct}%"></i></div></div><div class="legal-procedure"><span>PROCÉDURE À VÉRIFIER</span><strong>${procedure}</strong></div><div class="legal-note">🔎 <strong>Contrôle automatique.</strong> Cette alerte aide à sécuriser la saisie et ne remplace pas la vérification juridique du dossier.</div>`;
+  }
   function bindCurrentStep(){
     const pairs=[['vDept','vCommune'],['aDept','aCommune'],['bienDept','bienCommune']];
     pairs.forEach(([d,c])=>{const de=document.getElementById(d),co=document.getElementById(c);if(de){de.addEventListener('input',()=>{if(co)co.value="";const pre=d.replace(/Dept$/,'');updateCascade(pre);scheduleAutosave();});}if(co){co.addEventListener('input',()=>{const pre=c.replace(/Commune$/,'');const ar=document.getElementById(pre+'Arrond');if(ar)ar.value="";updateCascade(pre);scheduleAutosave();});}});
@@ -1771,7 +1859,8 @@ function generateActeHTML(){
     ['vNPI','aNPI'].forEach(id=>document.getElementById(id)?.addEventListener('input',e=>e.target.value=e.target.value.replace(/\D/g,'').slice(0,10)));
     ['vPieceNumero','aPieceNumero'].forEach(id=>document.getElementById(id)?.addEventListener('input',e=>e.target.value=e.target.value.replace(/\D/g,'').slice(0,14)));
     document.querySelectorAll('.smart-arrow').forEach(btn=>btn.addEventListener('click',()=>{const input=btn.parentElement.querySelector('input');input.focus();try{input.showPicker?.();}catch(e){}}));
-    ['vProfession','aProfession','vSituation','aSituation','vPieceType','aPieceType','bienType','bienEtat','bienForme','origMode'].forEach(id=>{const el=document.getElementById(id);if(el)el.addEventListener('change',()=>{const w=document.getElementById(id+'AutreWrap');if(w)w.classList.toggle('hidden',el.value!=='Autre');});});
+    ['vProfession','aProfession','vSituation','aSituation','vPieceType','aPieceType','bienType','bienDesignation','bienEtat','bienForme','origMode'].forEach(id=>{const el=document.getElementById(id);if(el)el.addEventListener('change',()=>{const w=document.getElementById(id+'AutreWrap');if(w)w.classList.toggle('hidden',el.value!=='Autre');if(id==='bienType')updateBienAlertes();});});
+    ['bienHa','bienA','bienCa'].forEach(id=>document.getElementById(id)?.addEventListener('input',updateBienAlertes));document.getElementById('bienType')?.addEventListener('input',updateBienAlertes);updateBienAlertes();
   }
   function validateStep() {
     // Validation robuste : on valide uniquement les vrais champs obligatoires
@@ -1818,6 +1907,7 @@ function generateActeHTML(){
       }
     });
 
+    if(currentStep===2){const ha=Number(document.getElementById("bienHa")?.value||0),a=Number(document.getElementById("bienA")?.value||0),ca=Number(document.getElementById("bienCa")?.value||0);if(ha<0||a<0||a>99||ca<0||ca>99){valid=false;toast("Vérifiez la superficie : ares et centiares doivent être compris entre 0 et 99.","error");}updateBienAlertes();}
     // La case de présence du vendeur n'est jamais obligatoire.
     if (!valid && firstInvalid) {
       firstInvalid.scrollIntoView({behavior:"smooth", block:"center"});
@@ -1831,7 +1921,7 @@ function generateActeHTML(){
   function collectStepData(){const g=id=>document.getElementById(id)?.value||"",c=id=>!!document.getElementById(id)?.checked;
     if(currentStep===0){const b=collectDate('vDateNaissance'),e=collectDate('vDateExpiration');dossierData.vendeur={genre:g('vGenre'),prenom:g('vPrenom'),nom:g('vNom'),profession:smartValue('vProfession','vProfessionAutre'),situationMatrimoniale:smartValue('vSituation','vSituationAutre'),departement:g('vDept'),commune:g('vCommune'),arrondissement:g('vArrond'),quartier:g('vDomQuartier'),carre:g('vDomCarre'),maison:g('vDomMaison'),lieuNaissance:g('vLieuNaissance'),naissJour:b.day,naissMois:b.month,naissAnnee:b.year,npi:g('vNPI').replace(/\D/g,'').slice(0,10),pieceType:smartValue('vPieceType','vPieceAutre'),pieceNumero:g('vPieceNumero').replace(/\D/g,'').slice(0,14),pieceAutre:g('vPieceAutre'),expJour:e.day,expMois:e.month,expAnnee:e.year,nationalite:smartValue('vNationalite'),iciPresent:c('vIciPresent')};}
     if(currentStep===1){const b=collectDate('aDateNaissance'),e=collectDate('aDateExpiration');dossierData.acquereur={genre:g('aGenre'),prenom:g('aPrenom'),nom:g('aNom'),profession:smartValue('aProfession','aProfessionAutre'),situationMatrimoniale:smartValue('aSituation','aSituationAutre'),departement:g('aDept'),commune:g('aCommune'),arrondissement:g('aArrond'),quartier:g('aDomQuartier'),carre:g('aDomCarre'),maison:g('aDomMaison'),lieuNaissance:g('aLieuNaissance'),naissJour:b.day,naissMois:b.month,naissAnnee:b.year,npi:g('aNPI').replace(/\D/g,'').slice(0,10),pieceType:smartValue('aPieceType','aPieceAutre'),pieceNumero:g('aPieceNumero').replace(/\D/g,'').slice(0,14),pieceAutre:g('aPieceAutre'),expJour:e.day,expMois:e.month,expAnnee:e.year,nationalite:smartValue('aNationalite')};}
-    if(currentStep===2)dossierData.bien={type:smartValue('bienType','bienTypeAutre'),etat:smartValue('bienEtat','bienEtatAutre'),forme:smartValue('bienForme','bienFormeAutre'),ha:g('bienHa'),a:g('bienA'),ca:g('bienCa'),tf:g('bienTF'),volume:g('bienVolume'),folio:g('bienFolio'),sis:g('bienSis'),dept:g('bienDept'),commune:g('bienCommune'),arrond:g('bienArrondissement'),communeFormalites:smartValue('communeFormalites')};
+    if(currentStep===2)dossierData.bien={type:smartValue('bienType','bienTypeAutre'),designation:smartValue('bienDesignation','bienDesignationAutre'),quartier:g('bienQuartier'),ilot:g('bienIlot'),lot:g('bienLot'),parcelle:g('bienParcelle'),etat:smartValue('bienEtat','bienEtatAutre'),forme:smartValue('bienForme','bienFormeAutre'),ha:g('bienHa'),a:g('bienA'),ca:g('bienCa'),tf:g('bienTF'),volume:g('bienVolume'),folio:g('bienFolio'),sis:g('bienSis'),dept:g('bienDept'),commune:g('bienCommune'),arrond:g('bienArrondissement'),communeFormalites:smartValue('communeFormalites')};
     if(currentStep===3)dossierData.origine={mode:smartValue('origMode','origModeAutre'),vendeur:g('origVendeurPrecedent'),ref:g('origConventionRef'),dateConv:g('origConventionDate'),prix:g('origPrix')};
     if(currentStep===4)dossierData.prix=g('prixVente');
     if(currentStep===5){const d=collectDate('dateActeUnique');dossierData.dateActe={annee:d.year,jourMois:d.day+' '+d.month};}
@@ -1860,7 +1950,7 @@ function generateActeHTML(){
         currentDossierId=docRef.id;
       }
       if(status){status.textContent="☁️ Sauvegardé dans Firebase";status.className="autosave-status ok";}
-      if(!silent)toast("Brouillon enregistré. Vous pourrez le retrouver après reconnexion.","success");
+      if(!silent){await auditLog("ENREGISTREMENT_DOSSIER","Brouillon enregistré",{dossierId:currentDossierId,etape:currentStep+1});toast("Brouillon enregistré. Vous pourrez le retrouver après reconnexion.","success");}
     }catch(e){
       if(status){status.textContent="⚠️ Non synchronisé";status.className="autosave-status";}
       if(!silent)toast("Erreur d'enregistrement : "+(e.code||e.message),"error");
@@ -1892,7 +1982,7 @@ function generateActeHTML(){
         const ref=await db.collection("dossiers").add({creePar:currentUser.uid,statut:"termine",etapeActuelle:7,donnees:dossierData,dateCreation:firebase.firestore.FieldValue.serverTimestamp(),dateModification:firebase.firestore.FieldValue.serverTimestamp()});
         currentDossierId=ref.id;
       }
-      toast("Acte généré et dossier enregistré avec succès.","success");
+      await auditLog("GENERATION_ACTE","Génération et enregistrement de l'acte",{dossierId:currentDossierId});toast("Acte généré et dossier enregistré avec succès.","success");
     }catch(e){toast("Acte généré, mais l'enregistrement Firebase a échoué.","error");}
   });
   function validateAllData(){
@@ -1932,16 +2022,16 @@ function generateActeHTML(){
       const html=getActHTML();
       const blob=new Blob([`<!doctype html><html><head><meta charset="UTF-8"><style>${getActCSS()}</style></head><body>${html}</body></html>`],{type:"application/msword"});
       const a=document.createElement("a");a.href=URL.createObjectURL(blob);a.download="acte_vente.doc";a.click();setTimeout(()=>URL.revokeObjectURL(a.href),1000);
-      toast("Document Word exporté.","success");
+      auditLog("EXPORT_WORD","Export du document au format Word",{dossierId:currentDossierId});toast("Document Word exporté.","success");
     }catch(e){toast(e.message,"error");}
   });
-  document.getElementById("btnExportPDF").addEventListener("click",printAct);
+  document.getElementById("btnExportPDF").addEventListener("click",()=>{auditLog("EXPORT_PDF","Impression / export PDF de l'acte",{dossierId:currentDossierId});printAct();});
   document.getElementById("btnExportHTML").addEventListener("click",()=>{
     try{
       const html=getActHTML();
       const blob=new Blob([`<!doctype html><html lang="fr"><head><meta charset="UTF-8"><title>Acte de vente immobilière</title><style>${getActCSS()}</style></head><body>${html}</body></html>`],{type:"text/html"});
       const a=document.createElement("a");a.href=URL.createObjectURL(blob);a.download="acte_vente.html";a.click();setTimeout(()=>URL.revokeObjectURL(a.href),1000);
-      toast("Document HTML autonome exporté.","success");
+      auditLog("EXPORT_HTML","Export du document au format HTML",{dossierId:currentDossierId});toast("Document HTML autonome exporté.","success");
     }catch(e){toast(e.message,"error");}
   });
 </script>
